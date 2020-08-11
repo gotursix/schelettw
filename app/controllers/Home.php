@@ -9,6 +9,5 @@
 
         public function indexAction() {
             $this->view->render('home/index');
-            //die('Welcome to the home controller. This is the index action.');
         }
     }

@@ -3,7 +3,5 @@
 
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
-
-<h1>Welcome to Gotursix MVC Framework</h1>
-
+<h1 class="text-center red">Welcome to Gotursix MVC Framework</h1>
 <?php $this->end(); ?>

@@ -12,7 +12,7 @@
             $viewString = implode(DS,$viewAry);
             if(file_exists(ROOT . DS . 'app' . DS . 'views'. DS . $viewString . '.php')){
                 include(ROOT . DS . 'app' . DS . 'views'. DS . $viewString . '.php');
-                //include (ROOT. DS . 'app' . DS . 'views' . DS . 'layouts' . DS . $this->_layout. '.php');
+                include (ROOT. DS . 'app' . DS . 'views' . DS . 'layouts' . DS . $this->_layout. '.php');
             } else {
                 die('The view\"' . $viewName . " does not exist.");
             }
@@ -21,7 +21,7 @@
         public function content($type) {
             if($type == 'head'){
                 return $this->_head;
-            } else {
+            } elseif($type == 'body') {
                 return $this->_body;
             }
             return false;
