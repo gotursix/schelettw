@@ -1,6 +1,6 @@
 <?php
 
-    class Tools extends Controller{
+    class Tools extends Controller {
 
         public function __construct($controller, $action)
         {
@@ -8,19 +8,23 @@
             $this->view->setLayout('default');
         }
 
-        public function indexAction(){
+        public function indexAction()
+        {
             $this->view->render('tools/index');
         }
 
-        public function firstAction(){
+        public function firstAction()
+        {
             $this->view->render('tools/first');
         }
 
-        public function secondAction(){
+        public function secondAction()
+        {
             $this->view->render('tools/second');
         }
 
-        public function thirdAction(){
+        public function thirdAction()
+        {
             $this->view->render('tools/third');
         }
 

@@ -1,3 +1,4 @@
+Options -Indexes
 RewriteEngine On
 
 # Block access to indexes and files
