@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="67fcbe8f-721f-4e3c-a336-c2bb79628eb7" name="Default Changelist" comment="" />
+=======
+    <list default="true" id="67fcbe8f-721f-4e3c-a336-c2bb79628eb7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/views/tools/test.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
+      <change beforePath="$PROJECT_DIR$/app/controllers/Tools.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Tools.php" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/app/views/home/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/home/index.php" afterDir="false" />
+>>>>>>> Stashed changes
+    </list>
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,8 +96,16 @@
       <workItem from="1613731241952" duration="42000" />
       <workItem from="1615286038035" duration="19830000" />
       <workItem from="1615359970885" duration="25284000" />
+<<<<<<< Updated upstream
       <workItem from="1615397207156" duration="630000" />
+<<<<<<< Updated upstream
       <workItem from="1615403910616" duration="1405000" />
+=======
+      <workItem from="1615403910616" duration="958000" />
+=======
+      <workItem from="1615397207156" duration="3996000" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
