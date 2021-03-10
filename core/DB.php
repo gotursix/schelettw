@@ -44,7 +44,7 @@ class DB {
 
     }
 
-    public function findFirst(){
+    public function findFirst($table, $params = []) {
 
     }
 
