@@ -1,15 +1,13 @@
 <?php
 
 class Application {
-    public function __construct()
-    {
+    public function __construct() {
         $this->_set_reporting();
         // TODO: Remove later.
         $this->_unregister_globals();
     }
 
-    private function _set_reporting()
-    {
+    private function _set_reporting() {
         if (DEBUG) {
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
@@ -21,8 +19,7 @@ class Application {
         }
     }
 
-    private function _unregister_globals()
-    {
+    private function _unregister_globals() {
         if (ini_get('register_globals')) {
             $globalsAry = ['_SESSION', '_COOKIE', '_POST', '_GET', '_REQUEST', '_SERVER', '_ENV', '_FILES'];
             foreach ($globalsAry as $g) {

@@ -3,12 +3,10 @@
 class View {
     protected $_head, $_body, $_siteTitle = SITE_TITLE, $_outputBuffer, $_layout = DEFAULT_LAYOUT;
 
-    public function __construct()
-    {
+    public function __construct() {
     }
 
-    public function render($viewName)
-    {
+    public function render($viewName) {
         $viewAry = explode('/', $viewName);
         $viewString = implode(DS, $viewAry);
         if (file_exists(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php')) {
@@ -19,8 +17,7 @@ class View {
         }
     }
 
-    public function content($type)
-    {
+    public function content($type) {
         if ($type == 'head') {
             return $this->_head;
         } elseif ($type == 'body') {
@@ -29,15 +26,13 @@ class View {
         return false;
     }
 
-    public function start($type)
-    {
+    public function start($type) {
         $this->_outputBuffer = $type;
         //Storing type of the content we are displaying (head/body)
         ob_start();
     }
 
-    public function end()
-    {
+    public function end() {
         if ($this->_outputBuffer == 'head') {
             $this->_head = ob_get_clean();
         } elseif ($this->_outputBuffer = 'body') {
@@ -47,18 +42,15 @@ class View {
         }
     }
 
-    public function getSiteTitle()
-    {
+    public function getSiteTitle() {
         return $this->_siteTitle;
     }
 
-    public function setSiteTitle($title)
-    {
+    public function setSiteTitle($title) {
         $this->_siteTitle = $title;
     }
 
-    public function setLayout($path)
-    {
+    public function setLayout($path) {
         $this->_layout = $path;
     }
 }
