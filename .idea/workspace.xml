@@ -8,9 +8,12 @@
       <change afterPath="$PROJECT_DIR$/app/views/tools/test.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/app/controllers/Tools.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/Tools.php" afterDir="false" />
 =======
       <change beforePath="$PROJECT_DIR$/app/views/home/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/home/index.php" afterDir="false" />
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     </list>
 >>>>>>> Stashed changes
@@ -63,6 +66,12 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -99,12 +108,16 @@
 <<<<<<< Updated upstream
       <workItem from="1615397207156" duration="630000" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <workItem from="1615403910616" duration="1405000" />
 =======
       <workItem from="1615403910616" duration="958000" />
 =======
       <workItem from="1615397207156" duration="3996000" />
 >>>>>>> Stashed changes
+>>>>>>> Stashed changes
+=======
+      <workItem from="1615400533867" duration="2749000" />
 >>>>>>> Stashed changes
     </task>
     <servers />
