@@ -23,4 +23,11 @@ class Tools extends Controller {
         $this->view->render('tools/third');
     }
 
+    public function forgotPasswordAction(){
+        $this->view->render('tools/test');
+    }
+    public function testAction(){
+        $this->view->render('tools/test');
+    }
+
 }
