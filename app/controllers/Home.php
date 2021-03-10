@@ -15,7 +15,7 @@ class Home extends Controller {
 
         $contacts = $db->query("SELECT * FROM contacts ORDER BY lname,fname")->first();
         $columns = $db->getColumns("contacts");
-        dnd($columns);
+        //dnd($columns);
         $this->view->render('home/index');
     }
 }
