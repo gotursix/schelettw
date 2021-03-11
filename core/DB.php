@@ -107,7 +107,7 @@ class DB {
         return false;
     }
 
-    public function update($table, $id, $key, $fields = []) {
+    public function update($table,$key, $id, $fields = []) {
         $fieldString = '';
         foreach ($fields as $field => $value) {
             $fieldString .= ' ' . $field . '=?,';
