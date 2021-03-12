@@ -95,8 +95,16 @@ class Model {
         return $data;
     }
 
-    public function assign() {
-        
+    public function assign($params) {
+        if (!empty($params)) {
+            foreach ($params as $key => $val) {
+                if (in_array($key, $this->_columnNames)) {
+                    $this->$key = sanitise($val);
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
 
