@@ -12,9 +12,9 @@
             <input type="text" placeholder="Email address"/>
             <input type="text" placeholder="Choose a Username"/>
             <input type="password" placeholder="Password"/>
-            <input type="password" placeholder="confirm password"/>
+            <input type="password" placeholder="Confirm password"/>
             <button>create</button>
-            <p class="message">Already registered? <a href="#">Sign In</a></p>
+            <p class="message">Already registered? <a href="<?=PROOT?>register/login">Sign In</a></p>
         </form>
     </div>
 </div>

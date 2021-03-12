@@ -8,6 +8,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="<?= PROOT ?>css/custom.css">
     <link rel="stylesheet" href="<?= PROOT ?>css/nav-bar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- JS -->
     <script src="<?= PROOT ?>js/custom.js"></script>
     <?= $this->content('head'); ?>
@@ -17,19 +18,32 @@
 <div class="nav-wrapper">
     <div class="grad-bar"></div>
     <nav class="navbar">
-        <img src="<?= PROOT ?>img/logo.png" alt="Company Logo">
-        <div class="menu-toggle" id="mobile-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+        <div class="navbar-toggle" id="js-navbar-toggle">
+            <i class="fa fa-bars fix-menu"></i>
         </div>
-        <ul class="nav no-search">
-            <li class="nav-item"><a href="#">Home</a></li>
-            <li class="nav-item"><a href="#">Rankings</a></li>
+        <img src="<?= PROOT ?>img/logo.png" class="logo" alt="Company Logo">
+        <ul class="main-nav" id="js-menu">
+            <li>
+                <a href="#" class="nav-links">Home</a>
+            </li>
 
+            <li>
+                <a href="#" class="nav-links">Rankings</a>
+            </li>
+            <li>
+                <a href="#" class="nav-links">Welcome, Steel balls</a>
+            </li>
         </ul>
     </nav>
-</div>
-<?= $this->content('body'); ?>
+
+    <?= $this->content('body'); ?>
+
+    <script>
+        let mainNav = document.getElementById("js-menu");
+        let navBarToggle = document.getElementById("js-navbar-toggle");
+        navBarToggle.addEventListener("click", function () {
+            mainNav.classList.toggle("active");
+        });
+    </script>
 </body>
 </html>

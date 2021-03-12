@@ -7,11 +7,11 @@
 <div class="login-page">
     <div class="form">
         <h2 class="text-center" style="margin-bottom:15px">Log in</h2>
-        <form class="login-form" action="<?PROOT?>register/login" method="post">
+        <form class="login-form" action="<?=PROOT?>register/login" method="post">
             <input type="text" placeholder="Username"/>
             <input type="password" placeholder="Password"/>
             <button>login</button>
-            <p class="message">Not registered? <a href="#">Create an account</a></p>
+            <p class="message">Not registered? <a href="<?=PROOT?>register/register">Create an account</a></p>
         </form>
     </div>
 </div>
