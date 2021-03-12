@@ -1,0 +1,61 @@
+nav a{
+    color: rgb(106, 163, 137);
+}
+
+a:link {
+    color: red;
+}
+.nav{
+    display: flex;
+    height: 5rem;
+    background-color: rgb(246, 241, 209);
+    position: sticky;
+    top: 0;
+    border-bottom: rgb(106, 163, 137) 2px solid;
+
+}
+.nav__list{
+    display: flex;
+    margin: 0 auto;
+    list-style: none;
+    width: 100%;
+    justify-content: start;
+}
+.nav__list-left{
+    display: flex;
+    width: 70%;
+}
+.nav__list-right{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.user-nav__user-photo {
+    height: 3.75rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.nav__list--button{
+    display: flex;
+    flex: 1;
+    background: rgb(205, 255, 232);
+    border-radius: 100px;
+    margin: 1vh;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.nav__list--button:hover{
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+.nav__list--button:active{
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+nav ul li a:link {
+    text-decoration: none;
+    color: white;
+
+}
