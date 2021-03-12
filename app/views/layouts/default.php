@@ -21,10 +21,12 @@
         <div class="navbar-toggle" id="js-navbar-toggle">
             <i class="fa fa-bars fix-menu"></i>
         </div>
-        <img src="<?= PROOT ?>img/logo.png" class="logo" alt="Company Logo">
+        <a href="<?= PROOT ?>">
+            <img src="<?= PROOT ?>img/logo.png" class="logo" alt="Company Logo">
+        </a>
         <ul class="main-nav" id="js-menu">
             <li>
-                <a href="#" class="nav-links">Home</a>
+                <a href="<?= PROOT ?>" class="nav-links">Home</a>
             </li>
 
             <li>

@@ -1,4 +1,4 @@
-<?php $this->setSiteTitle(''); ?>
+<?php $this->setSiteTitle('Register'); ?>
 <?php $this->start('head'); ?>
 
 <?php $this->end(); ?>

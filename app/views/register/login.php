@@ -1,4 +1,4 @@
-<?php $this->setSiteTitle(''); ?>
+<?php $this->setSiteTitle('Login'); ?>
 <?php $this->start('head'); ?>
 
 <?php $this->end(); ?>
