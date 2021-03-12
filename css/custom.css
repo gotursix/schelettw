@@ -5,3 +5,70 @@
 .text-center {
     text-align: center;
 }
+
+.login-div{
+    padding: 10px;
+    background-color: #d6d6c2;
+    width: 420px;
+    height: 250px;
+    margin: auto;
+    margin-top: 25px;
+    border-radius: 10px;
+}
+
+.margins-form {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 1px;
+}
+
+input[type=text], input[type=password] {
+    width: 70%;
+    padding: 8px;
+    margin: 3px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 55%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 13px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+a:link, a:visited {
+    text-decoration: none;
+    width: 30%;
+    display: inline-block;
+    background-color: #ffcc00;
+    color: white;
+    padding: 11px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+a:hover, a:active {
+    background-color:  #e6b800;
+}
+
+.remember-me{
+    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-left: 30px;
+}
+
