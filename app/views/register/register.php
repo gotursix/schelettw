@@ -5,7 +5,7 @@
 <?php $this->start('body'); ?>
 <div class="login-page">
     <div class="form">
-        <h2 class="text-center" style="margin-bottom:15px">Register now!</h2>
+        <h2 class="text-center">Register now!</h2>
         <form class="register-form">
             <input type="text" placeholder="First name"/>
             <input type="text" placeholder="Last name"/>
