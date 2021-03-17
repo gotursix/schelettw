@@ -20,8 +20,9 @@
     text-align: center;
 }
 
-h2 .text-center {
+.text-center-r {
     text-align: center;
+    margin-bottom: 15px;
 }
 
 .login-page {
@@ -74,9 +75,7 @@ h2 .text-center {
     color: #c16ecf;
     text-decoration: none;
 }
-.form .register-form {
 
-}
 .container {
     position: relative;
     z-index: 1;
