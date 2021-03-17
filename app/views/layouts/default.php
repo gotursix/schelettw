@@ -16,6 +16,10 @@
 </head>
 <body>
 
+<?php
+ $menu = Router::getMenu('menu_acl'); dnd($menu);
+?>
+
 <div class="nav-wrapper">
     <div class="grad-bar"></div>
     <nav class="navbar">
@@ -38,6 +42,7 @@
             </li>
         </ul>
     </nav>
+</div>
 
     <?= $this->content('body'); ?>
 
