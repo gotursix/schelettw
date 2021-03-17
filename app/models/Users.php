@@ -11,10 +11,10 @@ class Users extends Model {
         $this->_cookieName = REMEMBER_ME_COOKIE_NAME;
         $this->_softDelete = true;
 
-        $u = $this->_db->findFirst('users', ['conditions' => 'id = ?', 'bind' => [$user]]);
 
         if ($user != '') {
             if (is_int($user)) {
+                $u = $this->_db->findFirst('users', ['conditions' => 'id = ?', 'bind' => [$user]]);
             } else {
                 $u = $this->_db->findFirst('users', ['conditions' => 'username= ?', 'bind' => [$user]]);
             }
@@ -27,12 +27,10 @@ class Users extends Model {
     }
 
     public function findByUsername($username) {
-        dnd("find by username" . $username);
         return $this->findFirst(['conditions' => "username = ? ", 'bind' => [$username]]);
     }
 
     public function login($rememberMe = false) {
-        dnd("We are in login bro!");
         Session::set($this->_sessionName, $this->id);
         if ($rememberMe) {
             $hash = md5(uniqid() + rand(0, 100));
@@ -44,7 +42,7 @@ class Users extends Model {
         }
     }
 
-    public function acls(){
+    public function acls() {
         if (empty($this->acl)) return [];
         return json_decode($this->acl, true);
     }

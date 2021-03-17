@@ -7,22 +7,17 @@
 <div class="login-page">
     <div class="form">
         <h2 class="text-center-r">Log in</h2>
-        <?php
-        if($_POST)
-            dnd($_POST);
-        ?>
-
-        <form class="login-form" action="<?=PROOT?>register/login" method="POST">
-            <input type="text" id="username" placeholder="Username"/>
-            <input type="password" id="password" placeholder="Password"/>
+        <form class="login-form" action="" method="POST">
+            <input type="text" id="username" name="username" placeholder="Username"/>
+            <input type="password" id="password" name="password" placeholder="Password"/>
             <div class="rem">
-                <label class="message" for="remember_me">Remember me<input type="checkbox" id="remember_me" name="remember_me" value="on"></label>
+                <label class="message" for="remember_me">Remember me
+                    <input type="checkbox" id="remember_me" name="remember_me" value="on">
+                </label>
             </div>
             <button type="submit" value="Login">Login</button>
             <p class="message">Not registered? <a href="<?= PROOT ?>register/register">Create an account</a></p>
         </form>
     </div>
 </div>
-
-
 <?php $this->end(); ?>

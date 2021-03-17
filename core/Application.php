@@ -4,7 +4,7 @@ class Application {
     public function __construct() {
         $this->_set_reporting();
         // TODO: Remove later.
-        //$this->_unregister_globals();
+        $this->_unregister_globals();
     }
 
     private function _set_reporting() {

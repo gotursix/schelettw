@@ -12,7 +12,6 @@ function sanitise($dirty) {
 }
 
 function posted_values($post) {
-    dnd("we are in posted values");
     $clean_ary = [];
     foreach ($post as $key => $value) {
         $clean_ary[$key] = sanitize($value);

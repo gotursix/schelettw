@@ -8,7 +8,7 @@ class Model {
         $this->_db = DB::getInstance();
         $this->_table = $table;
         $this->_setTableColumns();
-        $this->_modelName = str_replace(' ', '', ucwords(str_replace('_', '', $this->_table)));
+        $this->_modelName = str_replace(' ', '', ucwords(str_replace('_', ' ', $this->_table)));
         // users_sessions -> UsersSessions
     }
 
@@ -40,16 +40,9 @@ class Model {
     public function findFirst($params = []) {
         $resultQuery = $this->_db->findFirst($this->_table, $params);
         $result = new $this->_modelName($this->_table);
-
-        echo "we are in find first";
-        //if ($resultQuery) {
-
-        dnd($resultQuery);
-
-
+        if ($resultQuery) {
             $result->populateObjData($resultQuery);
-       // }
-
+        }
         return $result;
     }
 
