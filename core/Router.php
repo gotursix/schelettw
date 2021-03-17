@@ -48,6 +48,6 @@ class Router {
             }
         }
 
-        dnd($current_user_acls);
+        //dnd($current_user_acls);
     }
 }

@@ -40,4 +40,9 @@ class Users extends Model{
             $this->_db->insert('user_session',$fields);
         }
     }
+
+    public function acls(){
+        if (empty($this->acls)) return [];
+        return json_decode($this->acls, true);
+    }
 }
