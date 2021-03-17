@@ -21,4 +21,12 @@ class Home extends Controller {
         //dnd($contacts);
         $this->view->render('home/index');
     }
+
+    public function rankingsAction(){
+        $this->view->render('home/rankings');
+    }
+
+    public function instructionsAction(){
+        $this->view->render('home/instructions');
+    }
 }

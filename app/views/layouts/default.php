@@ -42,9 +42,7 @@
 
             <?php endforeach; ?>
 
-            <li>
-                <a href="#" class="nav-links">Rankings</a>
-            </li>
+
 
             <?php if (Users::currentUser()): ?>
             <li>
