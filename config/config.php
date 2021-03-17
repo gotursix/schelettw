@@ -13,3 +13,5 @@
     define('PROOT', '/schelettw/'); // Set to "/" for a live server.
 
     define('SITE_TITLE', 'Best website from the world'); //This will be used if no site title is set.
+
+    define("ACCESS_RESTRICTED", 'restricted'); //controller name for the restricted   redirect
