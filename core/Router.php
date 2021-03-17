@@ -9,7 +9,7 @@ class Router {
 
         //Action
         $action = (isset($url[0]) && $url[0] != '') ? $url[0] . 'Action' : 'indexAction';
-        $action_name = $controller;
+        $action_name = (isset($url[0]) && $url[0] != '')? $url[0] : 'index';
         array_shift($url);
 
         //ACL check (acces)
@@ -48,6 +48,24 @@ class Router {
             }
         }
 
-        //dnd($current_user_acls);
+        foreach ($current_user_acls as $level){
+            if (array_key_exists($level, $acl) && array_key_exists($controller_name, $acl[$level])){
+                if (in_array($action_name, $acl[$level][$controller_name]) || in_array('*',$acl[$level][$controller_name])){
+                    $grantAccess = true;
+                    break;
+                }
+            }
+        }
+
+        //check for denied
+        foreach ($current_user_acls as $level){
+            $denied = $acl[$level]['denied'];
+            if (!empty($denied) && array_key_exists($controller_name, $denied) && in_array($action_name, $denied[$controller_name])){
+                $grantAccess = false;
+                break;
+            }
+        }
+
+        return $grantAccess;
     }
 }

@@ -42,7 +42,7 @@ class Users extends Model{
     }
 
     public function acls(){
-        if (empty($this->acls)) return [];
-        return json_decode($this->acls, true);
+        if (empty($this->acl)) return [];
+        return json_decode($this->acl, true);
     }
 }

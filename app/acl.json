@@ -1,6 +1,6 @@
 {
   "Guest" : {
-    "denided" : {},
+    "denied" : {},
     "Home" : ["*"],
     "Register" : ["login", ["register"]],
     "Restricted" : ["*"]
