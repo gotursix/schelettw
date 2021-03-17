@@ -8,6 +8,14 @@ class Register extends Controller {
     }
 
     public function loginAction() {
+        if($_POST){
+            // form validation
+            $validation = true;
+            if($validation === true) {
+                $user = $this->UsersModel->findByUsername($_POST['username']);
+                dnd($user); 
+            }
+        }
         $this->view->render('register/login');
     }
 

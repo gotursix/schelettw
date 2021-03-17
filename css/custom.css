@@ -12,6 +12,11 @@
     margin-top: 5%;
 }
 
+.rem{
+    display: inline-block;
+}
+
+
 .fix-menu{
     padding-top: 10px;
 }
