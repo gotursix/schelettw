@@ -13,6 +13,7 @@
     define('PROOT', '/schelettw/'); // Set to "/" for a live server.
 
     define('SITE_TITLE', 'Best website from the world'); //This will be used if no site title is set.
+    define('MENU_BRAND', 'FRUITS'); //this is the brand text in the menu
 
     define('CURRENT_USER_SESSION_NAME', 'KKKjhbKUYGkkuyvRYrurLs'); //session name for logged in user
     define('REMEMBER_ME_COOKIE_NAME', 'wldkn232QWEqVEQwfe5S'); // cookie name for logged in user remember me

@@ -17,7 +17,8 @@
 <body>
 
 <?php
- $menu = Router::getMenu('menu_acl'); dnd($menu);
+ $menu = Router::getMenu('menu_acl');
+ $currentPage = currentPage();
 ?>
 
 <div class="nav-wrapper">
@@ -30,16 +31,26 @@
             <img src="<?= PROOT ?>img/logo.png" class="logo" alt="Company Logo">
         </a>
         <ul class="main-nav" id="js-menu">
-            <li>
-                <a href="<?= PROOT ?>" class="nav-links">Home</a>
-            </li>
+            <?php foreach ($menu as $key => $val):
+                $active = ''?>
+                <?php if (is_array($val)): ?>
+                <?php else:
+                    $active = ($val == $currentPage) ? 'active':'';
+                ?>
+                <li><a class="nav-links <?$active?>" href="<?=$val?>"> <?=$key?> </a></li>
+                <?php endif; ?>
+
+            <?php endforeach; ?>
 
             <li>
                 <a href="#" class="nav-links">Rankings</a>
             </li>
+
+            <?php if (Users::currentUser()): ?>
             <li>
-                <a href="#" class="nav-links">Welcome, Steel balls</a>
+                <a href="#" class="nav-links">Welcome, <?=Users::currentUser()->fname?></a>
             </li>
+            <?php endif; ?>
         </ul>
     </nav>
 </div>
