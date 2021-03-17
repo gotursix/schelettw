@@ -8,6 +8,17 @@ class Register extends Controller {
         $this->view->setLayout('default');
     }
 
+    public function indexAction() {
+        Router::reddirect("register/register");
+    }
+
+    public function logoutAction() {
+        if (currentUser()) {
+            currentUser()->logout();
+            Router::reddirect('register');
+        }
+    }
+
     public function loginAction() {
         $validation = new Validate();
         if ($_POST) {
@@ -37,10 +48,6 @@ class Register extends Controller {
         }
         $this->view->displayErrors = $validation->displayErrors();
         $this->view->render('register/login');
-    }
-
-    public function indexAction() {
-        Router::reddirect("register/register");
     }
 
     public function registerAction() {

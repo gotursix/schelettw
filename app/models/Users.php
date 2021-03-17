@@ -10,8 +10,6 @@ class Users extends Model {
         $this->_sessionName = CURRENT_USER_SESSION_NAME;
         $this->_cookieName = REMEMBER_ME_COOKIE_NAME;
         $this->_softDelete = true;
-
-
         if ($user != '') {
             if (is_int($user)) {
                 $u = $this->_db->findFirst('users', ['conditions' => 'id = ?', 'bind' => [$user]]);
@@ -40,6 +38,17 @@ class Users extends Model {
             $this->_db->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?", [$this->id, $user_agent]);
             $this->_db->insert('user_sessions', $fields);
         }
+    }
+
+    public function logout() {
+        $user_agent = Session::uagent_no_version();
+        $this->_db->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?", [$this->id, $user_agent]);
+        Session::delete(CURRENT_USER_SESSION_NAME);
+        if(Cookie::exists(REMEMBER_ME_COOKIE_NAME)){
+            Cookie::delete(REMEMBER_ME_COOKIE_NAME);
+        }
+        self::$currentLoggedInUser = null;
+        return true;
     }
 
     public function acls() {

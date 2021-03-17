@@ -7,26 +7,14 @@ class Home extends Controller {
     }
 
     public function indexAction() {
-        $db = DB::getInstance();
-        /*
-        $fields = [
-            'fname' => 'andrew',
-            'email' => 'aaasadaa.gmail.com'
-        ];*/
-
-        $contacts = $db->find('contacts', [
-            'conditions' => ['lname = ?', 'fname = ?'],
-            'bind' => ['Andrei', 'Cristi'],
-        ]);
-        //dnd($contacts);
         $this->view->render('home/index');
     }
 
-    public function rankingsAction(){
+    public function rankingsAction() {
         $this->view->render('home/rankings');
     }
 
-    public function instructionsAction(){
+    public function instructionsAction() {
         $this->view->render('home/instructions');
     }
 }

@@ -26,3 +26,7 @@ function currentPage(){
     }
     return $currentPage;
 }
+
+function currentUser(){
+    return Users::currentUser();
+}
