@@ -15,6 +15,7 @@
                     <input type="checkbox" id="remember_me" name="remember_me" value="on">
                 </label>
             </div>
+            <div class="bg-danger"><?= $this->displayErrors ?></div>
             <button type="submit" value="Login">Login</button>
             <p class="message">Not registered? <a href="<?= PROOT ?>register/register">Create an account</a></p>
         </form>
