@@ -97,13 +97,21 @@ class DB {
     }
 
     public function insert($table, $fields = []) {
-        $valuesArr = array_fill_keys($fields, '?');
-        $fieldString = implode(', ', array_keys($fields));
-        $valueString = implode(', ', $valuesArr);
-        $values = array_values($fields);
-        $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ($valueString)";
-        if (!$this->query($sql, $values)->error())
+        $fieldString = '';
+        $valueString = '';
+        $values = [];
+
+        foreach($fields as $field => $value) {
+            $fieldString .= '`' . $field . '`,';
+            $valueString .= '?,';
+            $values[] = $value;
+        }
+        $fieldString = rtrim($fieldString, ',');
+        $valueString = rtrim($valueString, ',');
+        $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
+        if(!$this->query($sql, $values)->error()) {
             return true;
+        }
         return false;
     }
 

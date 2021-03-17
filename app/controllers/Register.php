@@ -53,15 +53,54 @@ class Register extends Controller {
     public function registerAction() {
         // NEED TO IMPLEMENT VALIDATION CLASS! (FROM CORE I GUESS :)) -- too much for tonight.
 
-        //$validation = new Validate();
+        $validation = new Validate();
         $posted_values = ['fname' => '', 'lname' => '', 'username' => '', 'email' => '', 'password' => '', 'confirm' => ''];
 
         if ($_POST) {
-            $posted_values = $posted_values($_POST);
+            $posted_values = posted_values($_POST);
+            $validation->check($_POST, [
+                'fname' => [
+                    'display' => 'First name',
+                    'required' => true
+                ],
+                'lname' => ['display' => 'Last name',
+                'required' => true
+                ],
+                'username' => [
+                    'display' => 'Username',
+                    'required' => true,
+                    'unique' => 'users',
+                    'min' => 6,
+                    'max' => 150
+                ],
+                'email' => [
+                    'display' => 'Email',
+                    'required' => true,
+                    'unique' => 'users',
+                    'max' => 150,
+                    'valid_email' => true
+                ],
+                'password' => [
+                    'display' => 'Password',
+                    'required' => true,
+                    'min' => 6,
+                ],
+                'confirm' => [
+                    'display' => 'Confirm Password',
+                    'required' => true,
+                    'matches' => 'password',
+                ],
+            ]);
+            if ($validation->passed()){
+                $newUser = new Users();
+                $newUser->registerNewUser($_POST);
+                //$newUser->login();
+                Router::reddirect('register/login');
+            }
         }
 
         $this->view->post = $posted_values;
-        //$this->view->displayErrors = $validation->displayErrors();
+        $this->view->displayErrors = $validation->displayErrors();
         $this->view->render('register/register');
     }
 }
