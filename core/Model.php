@@ -15,6 +15,7 @@ class Model {
     public function _setTableColumns() {
         $columns = $this->get_columns();
         foreach ($columns as $column) {
+            $columnName = $column->Field;
             $this->_columnNames[] = $column->Field;
             $this->{$columnName} = null;
         }
@@ -39,7 +40,16 @@ class Model {
     public function findFirst($params = []) {
         $resultQuery = $this->_db->findFirst($this->_table, $params);
         $result = new $this->_modelName($this->_table);
-        $result->populateObjData($resultQuery);
+
+        echo "we are in find first";
+        //if ($resultQuery) {
+
+        dnd($resultQuery);
+
+
+            $result->populateObjData($resultQuery);
+       // }
+
         return $result;
     }
 
@@ -89,7 +99,6 @@ class Model {
     public function data() {
         $data = new stdClass();
         foreach ($this->_columnNames as $column) {
-            //CHANGE IF BROKEN TO $/
             $data->column = $this->$column;
         }
         return $data;
