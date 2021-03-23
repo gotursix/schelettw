@@ -20,7 +20,6 @@
  $menu = Router::getMenu('menu_acl');
  $currentPage = currentPage();
 ?>
-
 <div class="nav-wrapper">
     <div class="grad-bar"></div>
     <nav class="navbar">
@@ -41,7 +40,7 @@
                 <?php endif; ?>
 
             <?php endforeach; ?>
-            
+
             <?php if (Users::currentUser()): ?>
             <li>
                 <a href="#" class="nav-links">Welcome, <?=Users::currentUser()->fname?></a>
