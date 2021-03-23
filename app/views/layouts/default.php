@@ -41,9 +41,7 @@
                 <?php endif; ?>
 
             <?php endforeach; ?>
-
-
-
+            
             <?php if (Users::currentUser()): ?>
             <li>
                 <a href="#" class="nav-links">Welcome, <?=Users::currentUser()->fname?></a>
