@@ -96,6 +96,7 @@
 
 #buttonPurple:hover{
     background: #c16ecf;
+    color: white;
 }
 
 #buttonGreen {
@@ -117,10 +118,13 @@
 
 #buttonRed:hover{
     background: #ff0000;
+    color: white;
 }
 
 .form button:hover,.form button:active,.form button:focus {
-    background: #c16ecf;
+    background: white;
+    color: #c16ecf;
+    border: 1px solid #c16ecf;
 }
 .form .message {
     margin: 15px 0 0;
