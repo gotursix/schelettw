@@ -51,50 +51,14 @@ class RegisterController extends Controller {
     }
 
     public function registerAction() {
-        $posted_values = ['fname' => '', 'lname' => '', 'username' => '', 'email' => '', 'password' => '', 'confirm' => ''];
-
-        if ($_POST) {
-            $newUser = new Users();
-           /* $validation->check($_POST, [
-                'fname' => [
-                    'display' => 'First name',
-                    'required' => true
-                ],
-                'lname' => ['display' => 'Last name',
-                'required' => true
-                ],
-                'username' => [
-                    'display' => 'Username',
-                    'required' => true,
-                    'unique' => 'users',
-                    'min' => 6,
-                    'max' => 150
-                ],
-                'email' => [
-                    'display' => 'Email',
-                    'required' => true,
-                    'unique' => 'users',
-                    'max' => 150,
-                    'valid_email' => true
-                ],
-                'password' => [
-                    'display' => 'Password',
-                    'required' => true,
-                    'min' => 6,
-                ],
-                'confirm' => [
-                    'display' => 'Confirm Password',
-                    'required' => true,
-                    'matches' => 'password',
-                ],
-            ]);*/
-            $newUser->assign($_POST);
-            if(!$newUser->save()){
+        $newUser = new Users();
+        if ($this->request->isPost()) {
+            $newUser->assign($this->request->get());
+            $newUser->setConfirm($this->request->get('confirm'));
+            if ($newUser->save()) {
                 Router::redirect('register/login');
             }
-
         }
-
         $this->view->newUser = $newUser;
         $this->view->displayErrors = $newUser->getErrorMessages();
         $this->view->render('register/register');

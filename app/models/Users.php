@@ -3,7 +3,7 @@
 class Users extends Model {
     private $_isLoggedIn, $_sessionName, $_cookieName;
     public static $currentLoggedInUser = null;
-    public $id, $username, $email, $password, $fname, $lname, $acl;
+    public $id, $username, $email, $password, $fname, $lname, $acl, $_confirm;
 
     public function __construct($user = '') {
         $table = 'users';
@@ -13,9 +13,9 @@ class Users extends Model {
         $this->_softDelete = true;
         if ($user != '') {
             if (is_int($user)) {
-                $u = $this->_db->findFirst('users', ['conditions' => 'id = ?', 'bind' => [$user]],'Users');
+                $u = $this->_db->findFirst('users', ['conditions' => 'id = ?', 'bind' => [$user]], 'Users');
             } else {
-                $u = $this->_db->findFirst('users', ['conditions' => 'username= ?', 'bind' => [$user]],"Users");
+                $u = $this->_db->findFirst('users', ['conditions' => 'username= ?', 'bind' => [$user]], "Users");
             }
             if ($u) {
                 foreach ($u as $key => $val) {
@@ -25,8 +25,20 @@ class Users extends Model {
         }
     }
 
-    public function validator(){
-        $this->runValidation(new MinValidator(this,['field' => 'username', 'rule' => '6', 'msg' => 'Username must be at least 6 characters long']));
+    public function validator() {
+        $this->runValidation(new RequiredValidator($this, ['field' => 'fname', 'msg' => 'First Name is required.']));
+        $this->runValidation(new RequiredValidator($this, ['field' => 'lname', 'msg' => 'Last Name is required.']));
+        $this->runValidation(new RequiredValidator($this, ['field' => 'email', 'msg' => 'Email is required.']));
+        $this->runValidation(new EmailValidator($this, ['field' => 'email', 'msg' => 'You must provide a valid email address']));
+        $this->runValidation(new MaxValidator($this, ['field' => 'email', 'rule' => 150, 'msg' => 'Email must be less than 150 characters.']));
+        $this->runValidation(new MinValidator($this, ['field' => 'username', 'rule' => 6, 'msg' => 'Username must be at least 6 characters.']));
+        $this->runValidation(new MaxValidator($this, ['field' => 'username', 'rule' => 150, 'msg' => 'Username must be less than 150 characters.']));
+        $this->runValidation(new UniqueValidator($this, ['field' => 'username', 'msg' => 'That username already exists. Please choose a new one.']));
+        $this->runValidation(new RequiredValidator($this, ['field' => 'password', 'msg' => 'Password is required.']));
+        $this->runValidation(new MinValidator($this, ['field' => 'password', 'msg' => 'Password must be a minimum of 6 characters']));
+        if ($this->isNew()) {
+            $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->_confirm, 'msg' => "Your passwords do not match"]));
+        }
     }
 
     public function findByUsername($username) {
@@ -81,9 +93,17 @@ class Users extends Model {
         return self::$currentLoggedInUser;
     }
 
-    public function registerNewUser($params){
+    public function registerNewUser($params) {
         $this->assign($params);
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         $this->save();
+    }
+
+    public function setConfirm($confirm) {
+        $this->_confirm = $confirm;
+    }
+
+    public function getConfirm() {
+        return $this->_confirm;
     }
 }

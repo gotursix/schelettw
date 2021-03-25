@@ -31,6 +31,7 @@ class Model {
 
     public function save() {
         $this->validator();
+
         if ($this->_validates){
             $fields = H::getObjectProperties($this);
             //Determine whether to update or insert
@@ -81,7 +82,7 @@ class Model {
         if (!empty($params)) {
             foreach ($params as $key => $val) {
                 if (property_exists($this, $key)) {
-                    $this->$key = FH::sanitize($val);
+                    $this->$key = $val;
                 }
             }
             return true;
@@ -116,6 +117,10 @@ class Model {
     public function addErrorMessage($field, $msg){
         $this->_validates = false;
         $this->_validationErrors[$field] = $msg;
+    }
+
+    public function isNew(){
+        return (property_exists($this,'id') && !empty($this->id))? false : true;
     }
 }
 
