@@ -3,9 +3,8 @@
     define('DS', DIRECTORY_SEPARATOR);
     define('ROOT',dirname(__FILE__));
 
-    // Load config and helper files
+    // Load config
     require_once(ROOT . DS . 'config' . DS . 'config.php');
-    require_once(ROOT . DS . 'app' . DS . 'lib' . DS . 'helpers' . DS . 'functions.php');
 
     // Autoload classes
     function autoload($className){

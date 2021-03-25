@@ -3,8 +3,8 @@
 class Router {
     public static function Route($url) {
         //Controller
-        $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]) : DEFAULT_CONTROLLER;
-        $controller_name = $controller;
+        $controller = (isset($url[0]) && $url[0] != '') ? ucwords($url[0]) . 'Controller' : DEFAULT_CONTROLLER . 'Controller';
+        $controller_name = str_replace('Controller', '', $controller);
         array_shift($url);
 
         //Action
@@ -12,45 +12,29 @@ class Router {
         $action_name = (isset($url[0]) && $url[0] != '') ? $url[0] : 'index';
         array_shift($url);
 
-        //ACL check (acces)
-        $grantAcces = self::hasAccess($controller_name, $action_name);
-        if (!$grantAcces) {
-            $controller_name = $controller = ACCESS_RESTRICTED;
+        //ACL check access
+        $grantAccess = self::hasAccess($controller_name, $action_name);
+        if (!$grantAccess) {
+            $controller = ACCESS_RESTRICTED . 'Controller';
+            $controller_name = ACCESS_RESTRICTED;
             $action = 'indexAction';
         }
 
         //Params
         $queryParams = $url;
-        if (class_exists($controller_name)) {
+
+        if (class_exists($controller)) {
             $dispatch = new $controller($controller_name, $action);
             if (method_exists($controller, $action)) {
                 call_user_func_array([$dispatch, $action], $queryParams);
             } else {
                 die('That method does not exist in the controller \"' . $controller_name . '\"');
             }
-        } else {
-            die("404: Page not found!");
         }
-
-
     }
 
-    public static function reddirect($location) {
+    public static function redirect($location) {
         header('Location: ' . PROOT . $location);
-
-        if (!headers_sent()) {
-            header('Location: ' . PROOT . $location);
-            exit();
-        } else {
-            echo '<script type="javascript">';
-            echo 'window.location.href="' . PROOT . $location . '"';
-            echo '</script>';
-            echo '<noscript>';
-            echo '<meta http-equiv="refresh" content="0;url=' . $location . '"/>';
-            echo '</noscript>';
-            exit();
-        }
-
     }
 
     public static function hasAccess($controller_name, $action_name = "index") {
@@ -75,7 +59,7 @@ class Router {
             }
         }
 
-        //check for denied
+        //Check for denied
         foreach ($current_user_acls as $level) {
             $denied = $acl[$level]['denied'];
             if (!empty($denied) && array_key_exists($controller_name, $denied) && in_array($action_name, $denied[$controller_name])) {
@@ -106,7 +90,7 @@ class Router {
                     $menuAry[$key] = $sub;
                 }
             } else {
-                if ($finalVal = self::get_link($val)) {
+                if ($finalVal = self::getLink($val)) {
                     $menuAry[$key] = $finalVal;
                 }
             }
@@ -114,7 +98,7 @@ class Router {
         return $menuAry;
     }
 
-    private static function get_link($val) {
+    private static function getLink($val) {
         $uAry = isset($val) ? explode('/', ltrim($val, '/')) : [];
         $controller_name = ucwords($uAry[0]);
         $controller_name = rtrim($controller_name, "/");

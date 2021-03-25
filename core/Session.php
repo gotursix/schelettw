@@ -3,7 +3,7 @@
 class Session {
 
     public static function exists($name) {
-        return (isset($_SESSION[$name])) ? true : false;
+        return isset($_SESSION[$name]);
     }
 
     public static function get($name) {
@@ -23,7 +23,6 @@ class Session {
     public static function uagent_no_version(){
         $uagent = $_SERVER['HTTP_USER_AGENT'];
         $regex = '/\/[a-zA-Z0-9.]+/';
-        $newString = preg_replace($regex,'',$uagent);
-        return $newString;
+        return preg_replace($regex,'',$uagent);
     }
 }

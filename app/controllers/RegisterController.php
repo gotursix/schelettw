@@ -1,7 +1,7 @@
 <?php
 
 
-class Register extends Controller {
+class RegisterController extends Controller {
     public function __construct($controller, $action) {
         parent::__construct($controller, $action);
         $this->load_model('Users');
@@ -9,13 +9,13 @@ class Register extends Controller {
     }
 
     public function indexAction() {
-        Router::reddirect("register/register");
+        Router::redirect("register/register");
     }
 
     public function logoutAction() {
-        if (currentUser()) {
-            currentUser()->logout();
-            Router::reddirect('register');
+        if (H::currentUser()) {
+            H::currentUser()->logout();
+            Router::redirect('register');
         }
     }
 
@@ -40,7 +40,7 @@ class Register extends Controller {
                 if ($user && password_verify(Input::get('password'), $user->password)) {
                     $remember = isset($_POST['remember_me']) && Input::get('remember_me');
                     $user->login($remember);
-                    Router::reddirect('home');
+                    Router::redirect('home');
                 } else {
                     $validation->addError("There is an error with your username or password!");
                 }
@@ -51,13 +51,11 @@ class Register extends Controller {
     }
 
     public function registerAction() {
-        // NEED TO IMPLEMENT VALIDATION CLASS! (FROM CORE I GUESS :)) -- too much for tonight.
-
         $validation = new Validate();
         $posted_values = ['fname' => '', 'lname' => '', 'username' => '', 'email' => '', 'password' => '', 'confirm' => ''];
 
         if ($_POST) {
-            $posted_values = posted_values($_POST);
+            $posted_values = FH::postedValues($_POST);
             $validation->check($_POST, [
                 'fname' => [
                     'display' => 'First name',
@@ -95,7 +93,7 @@ class Register extends Controller {
                 $newUser = new Users();
                 $newUser->registerNewUser($_POST);
                 //$newUser->login();
-                Router::reddirect('register/login');
+                Router::redirect('register/login');
             }
         }
 

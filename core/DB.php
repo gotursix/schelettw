@@ -19,7 +19,7 @@ class DB {
         return self::$_instance;
     }
 
-    public function query($sql, $params = []) {
+    public function query($sql, $params = [], $class = false) {
         $this->_error = false;
         if ($this->_query = $this->_pdo->prepare($sql)) {
             $paramNumber = 1;
@@ -30,7 +30,11 @@ class DB {
                 }
             }
             if ($this->_query->execute()) {
-                $this->_result = $this->_query->fetchAll(PDO::FETCH_OBJ);
+                if ($class) {
+                    $this->_result = $this->_query->fetchAll(PDO::FETCH_CLASS, $class);
+                } else {
+                    $this->_result = $this->_query->fetchAll(PDO::FETCH_OBJ);
+                }
                 $this->_count = $this->_query->rowCount();
                 $this->_lastInsertID = $this->_pdo->lastInsertId();
             } else {
@@ -40,7 +44,7 @@ class DB {
         return $this;
     }
 
-    protected function _read($table, $params = []) {
+    protected function _read($table, $params = [], $class = false) {
         $conditionString = '';
         $bind = [];
         $order = '';
@@ -75,22 +79,22 @@ class DB {
             $limit = ' LIMIT ' . $params['limit'];
         }
         $sql = "SELECT * FROM {$table}{$conditionString}{$order}{$limit}";
-        if ($this->query($sql, $bind)) {
+        if ($this->query($sql, $bind, $class)) {
             if ($this->count()) return true;
             return false;
         }
         return false;
     }
 
-    public function find($table, $params = []) {
-        if ($this->_read($table, $params)) {
+    public function find($table, $params = [], $class = false) {
+        if ($this->_read($table, $params, $class)) {
             return $this->results();
         }
         return false;
     }
 
-    public function findFirst($table, $params = []) {
-        if ($this->_read($table, $params)) {
+    public function findFirst($table, $params = [], $class = false) {
+        if ($this->_read($table, $params,$class)) {
             return $this->first();
         }
         return false;
@@ -101,7 +105,7 @@ class DB {
         $valueString = '';
         $values = [];
 
-        foreach($fields as $field => $value) {
+        foreach ($fields as $field => $value) {
             $fieldString .= '`' . $field . '`,';
             $valueString .= '?,';
             $values[] = $value;
@@ -109,13 +113,13 @@ class DB {
         $fieldString = rtrim($fieldString, ',');
         $valueString = rtrim($valueString, ',');
         $sql = "INSERT INTO {$table} ({$fieldString}) VALUES ({$valueString})";
-        if(!$this->query($sql, $values)->error()) {
+        if (!$this->query($sql, $values)->error()) {
             return true;
         }
         return false;
     }
 
-    public function update($table,$key, $id, $fields = []) {
+    public function update($table, $key, $id, $fields = []) {
         $fieldString = '';
         foreach ($fields as $field => $value) {
             $fieldString .= ' ' . $field . '=?,';

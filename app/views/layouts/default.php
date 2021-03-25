@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<?= PROOT ?>css/custom.css">
     <link rel="stylesheet" href="<?= PROOT ?>css/nav-bar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="<?= PROOT?>fonts/Roboto.css">
+    <link rel="stylesheet" href="<?= PROOT ?>fonts/Roboto.css">
     <!-- JS -->
     <script src="<?= PROOT ?>js/custom.js"></script>
     <?= $this->content('head'); ?>
@@ -17,8 +17,8 @@
 <body>
 
 <?php
- $menu = Router::getMenu('menu_acl');
- $currentPage = currentPage();
+$menu = Router::getMenu('menu_acl');
+$currentPage = H::currentPage();
 ?>
 <div class="nav-wrapper">
     <div class="grad-bar"></div>
@@ -31,33 +31,31 @@
         </a>
         <ul class="main-nav" id="js-menu">
             <?php foreach ($menu as $key => $val):
-                $active = ''?>
+                $active = '' ?>
                 <?php if (is_array($val)): ?>
-                <?php else:
-                    $active = ($val == $currentPage) ? 'active':'';
+            <?php else:
+                $active = ($val == $currentPage) ? 'active' : '';
                 ?>
-                <li><a class="nav-links <?$active?>" href="<?=$val?>"> <?=$key?> </a></li>
-                <?php endif; ?>
-
+                <li><a class="nav-links <? $active ?>" href="<?= $val ?>"> <?= $key ?> </a></li>
+            <?php endif; ?>
             <?php endforeach; ?>
-
             <?php if (Users::currentUser()): ?>
-            <li>
-                <a href="#" class="nav-links">Welcome, <?=Users::currentUser()->fname?></a>
-            </li>
+                <li>
+                    <a href="#" class="nav-links">Welcome, <?= Users::currentUser()->fname ?></a>
+                </li>
             <?php endif; ?>
         </ul>
     </nav>
 </div>
 
-    <?= $this->content('body'); ?>
+<?= $this->content('body'); ?>
 
-    <script>
-        let mainNav = document.getElementById("js-menu");
-        let navBarToggle = document.getElementById("js-navbar-toggle");
-        navBarToggle.addEventListener("click", function () {
-            mainNav.classList.toggle("active");
-        });
-    </script>
+<script>
+    let mainNav = document.getElementById("js-menu");
+    let navBarToggle = document.getElementById("js-navbar-toggle");
+    navBarToggle.addEventListener("click", function () {
+        mainNav.classList.toggle("active");
+    });
+</script>
 </body>
 </html>

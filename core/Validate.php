@@ -11,7 +11,7 @@ class Validate {
     public function check($source, $items = []) {
         $this->_errors = [];
         foreach ($items as $item => $rules) {
-            $item = sanitise($item);
+            $item = FH::sanitize($item);
             $display = $rules['display'];
             foreach ($rules as $rule => $rule_value) {
                 $value = Input::sanitize(trim($source[$item]));
