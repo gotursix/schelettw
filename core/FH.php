@@ -14,11 +14,10 @@ class FH {
     }
 
     public static function displayErrors($errors) {
-        $hasErrors = (!empty($errors))? ' has-errors' : '';
-        $html = '<div class="form-errors"><ul class="bg-danger'.$hasErrors.'">';
-        foreach($errors as $field => $error) {
-            $html .= '<li class="text-danger">'.$error.'</li>';
-            $html .= '<script>jQuery("document").ready(function(){jQuery("#'.$field.'").parent().closest("div").addClass("has-error");});</script>';
+        $hasErrors = (!empty($errors)) ? ' has-errors' : '';
+        $html = '<div class="form-errors"><ul class="bg-danger' . $hasErrors . '">';
+        foreach ($errors as $field => $error) {
+            $html .= '<li class="text-danger">' . $error . '</li>';
         }
         $html .= '</ul></div>';
         return $html;

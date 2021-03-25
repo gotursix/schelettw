@@ -1,9 +1,9 @@
 <?php
 
 class Users extends Model {
-    private $_isLoggedIn, $_sessionName, $_cookieName;
+    private $_isLoggedIn, $_sessionName, $_cookieName, $_confirm;
     public static $currentLoggedInUser = null;
-    public $id, $username, $email, $password, $fname, $lname, $acl, $_confirm;
+    public $id, $username, $email, $password, $fname, $lname, $acl;
 
     public function __construct($user = '') {
         $table = 'users';
@@ -59,14 +59,14 @@ class Users extends Model {
 
     public static function loginUserFromCookie() {
         $userSession = UserSessions::getFromCookie();
-        if ($userSession->user_id != '') {
+        if($userSession && $userSession->user_id != '') {
             $user = new self((int)$userSession->user_id);
+            if($user) {
+                $user->login();
+            }
+            return $user;
         }
-        if ($user) {
-            $user->login();
-        }
-
-        return $user;
+        return;
     }
 
     public function logout() {

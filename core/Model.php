@@ -110,7 +110,7 @@ class Model {
         return $this->_validationErrors;
     }
 
-    public function validationPasses(){
+    public function validationPassed(){
         return $this->_validates;
     }
 

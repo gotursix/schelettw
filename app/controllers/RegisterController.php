@@ -20,39 +20,32 @@ class RegisterController extends Controller {
     }
 
     public function loginAction() {
-        $validation = new Validate();
-        if ($_POST) {
-            //form validation
-            $validation->check($_POST, [
-                'username' => [
-                    'display' => "Username",
-                    'required' => true,
-                    'min' => 4
-                ],
-                'password' => [
-                    'display' => 'Password',
-                    'required' => true,
-                    'min' => 6
-                ]
-            ]);
-            if ($validation->passed()) {
-                $user = $this->UsersModel->findByUsername(Input::get('username'));
-                if ($user && password_verify(Input::get('password'), $user->password)) {
-                    $remember = isset($_POST['remember_me']) && Input::get('remember_me');
+        $loginModel = new Login();
+        if ($this->request->isPost()) {
+            //$this->request->csrfCheck();
+            $loginModel->assign($this->request->get());
+            $loginModel->validator();
+            if ($loginModel->validationPassed()) {
+                $user = $this->UsersModel->findByUsername($this->request->get('username'));
+                if ($user && password_verify($this->request->get('password'), $user->password)) {
+                    $remember = $loginModel->getRememberMeChecked();
                     $user->login($remember);
                     Router::redirect('home');
                 } else {
-                    $validation->addError("There is an error with your username or password!");
+                    $loginModel->addError("There is an error with your username or password!");
                 }
             }
         }
-        $this->view->displayErrors = $validation->displayErrors();
+        $this->view->login = $loginModel;
+        $this->view->displayErrors = $loginModel->getErrorMessages();
         $this->view->render('register/login');
     }
+
 
     public function registerAction() {
         $newUser = new Users();
         if ($this->request->isPost()) {
+            //$this->request->csrfCheck();
             $newUser->assign($this->request->get());
             $newUser->setConfirm($this->request->get('confirm'));
             if ($newUser->save()) {
