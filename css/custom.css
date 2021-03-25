@@ -1,6 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-
 *{
     margin: 0;
     padding: 0;
@@ -73,6 +72,64 @@
 
     cursor: pointer;
 }
+
+#buttonPurple {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
+    width: 150px;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+#buttonPurple:hover{
+    background: #c16ecf;
+}
+
+#buttonGreen {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background-image: linear-gradient(260deg, #00e600 0%, #009900 100%);
+    width: 150px;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+#buttonGreen:hover{
+    background: #00e600;
+}
+
+#buttonRed {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background-image: linear-gradient(260deg, #ff3333 0%, #cc0000 100%);
+    width: 150px;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+#buttonRed:hover{
+    background: #ff3333;
+}
+
 .form button:hover,.form button:active,.form button:focus {
     background: #c16ecf;
 }
