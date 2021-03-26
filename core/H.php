@@ -1,5 +1,6 @@
 <?php
-
+namespace Core;
+use App\Models\Users;
 
 class H {
     public static function dnd($data) {

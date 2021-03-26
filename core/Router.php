@@ -1,4 +1,7 @@
 <?php
+namespace Core;
+use Core\Session;
+use App\Models\Users;
 
 class Router {
     public static function Route($url) {

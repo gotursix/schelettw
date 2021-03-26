@@ -1,5 +1,10 @@
 <?php
-
+namespace App\Controllers;
+use Core\Controller;
+use Core\Router;
+use Core\H;
+use App\Models\Users;
+use App\Models\Login;
 
 class RegisterController extends Controller {
     public function __construct($controller, $action) {

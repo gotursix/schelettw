@@ -1,3 +1,6 @@
+<?php
+use Core\FH;
+?>
 <?php $this->setSiteTitle('Register'); ?>
 <?php $this->start('body'); ?>
 <div class="login-page">

@@ -1,3 +1,9 @@
+<?php
+use Core\Session;
+use Core\Router;
+use Core\H;
+use App\Models\Users;
+?>
 <!doctype html>
 <html lang="en">
 <head>
