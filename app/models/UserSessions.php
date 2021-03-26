@@ -1,7 +1,11 @@
 <?php
+
 namespace App\Models;
+
 use Core\Session;
 use Core\Cookie;
+use Core\Model;
+
 
 class UserSessions extends Model {
 

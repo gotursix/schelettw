@@ -13,7 +13,7 @@ use Core\FH;
             <input type="text" id="email" name="email" value="<?=$this->newUser->email?>" placeholder="Email address"/>
             <input type="text" id="username" name="username" value="<?=$this->newUser->username?>" placeholder="Choose a Username"/>
             <input type="password" id="password" name="password" value="<?=$this->newUser->password?>" placeholder="Password"/>
-            <input type="password" id="confirm" name="confirm" value="<?=$this->newUser->password?>" placeholder="Confirm password"/>
+            <input type="password" id="confirm" name="confirm" value="<?=$this->newUser->getConfirm()?>" placeholder="Confirm password"/>
             <div class="bg-danger"><?= FH::displayErrors($this->displayErrors) ?></div>
             <button type="submit">Register</button>
             <p class="message">Already registered? <a href="<?=PROOT?>register/login">Sign In</a></p>

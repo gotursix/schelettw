@@ -1,8 +1,11 @@
 <?php
+
 namespace Core;
 
+use stdClass;
+
 class Model {
-    protected $_db, $_table, $_modelName, $_softDelete = false, $_validates = true, $_validationErrors=[];
+    protected $_db, $_table, $_modelName, $_softDelete = false, $_validates = true, $_validationErrors = [];
     public $id;
 
     public function __construct($table) {
@@ -32,8 +35,8 @@ class Model {
 
     public function save() {
         $this->validator();
-
-        if ($this->_validates){
+        if ($this->_validates) {
+            $this->beforeSave();
             $fields = H::getObjectProperties($this);
             //Determine whether to update or insert
             if (property_exists($this, 'id') && $this->id != '') {
@@ -97,32 +100,32 @@ class Model {
         }
     }
 
-    public function validator(){}
+    public function validator() {
+    }
 
-    public function runValidation($validator){
+    public function runValidation($validator) {
         $key = $validator->field;
-        if (!$validator->success){
-            $this->_validates= false;
+        if (!$validator->success) {
+            $this->_validates = false;
             $this->_validationErrors[$key] = $validator->msg;
         }
     }
 
-    public function getErrorMessages(){
+    public function getErrorMessages() {
         return $this->_validationErrors;
     }
 
-    public function validationPassed(){
+    public function validationPassed() {
         return $this->_validates;
     }
 
-    public function addErrorMessage($field, $msg){
+    public function addErrorMessage($field, $msg) {
         $this->_validates = false;
         $this->_validationErrors[$field] = $msg;
     }
 
-    public function isNew(){
-        return (property_exists($this,'id') && !empty($this->id))? false : true;
-    }
+    public function beforeSave(){}
+
 }
 
 

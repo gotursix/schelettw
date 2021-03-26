@@ -1,6 +1,7 @@
 <?php
+
 namespace Core;
-use Core\Session;
+
 use App\Models\Users;
 
 class Router {
@@ -25,7 +26,7 @@ class Router {
 
         //Params
         $queryParams = $url;
-
+        $controller = 'App\Controllers\\' . $controller;
         if (class_exists($controller)) {
             $dispatch = new $controller($controller_name, $action);
             if (method_exists($controller, $action)) {
@@ -85,7 +86,7 @@ class Router {
                     if ($k == 'separator' && !empty($sub)) {
                         $sub[$k] = '';
                         continue;
-                    } else if ($finalVal = self::get_link($v)) {
+                    } else if ($finalVal = self::getLink($v)) {
                         $sub[$k] = $finalVal;
                     }
                 }
