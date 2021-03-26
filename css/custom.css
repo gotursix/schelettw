@@ -198,6 +198,24 @@ body {
     background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
     color: white;
     padding: 15px;
+    justify-content: space-around;
     display: flex;
+}
 
+#documentationLink{
+    text-decoration: none;
+    color: #FFFFFF;
+
+}
+
+#githubList{
+    list-style-type: none;
+}
+
+.margins-githubList{
+    margin: 5px;
+}
+
+.padding-footer{
+    padding-top: 25px;
 }

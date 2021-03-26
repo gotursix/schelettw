@@ -56,6 +56,16 @@ $currentPage = H::currentPage();
 
 <?= $this->content('body'); ?>
 
+<footer class="footer">
+    <small class="padding-footer">&copy; Copyright 2021, BoyzTeam :)) </small>
+    <a class="padding-footer" id="documentationLink" href="#">Documentation</a>
+    <ul id="githubList">
+        <li class="margins-githubList"><a id="documentationLink" href="https://github.com/gotursix">Grigorean Valentin</a></li>
+        <li class="margins-githubList"><a id="documentationLink" href="https://github.com/ser13ban">Șerban Mihai</a></li>
+        <li class="margins-githubList"><a id="documentationLink" href="https://github.com/teodorovicigavril">Teodorovici Gavril</a></li>
+    </ul>
+</footer>
+
 <script>
     let mainNav = document.getElementById("js-menu");
     let navBarToggle = document.getElementById("js-navbar-toggle");
