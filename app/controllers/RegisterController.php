@@ -5,6 +5,7 @@ class RegisterController extends Controller {
     public function __construct($controller, $action) {
         parent::__construct($controller, $action);
         $this->load_model('Users');
+        $this->load_model('Login');
         $this->view->setLayout('default');
     }
 
@@ -32,7 +33,7 @@ class RegisterController extends Controller {
                     $user->login($remember);
                     Router::redirect('home');
                 } else {
-                    $loginModel->addError("There is an error with your username or password!");
+                    $loginModel->addErrorMessage("username", "There is an error with your username or password!");
                 }
             }
         }
