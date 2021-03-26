@@ -8,4 +8,8 @@
 <button id="buttonPurple">First button</button>
 <button id="buttonGreen">Second button</button>
 <button id="buttonRed">Third button</button>
+<div class="footer">Footer</div>
+<footer class="footer">
+    <small>&copy; Copyright 2018, Example Corporation</small>
+</footer>
 <?php $this->end(); ?>
