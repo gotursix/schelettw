@@ -23,7 +23,7 @@ class RegisterController extends Controller {
     public function loginAction() {
         $loginModel = new Login();
         if ($this->request->isPost()) {
-            //$this->request->csrfCheck();
+            $this->request->csrfCheck();
             $loginModel->assign($this->request->get());
             $loginModel->validator();
             if ($loginModel->validationPassed()) {
@@ -46,7 +46,7 @@ class RegisterController extends Controller {
     public function registerAction() {
         $newUser = new Users();
         if ($this->request->isPost()) {
-            //$this->request->csrfCheck();
+            $this->request->csrfCheck();
             $newUser->assign($this->request->get());
             $newUser->setConfirm($this->request->get('confirm'));
             if ($newUser->save()) {

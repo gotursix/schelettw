@@ -25,4 +25,9 @@ class Input {
         }
         return FH::sanitize($_REQUEST[$input]);
     }
+
+    public function csrfCheck(){
+        if(!FH::checkToken($this->get('csrf_token'))) Router::redirect('restricted/badToken');
+        return true;
+    }
 }

@@ -4,6 +4,7 @@
     <div class="form">
         <h2 class="text-center-r">Log in</h2>
         <form class="login-form" action="" method="POST">
+            <?= FH::csrfInput()?>
             <input type="text" id="username" name="username" value="<?=$this->login->username?>" placeholder="Username"/>
             <input type="password" id="password" name="password" value="<?=$this->login->password?>" placeholder="Password"/>
             <div class="rem">

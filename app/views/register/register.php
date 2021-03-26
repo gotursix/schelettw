@@ -4,6 +4,7 @@
     <div class="form">
         <h2 class="text-center-r">Register now!</h2>
         <form class="register-form" action="" method="post">
+            <?= FH::csrfInput()?>
             <input type="text" id="fname" name="fname" value="<?=$this->newUser->fname?>" placeholder="First name"/>
             <input type="text" id="lname" name="lname" value="<?=$this->newUser->lname?>" placeholder="Last name"/>
             <input type="text" id="email" name="email" value="<?=$this->newUser->email?>" placeholder="Email address"/>
