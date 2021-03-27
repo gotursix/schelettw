@@ -44,13 +44,13 @@ class Users extends Model {
         $this->runValidation(new RequiredValidator($this, ['field' => 'fname', 'msg' => 'First Name is required.']));
         $this->runValidation(new RequiredValidator($this, ['field' => 'lname', 'msg' => 'Last Name is required.']));
         $this->runValidation(new RequiredValidator($this, ['field' => 'email', 'msg' => 'Email is required.']));
-        $this->runValidation(new EmailValidator($this, ['field' => 'email', 'msg' => 'You must provide a valid email address']));
+        $this->runValidation(new EmailValidator($this, ['field' => 'email', 'msg' => 'You must provide a valid email address.']));
         $this->runValidation(new MaxValidator($this, ['field' => 'email', 'rule' => 150, 'msg' => 'Email must be less than 150 characters.']));
         $this->runValidation(new MinValidator($this, ['field' => 'username', 'rule' => 6, 'msg' => 'Username must be at least 6 characters.']));
         $this->runValidation(new MaxValidator($this, ['field' => 'username', 'rule' => 150, 'msg' => 'Username must be less than 150 characters.']));
         $this->runValidation(new UniqueValidator($this, ['field' => 'username', 'msg' => 'That username already exists. Please choose a new one.']));
-        $this->runValidation(new MinValidator($this, ['field' => 'password','rule' => 6, 'msg' => 'Password must be a minimum of 6 characters']));
-        $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->_confirm, 'msg' => "Your passwords do not match"]));
+        $this->runValidation(new MinValidator($this, ['field' => 'password','rule' => 6, 'msg' => 'Password must be a minimum of 6 characters.']));
+        $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->_confirm, 'msg' => "Your passwords do not match."]));
     }
 
     public function beforeSave() {

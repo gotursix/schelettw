@@ -10,7 +10,7 @@ use App\Models\Users;
     <title><?= $this->getSiteTitle(); ?></title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS -->
     <link rel="stylesheet" href="<?= PROOT ?>css/custom.css">
     <link rel="stylesheet" href="<?= PROOT ?>css/nav-bar.css">
@@ -56,14 +56,14 @@ $currentPage = H::currentPage();
 
 <?= $this->content('body'); ?>
 
-<footer class="footer">
-    <small class="padding-footer">&copy; Copyright 2021, BoyzTeam :)) </small>
-    <a class="padding-footer" id="documentationLink" href="#">Documentation</a>
+<footer class="footer text-center">
     <ul id="githubList">
         <li class="margins-githubList"><a id="documentationLink" href="https://github.com/gotursix">Grigorean Valentin</a></li>
         <li class="margins-githubList"><a id="documentationLink" href="https://github.com/ser13ban">Șerban Mihai</a></li>
         <li class="margins-githubList"><a id="documentationLink" href="https://github.com/teodorovicigavril">Teodorovici Gavril</a></li>
     </ul>
+    <a class="padding-footer" id="documentationLink" href="#">Documentation</a>
+    <small class="padding-footer">&copy; Copyright <script>document.write(new Date().getFullYear())</script>, BoyzTeam :)) </small>
 </footer>
 
 <script>

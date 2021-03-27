@@ -35,7 +35,6 @@
     margin: auto;
 }
 .form {
-    position: relative;
     z-index: 1;
     background: #FFFFFF;
     max-width: 360px;
@@ -135,10 +134,8 @@
 }
 
 .container {
-    position: relative;
-    z-index: 1;
-    max-width: 300px;
-    margin: 0 auto;
+    padding-bottom: 5%;
+    margin-top: 5%;
 }
 .container:before, .container:after {
     content: "";
@@ -191,7 +188,7 @@ body {
 }
 
 .footer {
-    position: fixed;
+    position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -200,6 +197,22 @@ body {
     padding: 15px;
     justify-content: space-around;
     display: flex;
+    height: 100px; //same height as the margin to the bottom of the body
+
+}
+
+@media (max-width: 600px){
+    .footer{
+        flex-direction: column;
+        height: auto;
+        text-align: center;
+        justify-content: space-between;
+    }
+
+    .container{
+        margin-bottom: 115px;
+        margin-top: 80px;
+    }
 }
 
 #documentationLink{
@@ -229,4 +242,18 @@ body {
     margin-right: auto;
     margin-left: auto;
     border-radius: 10px;
+}
+
+html{
+    position: relative;
+    min-height: 100%;
+    overflow-x: hidden;
+    margin: 0;
+
+}
+
+.content{
+    padding-top: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
