@@ -2,6 +2,7 @@
 use Core\Session;
 use Core\Router;
 use Core\H;
+use Core\FH;
 use App\Models\Users;
 ?>
 <!doctype html>
@@ -22,10 +23,6 @@ use App\Models\Users;
 </head>
 <body>
 
-<?php
-$menu = Router::getMenu('menu_acl');
-$currentPage = H::currentPage();
-?>
 <div class="nav-wrapper">
     <div class="grad-bar"></div>
     <nav class="navbar">
@@ -35,22 +32,7 @@ $currentPage = H::currentPage();
         <a href="<?= PROOT ?>">
             <img src="<?= PROOT ?>img/logo.png" class="logo" alt="Company Logo">
         </a>
-        <ul class="main-nav" id="js-menu">
-            <?php foreach ($menu as $key => $val):
-                $active = '' ?>
-                <?php if (is_array($val)): ?>
-            <?php else:
-                $active = ($val == $currentPage) ? 'active' : '';
-                ?>
-                <li><a class="nav-links <? $active ?>" href="<?= $val ?>"> <?= $key ?> </a></li>
-            <?php endif; ?>
-            <?php endforeach; ?>
-            <?php if (Users::currentUser()): ?>
-                <li>
-                    <a href="#" class="nav-links">Welcome, <?= Users::currentUser()->fname ?></a>
-                </li>
-            <?php endif; ?>
-        </ul>
+        <?= FH::generateMenu()?>
     </nav>
 </div>
 

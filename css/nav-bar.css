@@ -38,6 +38,10 @@ body {
     margin: 15px auto;
 }
 
+.current-page{
+    color: #ffffff;
+}
+
 .logo {
     display: inline-block;
     font-size: 22px;
