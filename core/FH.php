@@ -37,16 +37,23 @@ class FH {
             if (!is_array($val)) {
                 $colour = ($val == $currentPage) ? 'current-page' : '';
                 $active = ($val == $currentPage) ? 'active' : '';
-                $finalMenu .= '<li><a class="nav-links ' . $colour .  '"' . $active . ' href="' . $val . '">' . $key . '</a></li>';
+                $finalMenu .= '<li><a class="nav-links ' . $colour . '"' . $active . ' href="' . $val . '">' . $key . '</a></li>';
             }
         }
-
         if (Users::currentUser()) {
             $finalMenu .= '<li><a href="#" class="nav-links">Welcome,' . Users::currentUser()->fname . '</a></li>';
         }
-
         $finalMenu .= '</ul>';
         return $finalMenu;
+    }
+
+    public static function generateTable($scores){
+        $finalTable = "<thead><tr>";
+        foreach ($scores as $key => $value){
+            $finalTable.= '<th scope="col">' . $key . '</th>';
+        }
+        $finalTable .= "</tr>";
+        return "";
     }
 
 

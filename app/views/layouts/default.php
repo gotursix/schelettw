@@ -1,9 +1,5 @@
 <?php
-use Core\Session;
-use Core\Router;
-use Core\H;
 use Core\FH;
-use App\Models\Users;
 ?>
 <!doctype html>
 <html lang="en">
