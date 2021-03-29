@@ -24,7 +24,7 @@
     <button id="buttonPurple">Watermelone</button>
     <button id="buttonPurple">Cucumbern</button>
         <br><br>
-    <p>What are the differences between different difficulties levels</p><br>
+    <p>What are the differences between the difficulties?</p><br>
     <ul class="no-bullets">
         <li>
             <p><b>Easy level</b></p><br>
