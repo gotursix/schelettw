@@ -84,6 +84,7 @@
     transition-duration: 0.4s;
     cursor: pointer;
     border-radius: 10px;
+    width: 180px;
 }
 
 #buttonPurple {
@@ -291,4 +292,15 @@ html{
 .margin-1{
     margin-bottom: 1%;
     margin-top: 1%;
+}
+ .no-bullets {
+     list-style-type: none;
+ }
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 25px;
 }
