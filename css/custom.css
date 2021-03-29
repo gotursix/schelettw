@@ -214,6 +214,25 @@ body {
         margin-bottom: 115px;
         margin-top: 80px;
     }
+
+    .center{
+        width: 90%;
+        padding-bottom: 10%;
+        margin-bottom: 50% !important;
+    }
+
+    .game-image{
+        max-width: 90%;
+    }
+
+    .container-buttons{
+        flex-direction: column;
+    }
+
+    .difficulty-button{
+        margin: 5px !important;
+    }
+
 }
 
 #documentationLink{
@@ -278,6 +297,13 @@ html{
     text-align:center;
     transition: all 0.2s;
 }
+
+.difficulty-button-instruction{
+    display:block;
+    width: 200px;
+    margin: 5px;
+}
+
 .button-easy{
     background-color:#f14e4e;
 }
@@ -301,5 +327,16 @@ html{
     margin-left: auto;
     margin-right: auto;
     width: 70%;
-    margin-bottom: 25px;
+    margin-top: 8%;
 }
+
+.container-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.margin-btm{
+    margin-bottom: 5%;
+}
+

@@ -1,6 +1,6 @@
 <?php $this->setSiteTitle('Instructions'); ?>
 <?php $this->start('body'); ?>
-<div class="container text-center center"  >
+<div class="container text-center center margin-btm"  >
     <h1 class="red">What is Game of fruits?</h1>
         <br>
     <p>
@@ -10,10 +10,11 @@
         <br>
     <p>Select the difficulty</p>
         <br>
-
-    <a href="#" class="difficulty-button button-easy" >Easy</a>
-    <a href="#" class="difficulty-button button-medium" >Medium</a>
-    <a href="#" class="difficulty-button button-hard" >Hard</a>
+    <div class="container-buttons">
+        <a href="#" class="difficulty-button-instruction difficulty-button button-easy" >Easy</a>
+        <a href="#" class="difficulty-button-instruction difficulty-button button-medium" >Medium</a>
+        <a href="#" class="difficulty-button-instruction difficulty-button button-hard" >Hard</a>
+    </div>
         <br><br>
     <p>After you selected the difficulty the game will start</p><br>
     <img src="<?= PROOT ?>img/watermelone.jpg" alt="watermelone" class="game-image">
@@ -51,7 +52,7 @@
     <button id="buttonGreen">Second button</button>
     <button id="buttonRed">Third button</button>
     -->
-    <br><br><br><br><br>
+    <br>
 </div>
 
 <?php $this->end(); ?>
