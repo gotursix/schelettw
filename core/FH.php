@@ -47,13 +47,22 @@ class FH {
         return $finalMenu;
     }
 
-    public static function generateTable($scores){
-        $finalTable = "<thead><tr>";
-        foreach ($scores as $key => $value){
-            $finalTable.= '<th scope="col">' . $key . '</th>';
+    public static function generateTable($scores) {
+        $rank = 1;
+        $finalTable = "";
+        foreach ($scores as $score) {
+            $finalTable .= "<tr>";
+            foreach ($score as $key => $value) {
+                if ($key == "id") {
+                    $finalTable .= '<td data-label="Rank">#' . $rank . '</td>';
+                    $rank++;
+                } else {
+                    $finalTable .= '<td data-label="' . $key . '">' . $value . '</td>';
+                }
+            }
+            $finalTable .= "</tr>";
         }
-        $finalTable .= "</tr>";
-        return "";
+        return $finalTable;
     }
 
 

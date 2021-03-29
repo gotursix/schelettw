@@ -180,10 +180,10 @@ body {
 
 .text-danger{
     padding: 5px;
-    background-color: red;
+    background-color: #f14e4e;
     list-style-type: inside;
     margin: 5px;
-    border: 1px solid red;
+    border: 2px solid #965f5f;
     border-radius: 10px;
 }
 
@@ -254,8 +254,8 @@ html{
 
 .content{
     padding-top: 1%;
-    padding-left: 5%;
-    padding-right: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .game-image{
@@ -286,4 +286,9 @@ html{
 .button-hard{
     background-color:#84f14e;
     background-color:#4ef18f;
+}
+
+.margin-1{
+    margin-bottom: 1%;
+    margin-top: 1%;
 }

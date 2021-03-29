@@ -1,57 +1,51 @@
 <?php
+
 use Core\FH;
+
 ?>
+
 <?php $this->setSiteTitle('Rankings'); ?>
 <?php $this->start('head'); ?>
 <link rel="stylesheet" href="<?= PROOT ?>css/table.css">
+<script>
+    function setHard() {
+        document.getElementById("bodyToSet").innerHTML = '<?=FH::generateTable($this->hard)?>';
+    }
+
+    function setMedium() {
+        document.getElementById("bodyToSet").innerHTML = '<?=FH::generateTable($this->medium)?>';
+    }
+
+    function setEasy() {
+        document.getElementById("bodyToSet").innerHTML = '<?=FH::generateTable($this->easy)?>';
+    }
+</script>
 <?php $this->end(); ?>
 
-
 <?php $this->start('body'); ?>
-<div class="container content">
+<div class="container content text-center">
     <h1 class="text-center red">Rankings</h1>
-    <?= FH::generateTable($this->easy)?>
+    <h2 class="margin-1">Select difficulty</h2>
+    <div class="margin-1">
+        <a href="#easy" onclick="setEasy()" class="difficulty-button button-easy">Easy</a>
+        <a href="#medium" onclick="setMedium()" class="difficulty-button button-medium">Medium</a>
+        <a href="#hard" onclick="setHard()" class="difficulty-button button-hard">Hard</a>
+    </div>
 
     <table>
-        <caption>Select difficulty</caption>
-
         <thead>
         <tr>
             <th scope="col">Rank</th>
             <th scope="col">Username</th>
-            <th scope="col">Score</th>
             <th scope="col">Points</th>
+            <th scope="col">Difficulty</th>
         </tr>
-
         </thead>
-        <tbody>
-        <tr>
-            <td data-label="Rank">Visa - 3412</td>
-            <td data-label="Username">04/01/2016</td>
-            <td data-label="Score">$1,190</td>
-            <td data-label="Points">03/01/2016 - 03/31/2016</td>
-        </tr>
-        <tr>
-            <td scope="row" data-label="Account">Visa - 6076</td>
-            <td data-label="Due Date">03/01/2016</td>
-            <td data-label="Amount">$2,443</td>
-            <td data-label="Period">02/01/2016 - 02/29/2016</td>
-        </tr>
-        <tr>
-            <td scope="row" data-label="Account">Corporate AMEX</td>
-            <td data-label="Due Date">03/01/2016</td>
-            <td data-label="Amount">$1,181</td>
-            <td data-label="Period">02/01/2016 - 02/29/2016</td>
-        </tr>
-        <tr>
-            <td scope="row" data-label="Acount">Visa - 3412</td>
-            <td data-label="Due Date">02/01/2016</td>
-            <td data-label="Amount">$842</td>
-            <td data-label="Period">01/01/2016 - 01/31/2016</td>
-        </tr>
+        <tbody id="bodyToSet">
+            <?= FH::generateTable($this->easy) ?>
         </tbody>
-
-
     </table>
 </div>
+
+
 <?php $this->end(); ?>

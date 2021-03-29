@@ -13,6 +13,6 @@ class Scores extends Model {
     }
 
     public function findByDifficulty($difficulty) {
-        return $this->query("SELECT scores.id, scores.points, scores.difficulty, users.username FROM scores JOIN users on scores.user_id = users.id WHERE scores.difficulty = ?", [$difficulty])->results();
+        return $this->query("SELECT scores.id, users.username, scores.points, scores.difficulty FROM scores JOIN users on scores.user_id = users.id WHERE scores.difficulty LIKE ? ORDER BY scores.points DESC, users.username", [$difficulty])->results();
     }
 }
