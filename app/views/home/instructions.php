@@ -11,18 +11,18 @@
     <p>Select the difficulty</p>
         <br>
     <div class="container-buttons">
-        <a href="#" class="difficulty-button-instruction difficulty-button button-easy" >Easy</a>
-        <a href="#" class="difficulty-button-instruction difficulty-button button-medium" >Medium</a>
-        <a href="#" class="difficulty-button-instruction difficulty-button button-hard" >Hard</a>
+        <a id="easy" href="#" class="difficulty-button-instruction difficulty-button button-easy" >Easy</a>
+        <a id="medium" href="#" class="difficulty-button-instruction difficulty-button button-medium" >Medium</a>
+        <a id="hard" href="#" class="difficulty-button-instruction difficulty-button button-hard" >Hard</a>
     </div>
         <br><br>
     <p>After you selected the difficulty the game will start</p><br>
     <img src="<?= PROOT ?>img/watermelone.jpg" alt="watermelone" class="game-image">
         <br><br>
-    <button id="buttonPurple">pumpkin</button>
-    <button id="buttonPurple">Kiwi</button><br>
-    <button id="buttonPurple">Watermelone</button>
-    <button id="buttonPurple">Cucumbern</button>
+    <button id="wrong-answer1" class="buttonPurple" >pumpkin</button>
+    <button id="wrong-answer2" class="buttonPurple" >Kiwi</button><br>
+    <button id="correct-answer" class="buttonPurple">Watermelone</button>
+    <button id="wrong-answer3" class="buttonPurple">Cucumbern</button>
         <br><br>
     <p>What are the differences between the difficulties?</p><br>
     <ul class="no-bullets">
@@ -49,8 +49,8 @@
         </li>
     </ul>
     <!--
-    <button id="buttonGreen">Second button</button>
-    <button id="buttonRed">Third button</button>
+    <button class="buttonGreen">Second button</button>
+    <button class="buttonRed">Third button</button>
     -->
     <br>
 </div>
