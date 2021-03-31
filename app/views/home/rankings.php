@@ -20,6 +20,7 @@ use Core\FH;
         document.getElementById("bodyToSet").innerHTML = '<?=FH::generateTable($this->easy)?>';
     }
 </script>
+
 <?php $this->end(); ?>
 
 <?php $this->start('body'); ?>

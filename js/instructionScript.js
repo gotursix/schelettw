@@ -1,49 +1,51 @@
 //INSTRUCTION PAGE EXAMPLE
-var dificulty = 1;
-window.onload=function (){
+let dificulty = 1;
+let correct_answer = document.getElementById("correct-answer");
+let wrong_answer1 = document.getElementById("wrong-answer1");
 
-    dificulty = document.getElementById("easy").addEventListener("click", resetDiff)
-    dificulty = document.getElementById("medium").addEventListener("click", changeDiff);
-    dificulty= document.getElementById("hard").addEventListener("click", changeDiff);
+document.getElementById("easy").addEventListener("click", resetDiff)
+document.getElementById("medium").addEventListener("click", changeDiff);
+document.getElementById("hard").addEventListener("click", changeDiff);
 
-    if (dificulty == 1){
-        document.getElementById("correct-answer").addEventListener("click", correctAnswer);
-        document.getElementById("wrong-answer1").addEventListener("click", wrongAsnwer1);
+
+function changeHandlers(){
+    if (dificulty === 1){
+        console.log("difficulty is 1");
+        correct_answer.addEventListener("click", correctAnswer);
+        wrong_answer1.addEventListener("click", wrongAsnwer1);
         document.getElementById("wrong-answer2").addEventListener("click", wrongAsnwer2);
         document.getElementById("wrong-answer3").addEventListener("click", wrongAsnwer3);
     }
     else  {
         console.log(dificulty);
-        document.getElementById("correct-answer").addEventListener("click", correctAnswer);
-        document.getElementById("wrong-answer1").addEventListener("click", wrongAsnwer1_hard);
+        correct_answer.addEventListener("click", correctAnswer);
+        wrong_answer1.addEventListener("click", wrongAsnwer1_hard);
         document.getElementById("wrong-answer2").addEventListener("click", wrongAsnwer2_hard);
         document.getElementById("wrong-answer3").addEventListener("click", wrongAsnwer3_hard);
     }
-
-
-
 }
+
 function changeDiff(){
-    this.dificulty++;
-    return dificulty;
+    dificulty = 2;
+    changeHandlers();
 }
 function correctHelper(){
-    document.getElementById("correct-answer").classList.add("buttonGreen");
-    document.getElementById("correct-answer").classList.remove("buttonPurple");
+    correct_answer.classList.add("buttonGreen");
+    correct_answer.classList.remove("buttonPurple");
 }
 function correctAnswer(){
     correctHelper();
-    document.getElementById("wrong-answer1").classList.remove("buttonPurple");
+    wrong_answer1.classList.remove("buttonPurple");
     document.getElementById("wrong-answer2").classList.remove("buttonPurple");
     document.getElementById("wrong-answer3").classList.remove("buttonPurple");
-    document.getElementById("wrong-answer1").classList.add("buttonRed");
+    wrong_answer1.classList.add("buttonRed");
     document.getElementById("wrong-answer2").classList.add("buttonRed");
     document.getElementById("wrong-answer3").classList.add("buttonRed");
 
 }
 function wrongAsnwer1(){
-    document.getElementById("wrong-answer1").classList.remove("buttonPurple");
-    document.getElementById("wrong-answer1").classList.add("buttonRed");
+    wrong_answer1.classList.remove("buttonPurple");
+    wrong_answer1.classList.add("buttonRed");
     correctHelper();
 }
 function wrongAsnwer2(){
@@ -70,5 +72,6 @@ function wrongAsnwer3_hard(){
 }
 
 function resetDiff(){
-    this.dificulty = 1;
+    dificulty = 1;
+    changeHandlers();
 }
