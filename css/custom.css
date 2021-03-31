@@ -283,7 +283,7 @@ html{
 
 .game-image{
     width: 400px;
-    height: auto;
+    max-height: 500px;
 }
 .difficulty-button{
     display:inline-block;

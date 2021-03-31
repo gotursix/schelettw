@@ -4,6 +4,8 @@ namespace Core;
 
 use Core\Session;
 use App\Models\Users;
+use Core\H;
+use Exception;
 
 class FH {
     public static function sanitize($dirty) {
@@ -65,8 +67,30 @@ class FH {
         return $finalTable;
     }
 
-    public static function generateTableAll($easy, $medium, $hard){
+    public static function generateTableAll($easy, $medium, $hard) {
         return self::generateTable($easy) . self::generateTable($medium) . self::generateTable($hard);
+    }
+
+    public static function generateImage($obj) {
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://api.unsplash.com/search/photos?query=' . $obj . '&client_id=' . CLIENT_ID . '&count=' . PHOTOS_COUNT . "'",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'GET',
+                CURLOPT_HTTPHEADER => array(
+                    'Cookie: ugid=d56e3f1f00d5a584b5e854b8def8fc0e5390600'
+                ),
+            ));
+            $response = curl_exec($curl);
+            curl_close($curl);
+            $parsed = json_decode($response);
+            $random = rand(0,count($parsed->results)>PHOTOS_COUNT ? PHOTOS_COUNT : count($parsed->results));
+            return isset($parsed->results[$random]->urls->regular)? $parsed->results[$random]->urls->regular : $parsed->results[$random]->urls->full;
     }
 
 
