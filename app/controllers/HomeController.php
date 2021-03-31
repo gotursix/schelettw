@@ -34,10 +34,10 @@ class HomeController extends Controller {
 
 
     public function rankingsAction() {
-        $easyScoresModel = new Scores();
-        $this->view->easy = $easyScoresModel->findByDifficulty('easy');
-        $this->view->medium = $easyScoresModel->findByDifficulty('medium');
-        $this->view->hard = $easyScoresModel->findByDifficulty('hard');
+        $scoresModel = new Scores();
+        $this->view->easy = $scoresModel->findByDifficulty('easy');
+        $this->view->medium = $scoresModel->findByDifficulty('medium');
+        $this->view->hard = $scoresModel->findByDifficulty('hard');
         $this->view->render('home/rankings');
     }
 

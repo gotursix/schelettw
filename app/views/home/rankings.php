@@ -1,7 +1,5 @@
 <?php
-
 use Core\FH;
-
 ?>
 
 <?php $this->setSiteTitle('Rankings'); ?>
@@ -43,7 +41,7 @@ use Core\FH;
         </tr>
         </thead>
         <tbody id="bodyToSet">
-            <?= FH::generateTable($this->easy) ?>
+            <?= FH::generateTableAll($this->easy,$this->medium,$this->hard) ?>
         </tbody>
     </table>
 </div>

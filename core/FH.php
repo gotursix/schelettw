@@ -65,6 +65,10 @@ class FH {
         return $finalTable;
     }
 
+    public static function generateTableAll($easy, $medium, $hard){
+        return self::generateTable($easy) . self::generateTable($medium) . self::generateTable($hard);
+    }
+
 
     public static function generateToken() {
         $token = base64_encode(openssl_random_pseudo_bytes(32));
