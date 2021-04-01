@@ -29,7 +29,7 @@
 
     <div class="modal" id="modal">
         <div class="modal-header">
-            <div class="title">Please select a difficulty</div>
+            <div class="title">Please select a difficulty!</div>
             <button data-close-button class="close-button">&times;</button>
         </div>
     </div>
