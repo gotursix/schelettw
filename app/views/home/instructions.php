@@ -9,23 +9,32 @@
     <p>
         Game of fruits is the best way for you to learn the fruits and the vegetables that are much needed in our diets. It’s a simple and fun game with 3 levels of difficulty that will tickle your competitive nature.
     </p>
-    <h1 class="red">How to play?</h1>
+    <h1 data-remove="remove" class="red">How to play?</h1>
         <br>
-    <p>Select the difficulty</p>
+    <p data-remove="remove">Select the difficulty</p>
         <br>
-    <div class="container-buttons">
+    <div class="container-buttons" id="diff-buttons">
         <a id="easy" href="#" class="difficulty-button-instruction difficulty-button button-easy" >Easy</a>
         <a id="medium" href="#" class="difficulty-button-instruction difficulty-button button-medium" >Medium</a>
         <a id="hard" href="#" class="difficulty-button-instruction difficulty-button button-hard" >Hard</a>
     </div>
         <br><br>
-    <p>After you selected the difficulty the game will start</p><br>
+    <p data-remove="remove">After you selected the difficulty the game will start</p><br>
     <img src="<?= PROOT ?>img/watermelone.jpg" alt="watermelone" class="game-image">
         <br><br>
-    <button id="wrong-answer1" class="buttonPurple" >pumpkin</button>
-    <button id="wrong-answer2" class="buttonPurple" >Kiwi</button><br>
-    <button id="correct-answer" class="buttonPurple">Watermelone</button>
-    <button id="wrong-answer3" class="buttonPurple">Cucumbern</button>
+    <button data-modal-target="#modal" id="wrong-answer1" class="buttonPurple" >Pumpkin</button>
+    <button data-modal-target="#modal" id="wrong-answer2" class="buttonPurple" >Kiwi</button><br>
+    <button data-modal-target="#modal" id="correct-answer" class="buttonPurple">Watermelone</button>
+    <button data-modal-target="#modal" id="wrong-answer3" class="buttonPurple">Cucumbern</button>
+
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <div class="title">Please select a difficulty</div>
+            <button data-close-button class="close-button">&times;</button>
+        </div>
+    </div>
+    <div id="overlay"></div>
+
         <br><br>
     <p>What are the differences between the difficulties?</p><br>
     <ul class="no-bullets">
