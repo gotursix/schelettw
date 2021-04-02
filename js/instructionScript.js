@@ -55,7 +55,6 @@ function popUpHandler(){
 }
 function changeHandlers(){
     if (dificulty === 1){
-        console.log("difficulty is 1");
         correct_answer.addEventListener("click", correctAnswer);
         correct_answer.addEventListener("click", correctAnswer);
         wrong_answer1.addEventListener("click", wrongAsnwer1);
@@ -63,7 +62,6 @@ function changeHandlers(){
         wrong_answer3.addEventListener("click", wrongAsnwer3);
     }
     else  {
-        console.log(dificulty);
         correct_answer.addEventListener("click", correctAnswer);
         wrong_answer1.addEventListener("click", wrongAsnwer1_hard);
         wrong_answer2.addEventListener("click", wrongAsnwer2_hard);
@@ -76,11 +74,6 @@ function changeDiff(){
     diff_buttons.remove();
     document.querySelectorAll('[data-remove]').forEach(item => item.remove());
 
-    //removing all the event listeners that I currenlty have on the buttons
-    correct_answer.replaceWith(correct_answer.cloneNode(true));
-    wrong_answer1.replaceWith(wrong_answer1.cloneNode(true));
-    wrong_answer2.replaceWith(wrong_answer2.cloneNode(true));
-    wrong_answer3.replaceWith(wrong_answer3.cloneNode(true));
 
 
     changeHandlers();
