@@ -27,7 +27,7 @@
     <button data-modal-target="#modal" id="correct-answer" class="buttonPurple">Watermelone</button>
     <button data-modal-target="#modal" id="wrong-answer3" class="buttonPurple">Cucumbern</button>
 
-    <div class="modal" id="modal">
+    <div data-remove="remove" class="modal" id="modal">
         <div class="modal-header">
             <div class="title">Please select a difficulty!</div>
             <button data-close-button class="close-button">&times;</button>
