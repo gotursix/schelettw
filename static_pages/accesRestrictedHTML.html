@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Access RestrictedController</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="css/nav-bar.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/schelettw/fonts/Roboto.css" />
+    <!-- JS -->
+  </head>
+  <body>
+    <div class="nav-wrapper">
+      <div class="grad-bar"></div>
+      <nav class="navbar">
+        <div class="navbar-toggle" id="js-navbar-toggle">
+          <i class="fa fa-bars fix-menu"></i>
+        </div>
+        <a href="indexHTML.html">
+          <img src="img/logo.png" class="logo" alt="Company Logo" />
+        </a>
+        <ul class="main-nav" id="js-menu">
+          <li><a class="nav-links" href="gameHTML.html">Play</a></li>
+          <li>
+            <a class="nav-links" href="instructionsHTML.html">Instructions</a>
+          </li>
+          <li>
+            <a class="nav-links" href="rankingsHTML.html">Rankings</a>
+          </li>
+          <li>
+            <a class="nav-links" href="loginHTML.html">Login</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container content">
+      <h1 class="text-center red">
+        Permission denied, You don't have permission to access this page!
+      </h1>
+    </div>
+
+    <footer class="footer text-center">
+      <ul id="githubList">
+        <li class="margins-githubList">
+          <a id="documentationLink" href="https://github.com/gotursix"
+            >Grigorean Valentin</a
+          >
+        </li>
+        <li class="margins-githubList">
+          <a id="documentationLink" href="https://github.com/ser13ban"
+            >Șerban Mihai</a
+          >
+        </li>
+        <li class="margins-githubList">
+          <a id="documentationLink" href="https://github.com/teodorovicigavril"
+            >Teodorovici Gavril</a
+          >
+        </li>
+      </ul>
+      <a class="padding-footer" id="documentationLink" href="#"
+        >Documentation</a
+      >
+      <small class="padding-footer"
+        >&copy; Copyright
+        <script>
+          document.write(new Date().getFullYear());
+        </script>
+        , Vanilla Team
+      </small>
+    </footer>
+
+    <script>
+      let mainNav = document.getElementById("js-menu");
+      let navBarToggle = document.getElementById("js-navbar-toggle");
+      navBarToggle.addEventListener("click", function () {
+        mainNav.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
