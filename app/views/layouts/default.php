@@ -40,7 +40,7 @@ use Core\FH;
         <li class="margins-githubList"><a id="documentationLink" href="https://github.com/ser13ban">Șerban Mihai</a></li>
         <li class="margins-githubList"><a id="documentationLink" href="https://github.com/teodorovicigavril">Teodorovici Gavril</a></li>
     </ul>
-    <a class="padding-footer" id="documentationLink" href="#">Documentation</a>
+    <a class="padding-footer" id="documentationLink" href="<?=PROOT?>home/documentation">Documentation</a>
     <small class="padding-footer">&copy; Copyright <script>document.write(new Date().getFullYear())</script>, Vanilla Team </small>
 </footer>
 

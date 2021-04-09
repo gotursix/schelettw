@@ -405,3 +405,9 @@ html{
     opacity: 1;
     pointer-events: all;
 }
+
+p {
+    text-indent: 30px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}

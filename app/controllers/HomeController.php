@@ -44,4 +44,8 @@ class HomeController extends Controller {
     public function instructionsAction() {
         $this->view->render('home/instructions');
     }
+
+    public function documentationAction() {
+        $this->view->render('home/documentation');
+    }
 }
