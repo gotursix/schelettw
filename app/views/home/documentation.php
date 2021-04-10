@@ -22,7 +22,7 @@
         during online classes because of the lack of interaction. This is where our interactive game comes in, to help
         kids learn the name of the fruits and vegetables.<br>
         The game is focused on learning in a fun manner having multiple levels of difficulty and a rewarding system with
-        points. The specifications of levels are :
+        points. The specifications of levels are:
     </p>
 
     <ul class="margin-1">
@@ -46,6 +46,7 @@
     <p>
         Our application is a game that depends on the external Unsplash API for receiving photos
         <!--//TODO: photo goes here-->
+        <img src="<?= PROOT ?>img/UseCaseDiagram1.png" alt="UseCase" class="useCase-image">
     </p>
 
     <h3>3.2 Product functions</h3>
@@ -60,13 +61,13 @@
 
     <h3 class="margin-1">3.3 User classes and characteristics</h3>
     <ul class="margin-1">
-        <li>Logged in users</li>
+        <li class="no-bullets">Logged in users</li>
         <ul>
             <li>
                 can access every page of the web app except login and register
             </li>
-        </ul>
-        <li>Logged out users</li>
+        </ul><br>
+        <li class="no-bullets">Logged out users</li>
         <ul>
             <li>can access register, login, instructions, and rankings</li>
             <li>can’t access log out and the game</li>
@@ -171,17 +172,17 @@
     <h2 class="margin-1">6. Security features</h2>
     <h3>6.1 .htaccess file</h3>
     <p>
-        - this file is used to protect the access to directory indexes and for the rewrite engine
+        This file is used to protect the access to directory indexes and for the rewrite engine
     </p>
 
     <h3>6.2 ACL (Account control level)</h3>
     <p>
-        - JSON permission files used with the router in order to grant or deny access to specific pages from the website
+        JSON permission files used with the router in order to grant or deny access to specific pages from the website
     </p>
 
     <h3>6.3 Prepared statements and SQL injections</h3>
     <p>
-        - we’ve chosen to use prepared statements for queries as the query and
+        We’ve chosen to use prepared statements for queries as the query and
         the data are sent to the database server separately. The root of the SQL injection problem is in the mixing of
         the code and the data. In fact, our SQL query is a legitimate program. And we are creating such a program
         dynamically, adding some data on the fly. Thus, the data may interfere with the program code and even alter it.
@@ -189,7 +190,7 @@
 
     <h3>6.4 Data sanitizing</h3>
     <p>
-        - all the data from the _POST/_GET is sanitized using the PHP function htmlspecialchars() in
+        All the data from the _POST/_GET is sanitized using the PHP function htmlspecialchars() in
         order to avoid XSS attacks. As we are using PHP version 8.0.2 this will protect us against most XSS attacks (in
         PHP version 5.0.2 or older, there have been malformed UTF-8 characters which made this function vulnerable
         - <a href="http://www.securityfocus.com/bid/37389">Link</a>)
