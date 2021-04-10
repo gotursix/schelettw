@@ -263,6 +263,6 @@
 <!-- TODO: check for sections and subsections typos or incomplete name -->
 <!-- TODO: add what each one of us did -->
 <!-- TODO: add content -->
-<!-- TODO: add static page and change the hrefs on the static pages -->
+<!-- TODO: convert the documentation.php in documentationHTML.html after everything is done -->
 
 <?php $this->end(); ?>
