@@ -4,7 +4,63 @@
     <h1 class="text-center red">Documentation</h1>
     <br>
     <br>
-    <h2>1. Abstract</h2>
+
+    <div id="toc_container">
+        <p class="toc_title">Contents</p>
+        <ul class="toc_list">
+            <li><a href="#Abstract">1 Abstract</a></li>
+            <li><a href="#Introduction">2 Introduction</a></li>
+            <li><a href="#OverallDescription">3 Overall description</a>
+                <ul class="toc_list">
+                    <li><a href="#ProductPerspective">3.1 Product perspective</a></li>
+                    <li><a href="#ProductFunctions">3.2 Product functions</a></li>
+                    <li><a href="#UserClassesAndChar">3.3 User classes and characteristics</a></li>
+                    <li><a href="#OperatingEnviroment">3.4 Operating environment</a></li>
+                    <li><a href="#DesignImplementation">3.5 Design and implementation constraints</a></li>
+                    <li><a href="#UserDocumentation">3.6 User Documentation</a></li>
+                    <li><a href="#AssumptionsDependencies">3.7 Assumptions and dependencies</a></li>
+                </ul>
+            </li>
+            <li><a href="#ExternalInterfaceRequirements">4 External interface requirements</a>
+                <ul class="toc_list">
+                    <li><a href="#UserInterfaces">4.1 User interfaces</a></li>
+                    <li><a href="#SoftwareInterfaces">4.2 Software interfaces</a></li>
+                    <li><a href="#CommunicationsInterfaces">4.3 Communications interfaces</a></li>
+                </ul>
+            </li>
+            <li><a href="#SystemFeatures">5 System features</a>
+                <ul class="toc_list">
+                    <li><a href="#RegistrationLogin">5.1 Registration/Login forms</a></li>
+                    <li><a href="#Rankings">5.2 Rankings page</a>
+                        <ul class="toc_list">
+                            <li><a href="#RankingsRSS">5.2.1 Rankings RSS flux.</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#Instruction">5.3 Instruction page</a></li>
+                    <li><a href="#Game">5.4 Game page</a></li>
+                </ul>
+            </li>
+            <li><a href="#Security">6 Security features</a>
+                <ul class="toc_list">
+                    <li><a href="#htacces">6.1 .htaccess file</a></li>
+                    <li><a href="#ACL">6.2 ACL (Account control level)</a></li>
+                    <li><a href="#SQL-Injections">6.3 Prepared statements and SQL injections</a></li>
+                    <li><a href="#DataSanitizing">6.4 Data sanitizing</a></li>
+                    <li><a href="#CSRF-protetion">6.5 CSRF protection</a>
+                        <ul class="toc_list">
+                            <li><a href="#HowWorks">6.5.1 How does it work?</a></li>
+                            <li><a href="#PreventAttack">6.5.2 How to prevent the attack</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#References">7 References</a></li>
+        </ul>
+    </div>
+
+
+    <br>
+    <h2 id="Abstract">1. Abstract</h2>
     <p>
         This document describes the development of the project Game of Fruits, an educational web game,
         having as its main purpose helping kids to learn the name of the fruits/legumes in an interactive
@@ -12,7 +68,7 @@
     </p>
 
 
-    <h2>2. Introduction</h2>
+    <h2 id="Introduction">2. Introduction</h2>
     <p>
         It’s a known issue that nowadays people eat less and less healthy (especially fruits and vegetables) as
         during
@@ -41,15 +97,15 @@
     </ul>
 
 
-    <h2 class="margin-1">3. Overall description</h2>
-    <h3>3.1 Product perspective</h3>
+    <h2 class="margin-1" id="OverallDescription">3. Overall description</h2>
+    <h3 id="ProductPerspective">3.1 Product perspective</h3>
     <p>
         Our application is a game that depends on the external Unsplash API for receiving photos
         <!--//TODO: photo goes here-->
         <img src="<?= PROOT ?>img/UseCaseDiagram1.png" alt="UseCase" class="useCase-image">
     </p>
 
-    <h3>3.2 Product functions</h3>
+    <h3 id="ProductFunctions">3.2 Product functions</h3>
     <ul class="margin-1">
         <li>register</li>
         <li>login/logout</li>
@@ -59,7 +115,7 @@
         <li>play the game</li>
     </ul>
 
-    <h3 class="margin-1">3.3 User classes and characteristics</h3>
+    <h3 class="margin-1" id="UserClassesAndChar">3.3 User classes and characteristics</h3>
     <ul class="margin-1">
         <li class="no-bullets">Logged in users</li>
         <ul>
@@ -75,14 +131,14 @@
     </ul>
 
 
-    <h3>3.4 Operating environment</h3>
+    <h3 id="OperatingEnviroment">3.4 Operating environment</h3>
     <p>
         The application will be hosted on an online server and it will be accessible from any browser supporting
         javascript, html5 and css3.
     </p>
 
 
-    <h3>3.5 Design and implementation constraints</h3>
+    <h3 id="DesignImplementation">3.5 Design and implementation constraints</h3>
     <ul class="margin-1">
         <li>The design pattern used is MVC</li>
         <li>The database solution is MariaDB</li>
@@ -90,18 +146,18 @@
         <li>Technologies used: HTML, CSS</li>
     </ul>
 
-    <h3 class="margin-1">3.6 User Documentation</h3>
+    <h3 class="margin-1" id="UserDocumentation">3.6 User Documentation</h3>
     <p>
         The instruction page describes how the game works and how to play it. Also, it contains a live demo of the game.
     </p>
 
-    <h3>3.7 Assumptions and dependencies</h3>
+    <h3 id="AssumptionsDependencies">3.7 Assumptions and dependencies</h3>
     <p>
         The game implementation depends on the Unsplash API for receiving photos of fruits and vegetables.
     </p>
 
-    <h2 class="margin-1">4. External interface requirements</h2>
-    <h3>4.1 User interfaces</h3>
+    <h2 class="margin-1" id="ExternalInterfaceRequirements">4. External interface requirements</h2>
+    <h3 id="UserInterfaces">4.1 User interfaces</h3>
     <p>
         The main way of interacting with our website is by the navigation part which depends on the state of the user
         (logged in or not).
@@ -111,7 +167,7 @@
         only by a logged user.
     </p>
 
-    <h3>4.2 Software interfaces</h3>
+    <h3 id="SoftwareInterfaces">4.2 Software interfaces</h3>
     <p>
         For the database, we are using MariaDB, version 10.4.18 where we are storing the information regarding the
         users, user sessions and scores.
@@ -120,7 +176,7 @@
     </p>
 
 
-    <h3>4.3 Communications interfaces</h3>
+    <h3 id="CommunicationsInterfaces">4.3 Communications interfaces</h3>
     <ul class="margin-1">
         <li>Web Browser</li>
         <li>The communication standard is HTTP</li>
@@ -128,37 +184,37 @@
     </ul>
 
 
-    <h2 class="margin-1">5. System features</h2>
+    <h2 class="margin-1" id="SystemFeatures">5. System features</h2>
 
-    <h3>5.1 Registration/Login forms</h3>
+    <h3 id="RegistrationLogin">5.1 Registration/Login forms</h3>
     <p>
         In order to make the HTTP communication stateful we use cookies and sessions to make the users able to create an
         account and maintain their session stable.
     </p>
 
 
-    <h3>5.2 Rankings page</h3>
+    <h3 id="Rankings">5.2 Rankings page</h3>
     <p>
         This page lists top players by their scores and by difficulty level. If no difficulty level is selected then the
         page will contain the best scores from all levels.
     </p>
 
 
-    <h3>5.2.1 Rankings RSS flux.</h3>
+    <h3 id="RankingsRSS">5.2.1 Rankings RSS flux.</h3>
     <p>
         There would be an option for the users to export the rankings page as an RSS flux (XML) in order to keep them up
         to date.
     </p>
 
 
-    <h3>5.3 Instruction page</h3>
+    <h3 id="Instruction">5.3 Instruction page</h3>
     <p>
         Here you can find a description of the game with an example of how the game works (javascript) and the
         differences from one level to another.
     </p>
 
 
-    <h3>5.4 Game page</h3>
+    <h3 id="Game">5.4 Game page</h3>
     <p>
         The game logic was implemented using PHP, javascript and Unsplash API.
         First, the player has to select the difficulty of the game. If he does not then he would be warned to choose a
@@ -169,18 +225,18 @@
         lives.
     </p>
 
-    <h2 class="margin-1">6. Security features</h2>
-    <h3>6.1 .htaccess file</h3>
+    <h2 class="margin-1" id="Security">6. Security features</h2>
+    <h3 id="htacces">6.1 .htaccess file</h3>
     <p>
         This file is used to protect the access to directory indexes and for the rewrite engine
     </p>
 
-    <h3>6.2 ACL (Account control level)</h3>
+    <h3 id="ACL">6.2 ACL (Account control level)</h3>
     <p>
         JSON permission files used with the router in order to grant or deny access to specific pages from the website
     </p>
 
-    <h3>6.3 Prepared statements and SQL injections</h3>
+    <h3 id="SQL-Injections">6.3 Prepared statements and SQL injections</h3>
     <p>
         We’ve chosen to use prepared statements for queries as the query and
         the data are sent to the database server separately. The root of the SQL injection problem is in the mixing of
@@ -188,7 +244,7 @@
         dynamically, adding some data on the fly. Thus, the data may interfere with the program code and even alter it.
     </p>
 
-    <h3>6.4 Data sanitizing</h3>
+    <h3 id="DataSanitizing">6.4 Data sanitizing</h3>
     <p>
         All the data from the _POST/_GET is sanitized using the PHP function htmlspecialchars() in
         order to avoid XSS attacks. As we are using PHP version 8.0.2 this will protect us against most XSS attacks (in
@@ -197,8 +253,8 @@
     </p>
 
 
-    <h3 class="margin-1">6.5 CSRF protection</h3>
-    <h4>6.5.1 How does it work?</h4>
+    <h3 class="margin-1" id="CSRF-protetion">6.5 CSRF protection</h3>
+    <h4 id="HowWorks">6.5.1 How does it work?</h4>
 
     <p>
         There are two main parts to executing a Cross-site Request Forgery attack. The first one is tricking the
@@ -233,7 +289,7 @@
     </p>
 
 
-    <h4>6.5.2 How to prevent the attack</h4>
+    <h4 id="PreventAttack">6.5.2 How to prevent the attack</h4>
     <p>
         Security experts propose many CSRF prevention mechanisms. This includes, for example, using a referer header,
         using the HttpOnly flag, sending an X-Requested-With custom header using jQuery, and more. Unfortunately, not
@@ -245,7 +301,7 @@
         most likely having a CSRF attack so we will redirect the user to the badToken page.
     </p>
 
-    <h3 class="margin-1">7. References</h3>
+    <h3 class="margin-1" id="References">7. References</h3>
     <ol>
         <li><a href="https://unsplash.com/documentation" target=”_blank”>Unsplash API documentation</a></li>
         <li><a href="https://profs.info.uaic.ro/~andrei.panu/" target=”_blank”>Dr. Andrei Panu Web Technologies course and laboratory</a></li>
