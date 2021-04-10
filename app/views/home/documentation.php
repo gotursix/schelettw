@@ -245,7 +245,18 @@
     </p>
 
     <h3 class="margin-1">7. References</h3>
-    <!-- TODO: add references -->
+    <ol>
+        <li><a href="https://unsplash.com/documentation" target=”_blank”>Unsplash API documentation</a></li>
+        <li><a href="https://profs.info.uaic.ro/~andrei.panu/" target=”_blank”>Dr. Andrei Panu Web Technologies course and laboratory</a></li>
+        <li><a href="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-film.html" target=”_blank”>UAIC computer science Web Technologies course page</a></li>
+        <li><a href=" https://laravel.com/docs/8.x/csrf" target=”_blank”>CSRF protection</a></li>
+        <li><a href="https://stackoverflow.com/questions/19584189/when-used-correctly-is-htmlspecialchars-sufficient-for-protection-against-all-x" target=”_blank”>Data sanitizing</a></li>
+        <li><a href="https://stackoverflow.com/questions/8263371/how-can-prepared-statements-protect-from-sql-injection-attacks" target=”_blank”>SQL injections and prepared statements</a></li>
+        <li><a href="https://www.php.net/docs.php" target=”_blank”>PHP documentation</a></li>
+        <li><a href="https://www.w3schools.com/js/DEFAULT.asp" target=”_blank”>W3Schools javascript</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target=”_blank”>JavaScript MDN Web documentation</a></li>
+        <li><a href="https://www.php.net/manual/en/book.json.php" target=”_blank”>JSON in PHP</a></li>
+    </ol>
 
 </div>
 
