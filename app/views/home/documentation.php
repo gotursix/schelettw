@@ -55,6 +55,7 @@
                 </ul>
             </li>
             <li><a href="#References">7 References</a></li>
+            <li><a href="#Contribution">8 Team members contribution</a></li>
         </ul>
     </div>
 
@@ -313,7 +314,39 @@
         <li><a href="https://www.w3schools.com/js/DEFAULT.asp" target=”_blank”>W3Schools javascript</a></li>
         <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target=”_blank”>JavaScript MDN Web documentation</a></li>
         <li><a href="https://www.php.net/manual/en/book.json.php" target=”_blank”>JSON in PHP</a></li>
-    </ol>
+    </ol><br>
+
+    <h3 class="margin-1 margin-top-ToC" id="Contribution">8. Team members contribution:</h3>
+    <ul>
+        <li>Grigorean Valentin
+            <ul class="no-bullets">
+                <li>Documentation page: 33.3%</li>
+                <li>Project Arhitecture: 100%</li>
+                <li>Ranking Page: 100%</li>
+                <li>Nav bar: 70%</li>
+                <li>Bad Token page: 100%</li>
+                <li>Login/Register: 40%</li>
+            </ul>
+        </li><br>
+        <li>Șerban Mihai
+            <ul class="no-bullets">
+                <li>Documentation page: 33.3%</li>
+                <li>Instruction Page(javascript 100%, css 30%)</li>
+                <li>Game Page(javascript, css 30%)</li>
+                <li>Nav bar: 30%</li>
+                <li>Page Not Found: 100%</li>
+            </ul>
+        </li><br>
+        <li>Teodorovici Gavril-Anton
+            <ul class="no-bullets">
+                <li>Documentation page: 33.3%</li>
+                <li>Login/Register: 60%</li>
+                <li>Footer: 100%</li>
+                <li>Game/Instruction CSS: 70%</li>
+                <li>Access restricted: 100%</li>
+            </ul>
+        </li><br>
+    </ul>
 
 </div>
 
