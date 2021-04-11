@@ -229,6 +229,10 @@ body {
         max-width: 90%;
     }
 
+    .useCase-image{
+        max-width: 90%;
+    }
+
     .container-buttons{
         flex-direction: column;
     }
@@ -285,6 +289,10 @@ html{
 .game-image{
     width: 400px;
     max-height: 500px;
+}
+
+.useCase-image{
+    width: 750px;
 }
 .difficulty-button{
     display:inline-block;
@@ -404,4 +412,45 @@ html{
 #overlay.active {
     opacity: 1;
     pointer-events: all;
+}
+
+p {
+    text-indent: 30px;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+
+#toc_container {
+    background: #f9f9f9 none repeat scroll 0 0;
+    border: 1px solid #aaa;
+    display: table;
+    font-size: 95%;
+    margin-bottom: 3em;
+    padding: 20px;
+    width: auto;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.toc_title {
+    font-weight: 700;
+    text-align: left;
+}
+
+#toc_container a{
+    text-decoration: none;
+}
+
+#toc_container li, #toc_container ul, #toc_container ul li{
+    list-style: outside none none !important;
+}
+
+#toc_container li {
+    padding: 5px 10px !important;
+}
+
+.margin-top-ToC{
+    margin-top: -150px;
+    padding-top: 150px;
 }
