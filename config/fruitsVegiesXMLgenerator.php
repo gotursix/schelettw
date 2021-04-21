@@ -117,4 +117,4 @@ foreach ($h as $fruit){
 
 //Header('Content-type: text/xml');
 print($xml);
-$xml->saveXML("fruitsAndVegies.xml");
+$xml->saveXML("fruitsAndVeggies.xml");

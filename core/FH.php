@@ -29,6 +29,7 @@ class FH {
         return $html;
     }
 
+    //TODO: fix bug when play is current page
     public static function generateMenu() {
         $menu = Router::getMenu('menu_acl');
         $currentPage = H::currentPage();
@@ -106,5 +107,54 @@ class FH {
 
     public static function csrfInput() {
         return '<input type="hidden" name="csrf_token" id="csrf_token" value="' . self::generateToken() . '">';
+    }
+
+    public static function indexFromXML($xml, $lookingFor) {
+        $index = 0;
+        foreach ($xml as $element) {
+            if ($element == $lookingFor) {
+                return $index;
+            }
+            $index++;
+        }
+        return -1;
+    }
+
+    public static function getFruitsVeggiesLevel($difficulty) {
+        $xml = simplexml_load_file("config/fruitsAndVeggies.xml") or die("Error: Cannot create object");
+        $options = [];
+        switch ($difficulty) {
+            case "easy":
+                $visited = array_fill(0, count($xml->easy->element), false);
+                while (count($options) != 4) {
+                    $randomIndex = rand(0, count($xml->easy->element) - 1);
+                    if ($visited[self::indexFromXML($xml->easy->element, $xml->easy->element[$randomIndex])] == false) {
+                        array_push($options, $xml->easy->element[$randomIndex]);
+                        $visited[self::indexFromXML($xml->easy->element, $xml->easy->element[$randomIndex])] = true;
+                    }
+                }
+                break;
+            case "medium":
+                $visited = array_fill(0, count($xml->medium->element), false);
+                while (count($options) != 4) {
+                    $randomIndex = rand(0, count($xml->medium->element) - 1);
+                    if ($visited[self::indexFromXML($xml->medium->element, $xml->medium->element[$randomIndex])] == false) {
+                        array_push($options, $xml->medium->element[$randomIndex]);
+                        $visited[self::indexFromXML($xml->medium->element, $xml->medium->element[$randomIndex])] = true;
+                    }
+                }
+                break;
+            case "hard":
+                $visited = array_fill(0, count($xml->hard->element), false);
+                while (count($options) != 4) {
+                    $randomIndex = rand(0, count($xml->hard->element) - 1);
+                    if ($visited[self::indexFromXML($xml->hard->element, $xml->hard->element[$randomIndex])] == false) {
+                        array_push($options, $xml->hard->element[$randomIndex]);
+                        $visited[self::indexFromXML($xml->hard->element, $xml->hard->element[$randomIndex])] = true;
+                    }
+                }
+                break;
+        }
+        return $options;
     }
 }
