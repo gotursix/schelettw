@@ -4,11 +4,16 @@ $e = array(
     "Orange",
     "apple",
     "Banana",
+    "Blackberries",
+    "bean",
     "Blueberry",
+    "Blueberries",
     "Carrot",
     "Cherry",
     "Corn",
     "Cucumber",
+    "cinnamon",
+    "cauliflower",
     "Grapefruit",
     "Lemon",
     "Mandarin",
@@ -17,8 +22,10 @@ $e = array(
     "Nuts",
     "Olive",
     "Onion",
+    "Olives",
     "Peach",
     "Pear",
+    "peas",
     "Peanut",
     "Peas",
     "Peppers",
@@ -33,86 +40,113 @@ $e = array(
     "Grapes",
     "Lime",
     "Coffee",
-    "Nectarine"
+    "Nectarine",
+    "kiwi"
     );
 $m = array(
     "Avocado",
     "Asparagus",
     "Barberry",
+    "Blackberries",
+    "Blueberries",
     "Broccoli",
     "Cabbage",
     "Coconuts",
+    "Cranberries",
+    "coriander",
+    "cauliflower",
     "Cashew",
     "Clementine",
+    "cinnamon",
     "Dates",
     "Eggplant",
     "Garlic",
     "Ginger",
     "Jalapeno",
     "Lettuce",
+    "lentil",
+    "lavender",
+    "oregano",
+    "Olives",
     "Raisin",
     "Raspberries",
+    "rosemary",
     "Spinach",
     "Tangerines",
+    "Turmeric",
     "Beets",
     "Mango",
+    "Mulberries",
     "Iceberg Lettuce",
     "Hazelnut",
     "Pepino",
+    "peas",
     "Walnut",
     "Guacamole",
+    "Grapefruit",
     "Lime",
+    "leek",
     "Coffee",
-    "Kale"
+    "Kale",
+    "kiwi"
 );
 $h = array(
+    "Asparagus",
     "Apricots",
+    "Arrowroot",
     "Basil",
     "Cacao",
+    "coriander",
     "Cranberry",
     "Dragon fruit",
     "Guava",
     "Kale",
     "Mango",
     "Mint",
+    "Mulberries",
     "Passion fruit",
     "Pomelo",
+    "rosemary",
+    "oregano",
     "Papaya",
     "Quinoa",
     "Radish",
+    "Raspberries",
     "Sweet potato",
+    "Soursop",
     "Vanilla",
     "Zucchini",
     "Parsnips",
     "Cauliflower",
     "Wasabi",
-    "Guavas",
     "Rhubarb",
     "Turnips",
     "Cactus fruit",
     "Kaki",
     "Fig",
     "Breadfruit",
-    "Mustard"
+    "Mustard",
+    "lentil",
+    "lavender",
+    "leek",
+    "kiwi"
 );
-
-
 
 $xml = new SimpleXMLElement('<xml/>');
 
 $easy = $xml->addChild('easy');
 foreach ($e as $fruit){
-    $easy->addChild('element', $fruit);
+    $easy->addChild('element', strtolower($fruit));
 }
 
 $medium = $xml->addChild('medium');
 foreach ($m as $fruit){
-    $medium->addChild('element', $fruit);
+    $medium->addChild('element', strtolower($fruit));
 }
 
 $hard = $xml->addChild('hard');
 foreach ($h as $fruit){
-    $hard->addChild('element', $fruit);
+    $hard->addChild('element', strtolower($fruit));
 }
 
 //Header('Content-type: text/xml');
