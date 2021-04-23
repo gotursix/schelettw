@@ -8,7 +8,7 @@ use Core\H;
 <?php $this->setSiteTitle('Home'); ?>
 <?php $this->start('head'); ?>
 <!-- TODO: Redo game js in order to set the score-->
-<script src="<?= PROOT ?>js/instructionScript.js" defer></script>
+<script src="<?= PROOT ?>js/gameScript.js" defer></script>
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 <div class="container content  center text-center margin-btm">
@@ -19,22 +19,16 @@ use Core\H;
     <!-- TODO: ucfirst() as not all the fruits/vegetables name stated with a capital we could keep it -->
     <!-- TODO: like this or fix the xml -> I'd rather go w the second one) -->
 
-    <button data-modal-target="#modal" id="wrong-answer1" class="buttonPurple"><?= ucfirst($this->level[0]) ?></button>
-    <button data-modal-target="#modal" id="wrong-answer2" class="buttonPurple"><?= ucfirst($this->level[1]) ?></button>
+    <button  id="wrong-answer1" class="buttonPurple"><?= ucfirst($this->level[0]) ?></button>
+    <button  id="wrong-answer2" class="buttonPurple"><?= ucfirst($this->level[1]) ?></button>
     <br>
-    <button data-modal-target="#modal" id="correct-answer" class="buttonPurple"><?= ucfirst($this->level[2]) ?></button>
-    <button data-modal-target="#modal" id="wrong-answer3" class="buttonPurple"><?= ucfirst($this->level[3]) ?></button>
+    <button  id="correct-answer" class="buttonPurple"><?= ucfirst($this->level[2]) ?></button>
+    <button  id="wrong-answer3" class="buttonPurple"><?= ucfirst($this->level[3]) ?></button>
     <br>
     <!-- TODO: Add quit functionality (save score and delete session difficulty) -->
-    <button data-modal-target="#modal" id="wrong-answer3" class="buttonRed">Quit</button>
+    <button  id="wrong-answer3" class="buttonRed">Quit</button>
 
-    <div data-remove="remove" class="modal" id="modal">
-        <div class="modal-header">
-            <div class="title">Please select a difficulty!</div>
-            <button data-close-button class="close-button">&times;</button>
-        </div>
-    </div>
-    <div id="overlay"></div>
+
 
 </div>
 
