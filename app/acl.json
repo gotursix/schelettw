@@ -3,12 +3,14 @@
     "denied" : {},
     "Home" : ["*"],
     "Register" : ["login", "register", "index"],
-    "Restricted" : ["*"]
+    "Restricted" : ["*"],
+    "Game" : ["rankings"]
   },
   "LoggedIn" : {
     "denied" : {
       "Register" : ["login", "register"]
     },
+    "Game" : ["*"],
     "Register" : ["logout"],
     "Home" : ["*"],
     "Restricted" : ["*"]

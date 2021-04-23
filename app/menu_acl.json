@@ -1,7 +1,7 @@
 {
   "Play" : "home/index",
   "Instructions" : "home/instructions",
-  "Rankings" : "home/rankings",
+  "Rankings" : "game/rankings",
   "Login" : "register/login",
   "Logout" : "register/logout"
 }

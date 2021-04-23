@@ -90,7 +90,13 @@ class FH {
         $response = curl_exec($curl);
         curl_close($curl);
         $parsed = json_decode($response);
-        $random = rand(0, count($parsed->results) > PHOTOS_COUNT ? PHOTOS_COUNT - 1 : count($parsed->results) - 1);
+        if (!$parsed->results)
+            Router::redirect("game/play/" . Session::get("difficulty"));
+        $random = rand(0, count($parsed->results) > PHOTOS_COUNT ? PHOTOS_COUNT - 1 : count($parsed->results));
+        //H::dnd($parsed->results[$random]);
+        if (!$parsed->results[$random]->urls) {
+            Router::redirect("game/play/" . Session::get("difficulty"));
+        }
         return $parsed->results[$random]->urls->regular;
     }
 

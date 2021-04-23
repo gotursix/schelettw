@@ -15,11 +15,11 @@ use Core\Session;
     <br>
     <!-- TODO: make the buttons idk, wider and put them as a column -->
     <div class="container-buttons" id="diff-buttons">
-        <a id="easy" href="<?= PROOT ?>home/game/easy" onclick="setEasy()"
+        <a id="easy" href="<?= PROOT ?>game/play/easy"
            class="difficulty-button-instruction difficulty-button button-easy">Easy</a>
-        <a id="medium" href="<?= PROOT ?>home/game/medium"
+        <a id="medium" href="<?= PROOT ?>game/play/medium"
            class="difficulty-button-instruction difficulty-button button-medium">Medium</a>
-        <a id="hard" href="<?= PROOT ?>home/game/hard" onclick="setHard()"
+        <a id="hard" href="<?= PROOT ?>game/play/hard"
            class="difficulty-button-instruction difficulty-button button-hard">Hard</a>
     </div>
 </div>

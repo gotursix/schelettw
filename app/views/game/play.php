@@ -26,8 +26,7 @@ use Core\H;
     <button  id="wrong-answer3" class="buttonPurple"><?= ucfirst($this->level[3]) ?></button>
     <br>
     <!-- TODO: Add quit functionality (save score and delete session difficulty) -->
-    <button  id="wrong-answer3" class="buttonRed">Quit</button>
-
+    <a href="<?=PROOT?>game/end"><button  id="wrong-answer3" class="buttonRed">Quit</button></a>
 
 
 </div>
