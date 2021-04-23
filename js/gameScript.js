@@ -1,5 +1,5 @@
 //INSTRUCTION PAGE EXAMPLE
-let dificulty = 0;
+
 count = 0;
 let correct_answer = document.getElementById("correct-answer");
 let wrong_answer1 = document.getElementById("wrong-answer1");
@@ -12,9 +12,6 @@ const openModalButtons = document.querySelectorAll('[data-modal-target]')
 const closeModalButtons = document.querySelectorAll('[data-close-button]')
 const overlay = document.getElementById('overlay')
 
-document.getElementById("easy").addEventListener("click", resetDiff)
-document.getElementById("medium").addEventListener("click", changeDiff);
-document.getElementById("hard").addEventListener("click", changeDiff);
 
 if (dificulty === 0){
     resetDiff();

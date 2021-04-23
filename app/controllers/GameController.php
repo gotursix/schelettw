@@ -41,7 +41,6 @@ class GameController extends Controller {
         $this->view->render('game/difficulty');
     }
 
-    //TODO: check for vulnerabilities
     public function playAction($difficulty) {
         if (in_array($difficulty, DIFFICULTIES)) {
             if (!Session::exists("difficulty")) {
@@ -49,7 +48,7 @@ class GameController extends Controller {
             } else if (Session::get("difficulty") != $difficulty) {
                 Router::redirect("home/game/" . Session::get("difficulty"));
             }
-            //TODO: Game logic
+            //TODO: Handle game logic
             $fruitsVeggies = FH::getFruitsVeggiesLevel($difficulty);
             //H::dnd($fruitsVeggies);
             $this->view->difficulty = $difficulty;

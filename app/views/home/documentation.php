@@ -102,7 +102,6 @@
     <h3 id="ProductPerspective" class="margin-top-ToC">3.1 Product perspective</h3>
     <p>
         Our application is a game that depends on the external Unsplash API for receiving photos
-        <!--//TODO: photo goes here-->
         <img src="<?= PROOT ?>img/UseCaseDiagram1.png" alt="UseCase" class="useCase-image">
     </p>
 
@@ -349,10 +348,4 @@
     </ul>
 
 </div>
-
-<!-- TODO: check for sections and subsections typos or incomplete name -->
-<!-- TODO: add what each one of us did -->
-<!-- TODO: add content -->
-<!-- TODO: convert the documentation.php in documentationHTML.html after everything is done -->
-
 <?php $this->end(); ?>
