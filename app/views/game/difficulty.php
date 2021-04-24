@@ -13,14 +13,13 @@ use Core\Session;
 <div class="container content  center text-center margin-btm">
     <h1 class="text-center red">Please set the difficulty</h1>
     <br>
-    <!-- TODO: make the buttons idk, wider and put them as a column -->
-    <div class="container-buttons" id="diff-buttons">
+    <div class="container-buttons-diff" id="diff-buttons">
         <a id="easy" href="<?= PROOT ?>game/play/easy"
-           class="difficulty-button-instruction difficulty-button button-easy">Easy</a>
+           class="difficulty-button difficulty-button-fromDifficulty button-easy">Easy</a>
         <a id="medium" href="<?= PROOT ?>game/play/medium"
-           class="difficulty-button-instruction difficulty-button button-medium">Medium</a>
+           class="difficulty-button difficulty-button-fromDifficulty button-medium">Medium</a>
         <a id="hard" href="<?= PROOT ?>game/play/hard"
-           class="difficulty-button-instruction difficulty-button button-hard">Hard</a>
+           class="difficulty-button difficulty-button-fromDifficulty button-hard">Hard</a>
     </div>
 </div>
 
