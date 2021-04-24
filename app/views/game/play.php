@@ -15,7 +15,6 @@ use Core\H;
 <?php $this->start('body'); ?>
 <div class="container content  center text-center margin-btm">
     <h1 class="text-center red">What fruit or vegetable is in the image?</h1><br>
-    <!-- TODO: make picture and buttons a bit wider -->
     <img src="<?= FH::generateImage($this->level[0]) ?>" alt="<?= $this->level[0] ?>" class="game-image"><br><br>
     <!-- TODO: Helper function to randomly generate the buttons order -->
     <button id="correct-answer" class="buttonPurple"><?= ucfirst($this->level[0]) ?></button>
