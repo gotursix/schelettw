@@ -18,6 +18,11 @@ class GameController extends Controller {
         $this->view->setLayout('default');
     }
 
+    public function learnAction($item) {
+        $this->view->item = ucfirst($item);
+        $this->view->render('game/learn');
+    }
+
     public function indexAction() {
         if ($difficulty = Session::get("difficulty")) {
             Router::redirect("game/play/" . $difficulty);
