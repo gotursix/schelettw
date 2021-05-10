@@ -38,8 +38,7 @@ class FH {
             $active = '';
             if (!is_array($val)) {
                 $colour = ($val == $currentPage) ? 'current-page' : '';
-                $active = ($val == $currentPage) ? 'active' : '';
-                $finalMenu .= '<li><a class="nav-links ' . $colour . '"' . $active . ' href="' . $val . '">' . $key . '</a></li>';
+                $finalMenu .= '<li><a class="nav-links ' . $colour . '"' . ' href="' . $val . '">' . $key . '</a></li>';
             }
         }
         if (Users::currentUser()) {
