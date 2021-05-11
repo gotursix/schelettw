@@ -1,6 +1,6 @@
 {
   "Play" : "home/index",
-  "Learn" : "game/learn/0",
+  "Learn" : "home/learn/0",
   "Instructions" : "home/instructions",
   "Rankings" : "game/rankings",
   "Login" : "register/login",

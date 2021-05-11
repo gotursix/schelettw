@@ -32,7 +32,7 @@ class Router {
             if (method_exists($controller, $action)) {
                 call_user_func_array([$dispatch, $action], $queryParams);
             } else {
-                Router::redirect("restricted/pageNotFound");
+                //Router::redirect("restricted/pageNotFound");
             }
         }
     }

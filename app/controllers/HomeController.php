@@ -17,7 +17,15 @@ class HomeController extends Controller {
         $this->load_model('Scores');
         $this->view->setLayout('default');
     }
+    public function learnAction($page) {
+        $this->view->page = $page;
+        $this->view->render('home/learn');
+    }
 
+    public function learnaboutAction($item){
+        $this->view->item = $item;
+        $this->view->render('home/learnabout');
+    }
     //TODO: check for vulnerabilities
     public function indexAction() {
         if (!Users::currentUser()) {
