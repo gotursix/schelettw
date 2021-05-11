@@ -220,5 +220,34 @@ class FH {
         return $options;
     }
 
+    public static function getFruitsAndVeggiesArrayAll(){
+        // xml file path
+        $path = "config/fruitsAndVeggies.xml";
+
+        $xmlfile = file_get_contents($path);
+
+        $new = simplexml_load_string($xmlfile);
+
+        $con = json_encode($new);
+
+        $newArr = json_decode($con, true);
+
+        $finalArr = array();
+        foreach($newArr['easy']["element"] as $value) {
+            array_push($finalArr,$value);
+        }
+        foreach($newArr['medium']["element"]as $value) {
+            if (!in_array($value,$finalArr)){
+                array_push($finalArr,$value);
+            }
+        }
+        foreach($newArr['hard']["element"] as $value) {
+            if (!in_array($value,$finalArr)){
+                array_push($finalArr,$value);
+            }
+        }
+
+        return $finalArr;
+    }
 
 }

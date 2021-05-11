@@ -7,13 +7,29 @@ use Core\Session;
 ?>
 
 <?php $this->setSiteTitle('Home'); ?>
-<?php $this->start('body'); ?>
+<?php $this->start('body');?>
 <div class="container content  center text-center margin-btm">
-    <h1 class="text-center red">Learn about <?=$this->item?></h1>
+    <h1 class="text-center red">Learn </h1>
     <br>
-    <img src="<?= FH::generateImage($this->item) ?>" alt="<?= $this->item ?>" class="game-image" >
-    <br>
-    <?= FH::generateDescription(lcfirst($this->item)) ?>
+<?php
+    $page_size = 5;
+    $arr = FH::getFruitsAndVeggiesArrayAll();
+    $number_of_result = count($arr);
+    $number_of_pages = ceil ($number_of_result / $page_size);
+    $first_result_index = (int) $this->page * $page_size;
+
+    for($i = $first_result_index; $i< ($page_size + $first_result_index); $i++) {
+    echo '<img src="' . FH::generateImage($arr[$i]) . '" alt="' . $arr[$i] . '" class="game-image" >';
+    echo '<p>'. $arr[$i] .'</p>';
+    echo '<a id="easy" href="'. PROOT.'game/learnabout/' . $arr[$i].'">learn more about: '.$arr[$i].'</a>';
+    echo '<br>';
+    //echo FH::generateDescription($arr[$i]);
+    }
+
+    for($page = 1; $page<= $number_of_pages; $page++) {
+        echo '<a href = "'. PROOT. 'game/learn/' . $page . '">' . $page . ' </a>';
+    }
+?>
 </div>
 
 <?php $this->end(); ?>
