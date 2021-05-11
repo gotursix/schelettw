@@ -24,7 +24,7 @@ use Core\H;
     <button id="wrong-answer3" class="buttonPurple"><?= ucfirst($this->level[3]) ?></button>
     <br>
     <a href="<?= PROOT ?>game/end">
-        <button id="wrong-answer3" class="buttonQuit">Quit</button>
+        <button class="buttonQuit">Quit</button>
     </a>
 
 

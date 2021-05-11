@@ -280,6 +280,25 @@ body {
 
 }
 
+#documentationLink1{
+    text-decoration: none;
+    color: #FFFFFF;
+
+}
+
+
+#documentationLink2{
+    text-decoration: none;
+    color: #FFFFFF;
+
+}
+
+#documentationLink3{
+    text-decoration: none;
+    color: #FFFFFF;
+
+}
+
 #githubList{
     list-style-type: none;
 }

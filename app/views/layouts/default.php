@@ -36,9 +36,9 @@ use Core\FH;
 
 <footer class="footer text-center">
     <ul id="githubList">
-        <li class="margins-githubList"><a id="documentationLink" href="https://github.com/gotursix">Grigorean Valentin</a></li>
-        <li class="margins-githubList"><a id="documentationLink" href="https://github.com/ser13ban">Șerban Mihai</a></li>
-        <li class="margins-githubList"><a id="documentationLink" href="https://github.com/teodorovicigavril">Teodorovici Gavril</a></li>
+        <li class="margins-githubList"><a id="documentationLink1" href="https://github.com/gotursix">Grigorean Valentin</a></li>
+        <li class="margins-githubList"><a id="documentationLink2" href="https://github.com/ser13ban">Șerban Mihai</a></li>
+        <li class="margins-githubList"><a id="documentationLink3" href="https://github.com/teodorovicigavril">Teodorovici Gavril</a></li>
     </ul>
     <a class="padding-footer" id="documentationLink" href="<?=PROOT?>home/documentation">Documentation</a>
     <small class="padding-footer">&copy; Copyright <script>document.write(new Date().getFullYear())</script>, Vanilla Team </small>

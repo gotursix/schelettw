@@ -38,8 +38,7 @@ class FH {
             $active = '';
             if (!is_array($val)) {
                 $colour = ($val == $currentPage) ? 'current-page' : '';
-                $active = ($val == $currentPage) ? 'active' : '';
-                $finalMenu .= '<li><a class="nav-links ' . $colour . '"' . $active . ' href="' . $val . '">' . $key . '</a></li>';
+                $finalMenu .= '<li><a class="nav-links ' . $colour . '"' . ' href="' . $val . '">' . $key . '</a></li>';
             }
         }
         if (Users::currentUser()) {
@@ -98,6 +97,25 @@ class FH {
             Router::redirect("game/play/" . Session::get("difficulty"));
         }
         return $parsed->results[$random]->urls->regular;
+    }
+
+
+    public static function generateDescription($obj) {
+        $curl = curl_init();
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=" . $obj,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
+        ));
+        $response = curl_exec($curl);
+        curl_close($curl);
+        $parsed = json_decode($response);
+        return get_object_vars($parsed->query->pages)[array_keys(get_object_vars($parsed->query->pages))[0]]->extract;
     }
 
 
@@ -163,4 +181,44 @@ class FH {
         }
         return $options;
     }
+
+    public static function getFruitsArray($difficulty) {
+        $xml = simplexml_load_file("config/fruitsAndVeggies.xml") or die("Error: Cannot create object");
+        $options = [];
+        switch ($difficulty) {
+            case "easy":
+                $visited = array_fill(0, count($xml->easy->element), false);
+                while (count($options) != 4) {
+                    $randomIndex = rand(0, count($xml->easy->element) - 1);
+                    if ($visited[self::indexFromXML($xml->easy->element, $xml->easy->element[$randomIndex])] == false) {
+                        array_push($options, $xml->easy->element[$randomIndex]);
+                        $visited[self::indexFromXML($xml->easy->element, $xml->easy->element[$randomIndex])] = true;
+                    }
+                }
+                break;
+            case "medium":
+                $visited = array_fill(0, count($xml->medium->element), false);
+                while (count($options) != 4) {
+                    $randomIndex = rand(0, count($xml->medium->element) - 1);
+                    if ($visited[self::indexFromXML($xml->medium->element, $xml->medium->element[$randomIndex])] == false) {
+                        array_push($options, $xml->medium->element[$randomIndex]);
+                        $visited[self::indexFromXML($xml->medium->element, $xml->medium->element[$randomIndex])] = true;
+                    }
+                }
+                break;
+            case "hard":
+                $visited = array_fill(0, count($xml->hard->element), false);
+                while (count($options) != 4) {
+                    $randomIndex = rand(0, count($xml->hard->element) - 1);
+                    if ($visited[self::indexFromXML($xml->hard->element, $xml->hard->element[$randomIndex])] == false) {
+                        array_push($options, $xml->hard->element[$randomIndex]);
+                        $visited[self::indexFromXML($xml->hard->element, $xml->hard->element[$randomIndex])] = true;
+                    }
+                }
+                break;
+        }
+        return $options;
+    }
+
+
 }
