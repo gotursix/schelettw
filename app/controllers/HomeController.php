@@ -17,21 +17,25 @@ class HomeController extends Controller {
         $this->load_model('Scores');
         $this->view->setLayout('default');
     }
-    public function learnAction($page) {
+
+    public function learnAction($page = 0) {
         $this->view->page = $page;
         $this->view->render('home/learn');
     }
 
-    public function learnaboutAction($item){
+    public function learnaboutAction($item) {
+        if(!in_array($item,FH::getFruitsAndVeggiesArrayAll())){
+            Router::redirect("restricted/pageNotFound");
+        }
         $this->view->item = $item;
         $this->view->render('home/learnabout');
     }
-    //TODO: check for vulnerabilities
+
     public function indexAction() {
         if (!Users::currentUser()) {
             $this->view->render('home/index');
         } else {
-           Router::redirect("game/index");
+            Router::redirect("game/index");
         }
     }
 

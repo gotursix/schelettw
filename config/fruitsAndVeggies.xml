@@ -40,7 +40,6 @@
         <element>lime</element>
         <element>coffee</element>
         <element>nectarine</element>
-        <element>kiwi</element>
     </easy>
     <medium>
         <element>avocado</element>
@@ -76,7 +75,6 @@
         <element>beets</element>
         <element>mango</element>
         <element>mulberries</element>
-        <element>iceberg lettuce</element>
         <element>hazelnut</element>
         <element>pepino</element>
         <element>peas</element>
@@ -120,7 +118,7 @@
         <element>wasabi</element>
         <element>rhubarb</element>
         <element>turnips</element>
-        <element>cactus fruit</element>
+        <element>cactus</element>
         <element>kaki</element>
         <element>fig</element>
         <element>breadfruit</element>

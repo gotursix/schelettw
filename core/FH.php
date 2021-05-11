@@ -70,7 +70,7 @@ class FH {
         return self::generateTable($easy) . self::generateTable($medium) . self::generateTable($hard);
     }
 
-    public static function generateImage($obj) {
+    public static function generateImageHelper($obj, $quality) {
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://api.unsplash.com/search/photos?query=' . $obj .
@@ -89,16 +89,31 @@ class FH {
         $response = curl_exec($curl);
         curl_close($curl);
         $parsed = json_decode($response);
-        if (!$parsed->results)
-            Router::redirect("game/play/" . Session::get("difficulty"));
-        $random = rand(0, count($parsed->results) > PHOTOS_COUNT ? PHOTOS_COUNT - 1 : count($parsed->results));
-        //H::dnd($parsed->results[$random]);
-        if (!$parsed->results[$random]->urls) {
-            Router::redirect("game/play/" . Session::get("difficulty"));
+        if (!$parsed || count($parsed->results) == 0)
+            return null;
+
+        $random = rand(0, count($parsed->results));
+        if ($random == -1 || $random > PHOTOS_COUNT - 1) {
+            $random = count($parsed->results) - 1;
         }
-        return $parsed->results[$random]->urls->regular;
+        if ($quality == "regular")
+            return $parsed->results[$random]->urls->regular;
+        else return $parsed->results[$random]->urls->small;
     }
 
+    public static function generateGameImage($obj, $quality) {
+        if (FH::generateImageHelper($obj, $quality) != null)
+            return '<img src="' . FH::generateImageHelper($obj, $quality) . '" alt=" . $obj . " class="game-image"><br><br>';
+        else
+            Router::redirect("game/play/" . Session::get("difficulty"));
+        return '';
+    }
+
+    public static function generateImage($obj, $quality) {
+        if (FH::generateImageHelper($obj, $quality) != null)
+            return '<img src="' . FH::generateImageHelper($obj, "small") . '" alt=" . $obj . " class="game-image"><br><br>';
+        return "<h1>There is no picture for this item!</h1><br><br>";
+    }
 
     public static function generateDescription($obj) {
         $curl = curl_init();
@@ -182,72 +197,28 @@ class FH {
         return $options;
     }
 
-    public static function getFruitsArray($difficulty) {
-        $xml = simplexml_load_file("config/fruitsAndVeggies.xml") or die("Error: Cannot create object");
-        $options = [];
-        switch ($difficulty) {
-            case "easy":
-                $visited = array_fill(0, count($xml->easy->element), false);
-                while (count($options) != 4) {
-                    $randomIndex = rand(0, count($xml->easy->element) - 1);
-                    if ($visited[self::indexFromXML($xml->easy->element, $xml->easy->element[$randomIndex])] == false) {
-                        array_push($options, $xml->easy->element[$randomIndex]);
-                        $visited[self::indexFromXML($xml->easy->element, $xml->easy->element[$randomIndex])] = true;
-                    }
-                }
-                break;
-            case "medium":
-                $visited = array_fill(0, count($xml->medium->element), false);
-                while (count($options) != 4) {
-                    $randomIndex = rand(0, count($xml->medium->element) - 1);
-                    if ($visited[self::indexFromXML($xml->medium->element, $xml->medium->element[$randomIndex])] == false) {
-                        array_push($options, $xml->medium->element[$randomIndex]);
-                        $visited[self::indexFromXML($xml->medium->element, $xml->medium->element[$randomIndex])] = true;
-                    }
-                }
-                break;
-            case "hard":
-                $visited = array_fill(0, count($xml->hard->element), false);
-                while (count($options) != 4) {
-                    $randomIndex = rand(0, count($xml->hard->element) - 1);
-                    if ($visited[self::indexFromXML($xml->hard->element, $xml->hard->element[$randomIndex])] == false) {
-                        array_push($options, $xml->hard->element[$randomIndex]);
-                        $visited[self::indexFromXML($xml->hard->element, $xml->hard->element[$randomIndex])] = true;
-                    }
-                }
-                break;
-        }
-        return $options;
-    }
-
-    public static function getFruitsAndVeggiesArrayAll(){
+    public static function getFruitsAndVeggiesArrayAll() {
         // xml file path
         $path = "config/fruitsAndVeggies.xml";
-
         $xmlfile = file_get_contents($path);
-
         $new = simplexml_load_string($xmlfile);
-
         $con = json_encode($new);
-
         $newArr = json_decode($con, true);
-
         $finalArr = array();
-        foreach($newArr['easy']["element"] as $value) {
-            array_push($finalArr,$value);
+        foreach ($newArr['easy']["element"] as $value) {
+            array_push($finalArr, $value);
         }
-        foreach($newArr['medium']["element"]as $value) {
-            if (!in_array($value,$finalArr)){
-                array_push($finalArr,$value);
+        foreach ($newArr['medium']["element"] as $value) {
+            if (!in_array($value, $finalArr)) {
+                array_push($finalArr, $value);
             }
         }
-        foreach($newArr['hard']["element"] as $value) {
-            if (!in_array($value,$finalArr)){
-                array_push($finalArr,$value);
+        foreach ($newArr['hard']["element"] as $value) {
+            if (!in_array($value, $finalArr)) {
+                array_push($finalArr, $value);
             }
         }
-
-        return $finalArr;
+        return array_unique($finalArr, SORT_STRING);
     }
 
 }
