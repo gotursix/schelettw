@@ -18,10 +18,6 @@ class GameController extends Controller {
         $this->view->setLayout('default');
     }
 
-    public function learnAction($item) {
-        $this->view->item = ucfirst($item);
-        $this->view->render('game/learn');
-    }
 
     public function indexAction() {
         if ($difficulty = Session::get("difficulty")) {
@@ -40,7 +36,7 @@ class GameController extends Controller {
     }
 
     public function difficultyAction() {
-        if(Session::exists("difficulty")){
+        if (Session::exists("difficulty")) {
             Router::redirect("game/play/" . Session::get("difficulty"));
         }
         $this->view->render('game/difficulty');
@@ -53,9 +49,7 @@ class GameController extends Controller {
             } else if (Session::get("difficulty") != $difficulty) {
                 Router::redirect("home/game/" . Session::get("difficulty"));
             }
-            //TODO: Handle game logic
             $fruitsVeggies = FH::getFruitsVeggiesLevel($difficulty);
-            //H::dnd($fruitsVeggies);
             $this->view->difficulty = $difficulty;
             $this->view->level = $fruitsVeggies;
             $this->view->render('game/play');
@@ -64,8 +58,7 @@ class GameController extends Controller {
         }
     }
 
-    public function endAction(){
-        //TODO: Handle score add
+    public function endAction() {
         Session::delete("difficulty");
         Router::redirect("");
     }
