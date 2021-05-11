@@ -25,10 +25,14 @@ use Core\Session;
     echo '<br>';
     //echo FH::generateDescription($arr[$i]);
     }
-
+    if ((int) $this->page > 1){
+        echo '<a href = "'. PROOT. 'game/learn/' . (int) $this->page -1 . '">Previews page </a>';
+    }
     for($page = 1; $page<= $number_of_pages; $page++) {
         echo '<a href = "'. PROOT. 'game/learn/' . $page . '">' . $page . ' </a>';
     }
+    if ((int) $this->page < $number_of_pages)
+    echo '<a href = "'. PROOT. 'game/learn/' . (int) $this->page +1 . '">Next page </a>';
 ?>
 </div>
 
