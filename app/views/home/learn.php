@@ -20,12 +20,14 @@ use Core\Session;
     $max_items = $page_size + $first_result_index > count($arr) ? count($arr) : $page_size + $first_result_index;
 
     for ($i = $first_result_index; $i < $max_items; $i++) {
-        echo '<img src="' . FH::generateImageHelper($arr[$i], "small") . '" alt="' . $arr[$i] . '" class="game-image" >';
-        //echo "<h1>There is no picture for this item!</h1><br><br>";
-        echo '<p>' . $arr[$i] . '</p>';
-        echo '<p>'. FH::getFruitDifficulty($arr[$i]) .'</p>';
-        echo '<a  href="' . PROOT . 'home/learnabout/' . $arr[$i] . '">learn more about: ' . $arr[$i] . '</a>';
-        echo '<br>';
+        if (isset($arr[$i])){
+            echo '<img src="' . FH::generateImageHelper($arr[$i], "small") . '" alt="' . $arr[$i] . '" class="game-image" >';
+            //echo "<h1>There is no picture for this item!</h1><br><br>";
+            echo '<p>' . $arr[$i] . '</p>';
+            echo '<p>'. FH::getFruitDifficulty($arr[$i]) .'</p>';
+            echo '<a  href="' . PROOT . 'home/learnabout/' . $arr[$i] . '">learn more about: ' . $arr[$i] . '</a>';
+            echo '<br>';
+        }
     }
 
     if ((int)$this->page > 0) {

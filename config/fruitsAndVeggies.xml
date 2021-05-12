@@ -63,7 +63,6 @@
         <element>jalapeno</element>
         <element>lettuce</element>
         <element>lentil</element>
-        <element>lavender</element>
         <element>oregano</element>
         <element>olives</element>
         <element>raisin</element>
@@ -71,7 +70,6 @@
         <element>rosemary</element>
         <element>spinach</element>
         <element>tangerines</element>
-        <element>turmeric</element>
         <element>beets</element>
         <element>mango</element>
         <element>mulberries</element>
@@ -95,13 +93,11 @@
         <element>cacao</element>
         <element>coriander</element>
         <element>cranberry</element>
-        <element>dragon fruit</element>
         <element>guava</element>
         <element>kale</element>
         <element>mango</element>
         <element>mint</element>
         <element>mulberries</element>
-        <element>passion fruit</element>
         <element>pomelo</element>
         <element>rosemary</element>
         <element>oregano</element>
@@ -109,8 +105,6 @@
         <element>quinoa</element>
         <element>radish</element>
         <element>raspberries</element>
-        <element>sweet potato</element>
-        <element>soursop</element>
         <element>vanilla</element>
         <element>zucchini</element>
         <element>parsnips</element>
@@ -121,10 +115,8 @@
         <element>cactus</element>
         <element>kaki</element>
         <element>fig</element>
-        <element>breadfruit</element>
         <element>mustard</element>
         <element>lentil</element>
-        <element>lavender</element>
         <element>leek</element>
         <element>kiwi</element>
     </hard>
