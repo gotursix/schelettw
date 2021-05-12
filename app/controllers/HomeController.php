@@ -24,7 +24,7 @@ class HomeController extends Controller {
     }
 
     public function learnaboutAction($item) {
-        if(!in_array($item,FH::getFruitsAndVeggiesArrayAll())){
+        if (!in_array($item, FH::getFruitsAndVeggiesArrayAll())) {
             Router::redirect("restricted/pageNotFound");
         }
         $this->view->item = $item;
