@@ -23,7 +23,8 @@ use Core\Session;
         echo '<img src="' . FH::generateImageHelper($arr[$i], "small") . '" alt="' . $arr[$i] . '" class="game-image" >';
         //echo "<h1>There is no picture for this item!</h1><br><br>";
         echo '<p>' . $arr[$i] . '</p>';
-        echo '<a id="easy" href="' . PROOT . 'home/learnabout/' . $arr[$i] . '">learn more about: ' . $arr[$i] . '</a>';
+        echo '<p>'. FH::getFruitDifficulty($arr[$i]) .'</p>';
+        echo '<a  href="' . PROOT . 'home/learnabout/' . $arr[$i] . '">learn more about: ' . $arr[$i] . '</a>';
         echo '<br>';
     }
 

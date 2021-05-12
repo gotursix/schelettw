@@ -221,4 +221,28 @@ class FH {
         return array_unique($finalArr, SORT_STRING);
     }
 
+    public static function getFruitDifficulty($fruit){
+        $path = "config/fruitsAndVeggies.xml";
+
+        $xmlfile = file_get_contents($path);
+
+        $new = simplexml_load_string($xmlfile);
+
+        $con = json_encode($new);
+
+        $newArr = json_decode($con, true);
+
+        $difficulty = "";
+        if (in_array($fruit,$newArr["hard"]["element"]))
+            $difficulty = "hard";
+
+        if (in_array($fruit,$newArr["medium"]["element"]))
+            $difficulty = "medium";
+
+        if (in_array($fruit,$newArr["easy"]["element"]))
+           $difficulty = "easy";
+
+       return $difficulty;
+    }
+
 }
