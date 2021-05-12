@@ -2,6 +2,7 @@
 
 namespace Core;
 
+use App\Models\UserSessions;
 use Core\Session;
 use App\Models\Users;
 use Core\H;
@@ -243,6 +244,49 @@ class FH {
            $difficulty = "easy";
 
        return $difficulty;
+    }
+
+    public static function generateRSS($username, $score, $difficulty){
+
+        //if($score >  $this->$difficulty[10]->points) // de lucrat
+    if(UserSessions::$queueForTitle->count() < 10){
+        UserSessions::$queueForTitle->enqueue($username . " is now in top 10 - difficulty - " . $difficulty);
+        UserSessions::$queueForDescription->enqueue("The player " . $username . " got in top 10 - difficulty " . $difficulty . " with " . $score . " score! See 
+        more info and full top on the rankings game page!");
+    }else{
+        UserSessions::$queueForTitle->dequeue();
+        UserSessions::$queueForDescription->dequeue();
+        UserSessions::$queueForTitle->enqueue($username . " is now in top 10 - difficulty - " . $difficulty);
+        UserSessions::$queueForDescription->enqueue("The player " . $username . " got in top 10 - difficulty " . $difficulty . " with " . $score . " score! See 
+        more info and full top on the rankings game page!");
+    }
+
+        $web_url = "http://localhost/schelettw/game/rankings";
+        $str = "<?xml version='1.0'?>";
+        $str .= "<rss version='2.0'>";
+        $str .= "<channel>";
+        $str .="<title>New high scores changes!</title>";
+        $str .="<description>Find here top 10 new high scores!</description>";
+        $str .="<link>$web_url</link>";
+
+        $auxQueueTitle = UserSessions::$queueForTitle;
+        $auxQueueDescription = UserSessions::$queueForDescription;
+
+        while($auxQueueTitle->count()){
+            $str .="<item>";
+                $str .="<title>" . $auxQueueTitle . "</title>";
+                $str .="<description> . $auxQueueDescription . </description>";
+                $str .="<link>$web_url</link>";
+            $str .="</item>";
+
+            $auxQueueTitle.dequeue();
+            $auxQueueDescription.dequeue();
+        }
+
+        $str .= "</channel>";
+        $str .= "</rss>";
+        file_put_contents("rss.xml",$str);
+        echo "donee!!";
     }
 
 }
