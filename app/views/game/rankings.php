@@ -24,7 +24,7 @@ use Core\FH;
         <a href="#hard" onclick="getRankings('hard')" class="difficulty-button button-hard">Hard</a>
     </div>
 
-    <table>
+    <table >
         <thead>
         <tr>
             <th scope="col">Rank</th>
@@ -37,4 +37,11 @@ use Core\FH;
         </tbody>
     </table>
 </div>
+
+<script>
+    window.onload = function() {
+        getRankingsForAll();
+    };
+</script>
+
 <?php $this->end(); ?>
