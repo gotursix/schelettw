@@ -19,4 +19,12 @@ class Scores extends Model {
     public function findByDifficultyTop($difficulty, $count) {
         return $this->query("SELECT scores.id, users.username, scores.points, scores.difficulty FROM scores JOIN users on scores.user_id = users.id WHERE scores.difficulty LIKE ? ORDER BY scores.points DESC, users.username LIMIT " . $count, [$difficulty])->results();
     }
+
+    public function findAllDifficulty() {
+        return $this->query("SELECT scores.id, users.username, scores.points, scores.difficulty FROM scores JOIN users on scores.user_id = users.id ORDER BY scores.points DESC, users.username", [])->results();
+    }
+
+    public function findAllDifficultyTop($count) {
+        return $this->query("SELECT scores.id, users.username, scores.points, scores.difficulty FROM scores JOIN users on scores.user_id = users.id ORDER BY scores.points DESC, users.username LIMIT " . $count, [])->results();
+    }
 }
