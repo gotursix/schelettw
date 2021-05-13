@@ -29,6 +29,8 @@ class GameController extends Controller {
 
     public function rankingsAction() {
         $scoresModel = new Scores();
+        //H::dnd($scoresModel->findByDifficultyTop("easy", 5));
+        $scoresModel = new Scores();
         $this->view->easy = $scoresModel->findByDifficulty('easy');
         $this->view->medium = $scoresModel->findByDifficulty('medium');
         $this->view->hard = $scoresModel->findByDifficulty('hard');

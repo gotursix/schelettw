@@ -6,7 +6,7 @@ use Core\FH;
 <?php $this->start('head'); ?>
 <link rel="stylesheet" href="<?= PROOT ?>css/table.css">
 <link rel="alternate" type="application/rss+xml" title="New high scores changes!" href="http://localhost/schelettw/rss.xml" />
-
+<!--
 <script>
     function setHard() {
         document.getElementById("bodyToSet").innerHTML = '<?=FH::generateTable($this->hard)?>';
@@ -20,17 +20,17 @@ use Core\FH;
         document.getElementById("bodyToSet").innerHTML = '<?=FH::generateTable($this->easy)?>';
     }
 </script>
-
+-->
 <?php $this->end(); ?>
 
 <?php $this->start('body'); ?>
 <div class="container content text-center">
     <h1 class="text-center red">Rankings</h1>
-    <h2 class="margin-1">Select difficulty</h2>
+    <h2 class="margin-1">Choose a difficulty</h2>
     <div class="margin-1">
-        <a href="#easy" onclick="setEasy()" class="difficulty-button button-easy">Easy</a>
-        <a href="#medium" onclick="setMedium()" class="difficulty-button button-medium">Medium</a>
-        <a href="#hard" onclick="setHard()" class="difficulty-button button-hard">Hard</a>
+        <a href="#easy" onclick="getRankings('easy')" class="difficulty-button button-easy">Easy</a>
+        <a href="#medium" onclick="getRankings('medium')" class="difficulty-button button-medium">Medium</a>
+        <a href="#hard" onclick="getRankings('hard')" class="difficulty-button button-hard">Hard</a>
     </div>
 
     <table>
@@ -43,7 +43,7 @@ use Core\FH;
         </tr>
         </thead>
         <tbody id="bodyToSet">
-            <?= FH::generateTableAll($this->easy,$this->medium,$this->hard) ?>
+            <?php //FH::generateTableAll($this->easy,$this->medium,$this->hard) ?>
         </tbody>
     </table>
 

@@ -50,6 +50,7 @@ class FH {
         return $finalMenu;
     }
 
+    /*
     public static function generateTable($scores) {
         $rank = 1;
         $finalTable = "";
@@ -66,11 +67,8 @@ class FH {
             $finalTable .= "</tr>";
         }
         return $finalTable;
-    }
+    }*/
 
-    public static function generateTableAll($easy, $medium, $hard) {
-        return self::generateTable($easy) . self::generateTable($medium) . self::generateTable($hard);
-    }
 
     public static function generateImageHelper($obj, $quality) {
         $curl = curl_init();
@@ -111,11 +109,12 @@ class FH {
         return '';
     }
 
+    /*
     public static function generateImage($obj, $quality) {
         if (FH::generateImageHelper($obj, $quality) != null)
             return '<img src="' . FH::generateImageHelper($obj, "small") . '" alt=" . $obj . " class="game-image"><br><br>';
         return "<h1>There is no picture for this item!</h1><br><br>";
-    }
+    }*/
 
     public static function generateDescription($obj) {
         $curl = curl_init();
@@ -223,7 +222,7 @@ class FH {
         return array_unique($finalArr, SORT_STRING);
     }
 
-    public static function getFruitDifficulty($fruit){
+    public static function getFruitDifficulty($fruit) {
         $path = "config/fruitsAndVeggies.xml";
 
         $xmlfile = file_get_contents($path);
@@ -235,65 +234,65 @@ class FH {
         $newArr = json_decode($con, true);
 
         $difficulty = "";
-        if (in_array($fruit,$newArr["hard"]["element"]))
+        if (in_array($fruit, $newArr["hard"]["element"]))
             $difficulty = "hard";
 
-        if (in_array($fruit,$newArr["medium"]["element"]))
+        if (in_array($fruit, $newArr["medium"]["element"]))
             $difficulty = "medium";
 
-        if (in_array($fruit,$newArr["easy"]["element"]))
-           $difficulty = "easy";
+        if (in_array($fruit, $newArr["easy"]["element"]))
+            $difficulty = "easy";
 
-       return $difficulty;
+        return $difficulty;
     }
 
-    public static function generateRSS($username, $score, $difficulty){
+    public static function generateRSS($username, $score, $difficulty) {
+        /*
+                $scoresModel = new Scores();
+                $easy = $scoresModel->findByDifficultyTop('easy',10);
+                $medium = $scoresModel->findByDifficulty('medium');
+                $hard = $scoresModel->findByDifficulty('hard');
+                //H::dnd($easy);
 
-        $scoresModel = new Scores();
-        $easy = $scoresModel->findByDifficultyTop('easy',10);
-        $medium = $scoresModel->findByDifficulty('medium');
-        $hard = $scoresModel->findByDifficulty('hard');
-        H::dnd($easy);
+                //if($score >  $this->$difficulty[10]->points) // de lucrat
+            if(UserSessions::$queueForTitle->count() < 10){
+                UserSessions::$queueForTitle->enqueue($username . " is now in top 10 - difficulty - " . $difficulty);
+                UserSessions::$queueForDescription->enqueue("The player " . $username . " got in top 10 - difficulty " . $difficulty . " with " . $score . " score! See
+                more info and full top on the rankings game page!");
+            }else{
+                UserSessions::$queueForTitle->dequeue();
+                UserSessions::$queueForDescription->dequeue();
+                UserSessions::$queueForTitle->enqueue($username . " is now in top 10 - difficulty - " . $difficulty);
+                UserSessions::$queueForDescription->enqueue("The player " . $username . " got in top 10 - difficulty " . $difficulty . " with " . $score . " score! See
+                more info and full top on the rankings game page!");
+            }
 
-        //if($score >  $this->$difficulty[10]->points) // de lucrat
-    if(UserSessions::$queueForTitle->count() < 10){
-        UserSessions::$queueForTitle->enqueue($username . " is now in top 10 - difficulty - " . $difficulty);
-        UserSessions::$queueForDescription->enqueue("The player " . $username . " got in top 10 - difficulty " . $difficulty . " with " . $score . " score! See 
-        more info and full top on the rankings game page!");
-    }else{
-        UserSessions::$queueForTitle->dequeue();
-        UserSessions::$queueForDescription->dequeue();
-        UserSessions::$queueForTitle->enqueue($username . " is now in top 10 - difficulty - " . $difficulty);
-        UserSessions::$queueForDescription->enqueue("The player " . $username . " got in top 10 - difficulty " . $difficulty . " with " . $score . " score! See 
-        more info and full top on the rankings game page!");
-    }
-
-        $web_url = "http://localhost/schelettw/game/rankings";
-        $str = "<?xml version='1.0'?>";
-        $str .= "<rss version='2.0'>";
-        $str .= "<channel>";
-        $str .="<title>New high scores changes!</title>";
-        $str .="<description>Find here top 10 new high scores!</description>";
-        $str .="<link>$web_url</link>";
-
-        $auxQueueTitle = UserSessions::$queueForTitle;
-        $auxQueueDescription = UserSessions::$queueForDescription;
-
-        while($auxQueueTitle->count()){
-            $str .="<item>";
-                $str .="<title>" . $auxQueueTitle . "</title>";
-                $str .="<description> . $auxQueueDescription . </description>";
+                $web_url = "http://localhost/schelettw/game/rankings";
+                $str = "<?xml version='1.0'?>";
+                $str .= "<rss version='2.0'>";
+                $str .= "<channel>";
+                $str .="<title>New high scores changes!</title>";
+                $str .="<description>Find here top 10 new high scores!</description>";
                 $str .="<link>$web_url</link>";
-            $str .="</item>";
 
-            $auxQueueTitle.dequeue();
-            $auxQueueDescription.dequeue();
-        }
+                $auxQueueTitle = UserSessions::$queueForTitle;
+                $auxQueueDescription = UserSessions::$queueForDescription;
 
-        $str .= "</channel>";
-        $str .= "</rss>";
-        file_put_contents("rss.xml",$str);
-        echo "donee!!";
+                while($auxQueueTitle->count()){
+                    $str .="<item>";
+                        $str .="<title>" . $auxQueueTitle . "</title>";
+                        $str .="<description> . $auxQueueDescription . </description>";
+                        $str .="<link>$web_url</link>";
+                    $str .="</item>";
+
+                    $auxQueueTitle.dequeue();
+                    $auxQueueDescription.dequeue();
+                }
+
+                $str .= "</channel>";
+                $str .= "</rss>";
+                file_put_contents("rss.xml",$str);
+                echo "donee!!";*/
     }
 
 }
