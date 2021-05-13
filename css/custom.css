@@ -518,3 +518,10 @@ p {
     margin-top: -150px;
     padding-top: 150px;
 }
+
+.rss-image{
+    max-height: 50px;
+    z-index: 0;
+    transform: translateY(+10px);
+    overflow: hidden;
+}

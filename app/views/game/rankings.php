@@ -16,7 +16,12 @@ use Core\FH;
 
 <?php $this->start('body'); ?>
 <div class="container content text-center">
-    <h1 class="text-center red">Rankings</h1>
+    <h1 class="text-center red">Rankings
+        <a href="<?= PROOT ?>rss.xml" target="_blank" ?>
+            <img src="<?= PROOT ?>img/rss.png" class="rss-image" alt="Company Logo">
+        </a>
+    </h1>
+
     <h2 class="margin-1">Choose a difficulty</h2>
     <div class="margin-1">
         <a href="#easy" onclick="getRankings('easy')" class="difficulty-button button-easy">Easy</a>
@@ -25,7 +30,7 @@ use Core\FH;
     </div>
     <?= FH::updateRSS("gabi", 500, "easy", date("F j, Y, g:i a")) ?>
 
-    <table >
+    <table>
         <thead>
         <tr>
             <th scope="col">Rank</th>
@@ -40,7 +45,7 @@ use Core\FH;
 </div>
 
 <script>
-    window.onload = function() {
+    window.onload = function () {
         getRankingsForAll();
     };
 </script>
