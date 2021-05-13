@@ -10,13 +10,10 @@ use Core\Model;
 class UserSessions extends Model {
 
     public $id, $user_id, $session, $user_agent;
-    public static $queueForTitle, $queueForDescription;
 
     public function __construct() {
         $table = 'user_sessions';
         parent::__construct($table);
-        $queueForTitle = new \SplQueue();
-        $queueForDescription = new \SplQueue();
     }
 
     public static function getFromCookie() {

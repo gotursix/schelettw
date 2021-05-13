@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Core\Model;
-use Core\H;
 
 class Scores extends Model {
     public $id, $points, $difficulty, $name;
@@ -26,5 +25,9 @@ class Scores extends Model {
 
     public function findAllDifficultyTop($count) {
         return $this->query("SELECT scores.id, users.username, scores.points, scores.difficulty FROM scores JOIN users on scores.user_id = users.id ORDER BY scores.points DESC, users.username LIMIT " . $count, [])->results();
+    }
+
+    public function getMinimumScore($difficulty) {
+        return (int)$this->query("SELECT  scores.points FROM scores WHERE scores.difficulty LIKE ?  ORDER BY scores.points DESC LIMIT 8 OFFSET 9", [$difficulty])->results()[0]->points;
     }
 }

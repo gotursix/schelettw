@@ -23,6 +23,7 @@ use Core\FH;
         <a href="#medium" onclick="getRankings('medium')" class="difficulty-button button-medium">Medium</a>
         <a href="#hard" onclick="getRankings('hard')" class="difficulty-button button-hard">Hard</a>
     </div>
+    <?= FH::updateRSS("gabi", 500, "easy", date("F j, Y, g:i a")) ?>
 
     <table >
         <thead>

@@ -2,8 +2,8 @@
 
 namespace Core;
 
+use App\Models\Item;
 use App\Models\Scores;
-use App\Models\UserSessions;
 use Core\Session;
 use App\Models\Users;
 use Core\H;
@@ -50,26 +50,6 @@ class FH {
         return $finalMenu;
     }
 
-    /*
-    public static function generateTable($scores) {
-        $rank = 1;
-        $finalTable = "";
-        foreach ($scores as $score) {
-            $finalTable .= "<tr>";
-            foreach ($score as $key => $value) {
-                if ($key == "id") {
-                    $finalTable .= '<td data-label="Rank">#' . $rank . '</td>';
-                    $rank++;
-                } else {
-                    $finalTable .= '<td data-label="' . $key . '">' . $value . '</td>';
-                }
-            }
-            $finalTable .= "</tr>";
-        }
-        return $finalTable;
-    }*/
-
-
     public static function generateImageHelper($obj, $quality) {
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -108,13 +88,6 @@ class FH {
             Router::redirect("game/play/" . Session::get("difficulty"));
         return '';
     }
-
-    /*
-    public static function generateImage($obj, $quality) {
-        if (FH::generateImageHelper($obj, $quality) != null)
-            return '<img src="' . FH::generateImageHelper($obj, "small") . '" alt=" . $obj . " class="game-image"><br><br>';
-        return "<h1>There is no picture for this item!</h1><br><br>";
-    }*/
 
     public static function generateDescription($obj) {
         $curl = curl_init();
@@ -246,53 +219,48 @@ class FH {
         return $difficulty;
     }
 
-    public static function generateRSS($username, $score, $difficulty) {
-        /*
-                $scoresModel = new Scores();
-                $easy = $scoresModel->findByDifficultyTop('easy',10);
-                $medium = $scoresModel->findByDifficulty('medium');
-                $hard = $scoresModel->findByDifficulty('hard');
-                //H::dnd($easy);
+    public static function updateRSS($username, $score, $difficulty, $date) {
+        $items = file_get_contents(ITEMS_PATH);
+        $items = json_decode($items);
+        $item = new Item();
+        $item->name = $username;
+        $item->score = $score;
+        $item->difficulty = $difficulty;
+        $item->date = $date;
 
-                //if($score >  $this->$difficulty[10]->points) // de lucrat
-            if(UserSessions::$queueForTitle->count() < 10){
-                UserSessions::$queueForTitle->enqueue($username . " is now in top 10 - difficulty - " . $difficulty);
-                UserSessions::$queueForDescription->enqueue("The player " . $username . " got in top 10 - difficulty " . $difficulty . " with " . $score . " score! See
-                more info and full top on the rankings game page!");
-            }else{
-                UserSessions::$queueForTitle->dequeue();
-                UserSessions::$queueForDescription->dequeue();
-                UserSessions::$queueForTitle->enqueue($username . " is now in top 10 - difficulty - " . $difficulty);
-                UserSessions::$queueForDescription->enqueue("The player " . $username . " got in top 10 - difficulty " . $difficulty . " with " . $score . " score! See
-                more info and full top on the rankings game page!");
+        $scoreModel = new Scores();
+        if ($score >= $scoreModel->getMinimumScore($difficulty)) {
+            if (count($items) >= 10) {
+                array_pop($items);
             }
+            array_unshift($items, $item);
+            $items = json_encode($items);
+            file_put_contents(ITEMS_PATH, $items);
+            self::updateFeed();
+        }
+    }
 
-                $web_url = "http://localhost/schelettw/game/rankings";
-                $str = "<?xml version='1.0'?>";
-                $str .= "<rss version='2.0'>";
-                $str .= "<channel>";
-                $str .="<title>New high scores changes!</title>";
-                $str .="<description>Find here top 10 new high scores!</description>";
-                $str .="<link>$web_url</link>";
-
-                $auxQueueTitle = UserSessions::$queueForTitle;
-                $auxQueueDescription = UserSessions::$queueForDescription;
-
-                while($auxQueueTitle->count()){
-                    $str .="<item>";
-                        $str .="<title>" . $auxQueueTitle . "</title>";
-                        $str .="<description> . $auxQueueDescription . </description>";
-                        $str .="<link>$web_url</link>";
-                    $str .="</item>";
-
-                    $auxQueueTitle.dequeue();
-                    $auxQueueDescription.dequeue();
-                }
-
-                $str .= "</channel>";
-                $str .= "</rss>";
-                file_put_contents("rss.xml",$str);
-                echo "donee!!";*/
+    public static function updateFeed() {
+        $web_url = "http://localhost:8080" . PROOT . "game/rankings";
+        $str = "<?xml version='1.0'?>";
+        $str .= "<rss version='2.0'>";
+        $str .= "<channel>";
+        $str .= "<title>New high scores changes!</title>";
+        $str .= "<description>Find here the top 10 new high scores!</description>";
+        $str .= "<link>$web_url</link>";
+        $items = file_get_contents(ITEMS_PATH);
+        $items = json_decode($items);
+        foreach ($items as $item) {
+            $str .= "<item>";
+            $str .= "<title>" . "User " . $item->name . " is now in top 10 " . "</title>";
+            $str .= "<description>" . ucfirst($item->name) . " is now in top 10 on difficulty " . $item->difficulty . " with score: " . $item->score . "</description>";
+            $str .= "<link>$web_url</link>";
+            $str .= "<pubDate>$item->date</pubDate>";
+            $str .= "</item>";
+        }
+        $str .= "</channel>";
+        $str .= "</rss>";
+        file_put_contents("rss.xml", $str);
     }
 
 }

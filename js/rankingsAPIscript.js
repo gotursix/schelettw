@@ -1,13 +1,13 @@
 async function getRankings(difficulty){
-    let response = await  fetch(`http://localhost/schelettw/api/rankings/${difficulty}`);
+    let response = await  fetch(`http://localhost:8080/schelettw/api/rankings/${difficulty}`);
     let data = await response.json();
     await generateTable(data);
 }
 
 async function getRankingsForAll(){
-    let easy = await fetch(`http://localhost/schelettw/api/rankings/easy`)
-    let medium = await fetch(`http://localhost/schelettw/api/rankings/medium`)
-    let hard = await fetch(`http://localhost/schelettw/api/rankings/hard`)
+    let easy = await fetch(`http://localhost:8080/schelettw/api/rankings/easy`)
+    let medium = await fetch(`http://localhost:8080/schelettw/api/rankings/medium`)
+    let hard = await fetch(`http://localhost:8080/schelettw/api/rankings/hard`)
 
     let easyData = await easy.json();
     let mediumData = await medium.json();
