@@ -1,26 +1,17 @@
 <?php
+
 use Core\FH;
+
 ?>
 
 <?php $this->setSiteTitle('Rankings'); ?>
 <?php $this->start('head'); ?>
 <link rel="stylesheet" href="<?= PROOT ?>css/table.css">
-<link rel="alternate" type="application/rss+xml" title="New high scores changes!" href="http://localhost/schelettw/rss.xml" />
-<!--
-<script>
-    function setHard() {
-        document.getElementById("bodyToSet").innerHTML = '<?=FH::generateTable($this->hard)?>';
-    }
+<link rel="alternate" type="application/rss+xml" title="New high scores changes!"
+      href="http://localhost/schelettw/rss.xml"/>
 
-    function setMedium() {
-        document.getElementById("bodyToSet").innerHTML = '<?=FH::generateTable($this->medium)?>';
-    }
+<!--  document.getElementById("bodyToSet").innerHTML = 'sth'; -->
 
-    function setEasy() {
-        document.getElementById("bodyToSet").innerHTML = '<?=FH::generateTable($this->easy)?>';
-    }
-</script>
--->
 <?php $this->end(); ?>
 
 <?php $this->start('body'); ?>
@@ -43,15 +34,7 @@ use Core\FH;
         </tr>
         </thead>
         <tbody id="bodyToSet">
-            <?php //FH::generateTableAll($this->easy,$this->medium,$this->hard) ?>
         </tbody>
     </table>
-
-    <?php
-    FH::generateRSS("and",500,'easy');
-    ?>
-
 </div>
-
-
 <?php $this->end(); ?>

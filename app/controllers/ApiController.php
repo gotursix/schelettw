@@ -29,25 +29,32 @@ class ApiController {
     public function rankingsAction($difficulty = "all", $count = 0) {
         header("Content-Type:application/json");
         $scoresModel = new Scores();
-        if (in_array($difficulty, DIFFICULTIES)) {
-            if ($count != 0 && is_numeric($count)) {
-                $arr = $scoresModel->findByDifficultyTop($difficulty, $count);
-                H::response(200, "Wants to see only", $arr);
-            } else {
-                $arr = $scoresModel->findByDifficulty($difficulty);
-                H::response(200, "Wants to see all", json_encode($arr));
-            }
-        } else {
-            if ($difficulty == "all") {
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if (in_array($difficulty, DIFFICULTIES)) {
                 if ($count != 0 && is_numeric($count)) {
-                    H::response(200, "Wants to see all difficulties", $count);
+                    $arr = $scoresModel->findByDifficultyTop($difficulty, $count);
+                    H::response(200, "Wants to see only", json_encode($arr));
                 } else {
-                    H::response(200, "Wants to see all difficulties", NULL);
+                    $arr = $scoresModel->findByDifficulty($difficulty);
+                    H::response(200, "Wants to see all", json_encode($arr));
                 }
             } else {
-                H::response(400, "Invalid Request", NULL);
+                if ($difficulty == "all") {
+                    if ($count != 0 && is_numeric($count)) {
+                        $arr = $scoresModel->findAllDifficultyTop($count);
+                        H::response(200, "Wants to see all difficulties", json_encode($arr));
+                    } else {
+                        $arr = $scoresModel->findAllDifficulty();
+                        H::response(200, "Wants to see all difficulties", json_encode($arr));
+                    }
+                } else {
+                    H::response(400, "Invalid Request", NULL);
+                }
             }
+        } else {
+            H::response(400, "Expected GET Request", NULL);
         }
+
     }
 
 
