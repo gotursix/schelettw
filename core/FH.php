@@ -2,6 +2,7 @@
 
 namespace Core;
 
+use App\Models\Scores;
 use App\Models\UserSessions;
 use Core\Session;
 use App\Models\Users;
@@ -247,6 +248,12 @@ class FH {
     }
 
     public static function generateRSS($username, $score, $difficulty){
+
+        $scoresModel = new Scores();
+        $easy = $scoresModel->findByDifficultyTop('easy',10);
+        $medium = $scoresModel->findByDifficulty('medium');
+        $hard = $scoresModel->findByDifficulty('hard');
+        H::dnd($easy);
 
         //if($score >  $this->$difficulty[10]->points) // de lucrat
     if(UserSessions::$queueForTitle->count() < 10){

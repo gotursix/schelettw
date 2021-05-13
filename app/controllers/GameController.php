@@ -60,6 +60,7 @@ class GameController extends Controller {
 
     public function endAction() {
         Session::delete("difficulty");
+        //TODO: update RSS feed
         Router::redirect("");
     }
 }
