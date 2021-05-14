@@ -18,15 +18,16 @@ class HomeController extends Controller {
         $this->view->setLayout('default');
     }
 
-    public function learnAction($page = 0) {
-        $this->view->page = $page;
+    public function learnAction($pageNumber = 0) {
+        $pageNumber == null || $pageNumber == 0 ? $this->view->page = 0 : $this->view->page = $pageNumber;
         $this->view->render('home/learn');
     }
 
     public function learnaboutAction($item) {
+        /*
         if (!in_array($item, FH::getFruitsAndVeggiesArrayAll())) {
             Router::redirect("restricted/pageNotFound");
-        }
+        }*/
         $this->view->item = $item;
         $this->view->render('home/learnabout');
     }

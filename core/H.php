@@ -28,12 +28,6 @@ class H {
         return get_object_vars($obj);
     }
 
-    public static function getDifficuly() {
-        if (Session::get("difficulty") == "easy")
-            return 0;
-        return 2;
-    }
-
     public static function response($status, $status_message, $data) {
         header("HTTP/1.1 " . $status);
         $response['status'] = $status;

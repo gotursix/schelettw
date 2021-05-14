@@ -50,6 +50,14 @@ class FH {
         return $finalMenu;
     }
 
+    public static function isFruitInJSON($fruits, $fruit) {
+        foreach ($fruits as $f) {
+            if ($f["name"] == ucfirst($fruit))
+                return $f;
+        }
+        return null;
+    }
+
     public static function generateImageHelper($obj, $quality) {
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -197,25 +205,17 @@ class FH {
 
     public static function getFruitDifficulty($fruit) {
         $path = "config/fruitsAndVeggies.xml";
-
         $xmlfile = file_get_contents($path);
-
         $new = simplexml_load_string($xmlfile);
-
         $con = json_encode($new);
-
         $newArr = json_decode($con, true);
-
         $difficulty = "";
         if (in_array($fruit, $newArr["hard"]["element"]))
             $difficulty = "hard";
-
         if (in_array($fruit, $newArr["medium"]["element"]))
             $difficulty = "medium";
-
         if (in_array($fruit, $newArr["easy"]["element"]))
             $difficulty = "easy";
-
         return $difficulty;
     }
 

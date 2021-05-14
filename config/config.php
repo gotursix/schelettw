@@ -31,4 +31,7 @@
     //RSS FEED VARIABLES
     define("ITEMS_PATH", ROOT . DS . "app" . DS . "items.json");
 
+    //RSS FEED VARIABLES
+    define("FRUITS_PATH", ROOT . DS . "app" . DS . "fruits.json");
+
 

@@ -3,7 +3,7 @@
 <script src="<?= PROOT ?>js/instructionScript.js" defer></script>
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
-<div class="container text-center center margin-btm"  >
+<div class="container content text-center center margin-btm"  >
     <h1 class="red">What is Game of fruits?</h1>
         <br>
     <p>

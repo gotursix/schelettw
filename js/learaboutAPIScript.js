@@ -1,0 +1,1 @@
+//TODO: check if status_message of "/api/photo/orange/regular" is 404 and redirect to page not found

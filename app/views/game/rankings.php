@@ -1,7 +1,5 @@
 <?php
-
 use Core\FH;
-
 ?>
 
 <?php $this->setSiteTitle('Rankings'); ?>
@@ -10,8 +8,7 @@ use Core\FH;
 <link rel="alternate" type="application/rss+xml" title="New high scores changes!"
       href="http://localhost/schelettw/rss.xml"/>
 
-<!--  document.getElementById("bodyToSet").innerHTML = 'sth'; -->
-
+<script src="<?= PROOT ?>js/rankingsAPIscript.js" defer></script>
 <?php $this->end(); ?>
 
 <?php $this->start('body'); ?>
@@ -28,6 +25,7 @@ use Core\FH;
         <a href="#medium" onclick="getRankings('medium')" class="difficulty-button button-medium">Medium</a>
         <a href="#hard" onclick="getRankings('hard')" class="difficulty-button button-hard">Hard</a>
     </div>
+    <!-- TODO: remove later -->
     <?= FH::updateRSS("gabi", 500, "easy", date("F j, Y, g:i a")) ?>
 
     <table>
