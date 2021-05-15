@@ -13,14 +13,6 @@ class FH {
         return htmlentities($dirty, ENT_QUOTES, 'UTF-8');
     }
 
-    public static function postedValues($post) {
-        $clean_ary = [];
-        foreach ($post as $key => $value) {
-            $clean_ary[$key] = self::sanitize($value);
-        }
-        return $clean_ary;
-    }
-
     public static function displayErrors($errors) {
         $hasErrors = (!empty($errors)) ? ' has-errors' : '';
         $html = '<div class="form-errors"><ul class="bg-danger' . $hasErrors . '">';
@@ -80,14 +72,6 @@ class FH {
         else return $parsed->results[$random]->urls->small;
     }
 
-    public static function generateGameImage($obj, $quality) {
-        if (FH::generateImageHelper($obj, $quality) != null)
-            return '<img src="' . FH::generateImageHelper($obj, $quality) . '" alt=" . $obj . " class="game-image"><br><br>';
-        else
-            Router::redirect("game/play/" . Session::get("difficulty"));
-        return '';
-    }
-
     public static function generateDescription($obj) {
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -99,7 +83,6 @@ class FH {
         $parsed = json_decode($response);
         return get_object_vars($parsed->query->pages)[array_keys(get_object_vars($parsed->query->pages))[0]]->extract;
     }
-
 
     public static function generateToken() {
         $token = base64_encode(openssl_random_pseudo_bytes(32));
@@ -115,95 +98,6 @@ class FH {
         return '<input type="hidden" name="csrf_token" id="csrf_token" value="' . self::generateToken() . '">';
     }
 
-    public static function indexFromXML($xml, $lookingFor) {
-        $index = 0;
-        foreach ($xml as $element) {
-            if ($element == $lookingFor) {
-                return $index;
-            }
-            $index++;
-        }
-        return -1;
-    }
-
-    public static function getFruitsVeggiesLevel($difficulty) {
-        $xml = simplexml_load_file("config/fruitsAndVeggies.xml") or die("Error: Cannot create object");
-        $options = [];
-        switch ($difficulty) {
-            case "easy":
-                $visited = array_fill(0, count($xml->easy->element), false);
-                while (count($options) != 4) {
-                    $randomIndex = rand(0, count($xml->easy->element) - 1);
-                    if ($visited[self::indexFromXML($xml->easy->element, $xml->easy->element[$randomIndex])] == false) {
-                        array_push($options, $xml->easy->element[$randomIndex]);
-                        $visited[self::indexFromXML($xml->easy->element, $xml->easy->element[$randomIndex])] = true;
-                    }
-                }
-                break;
-            case "medium":
-                $visited = array_fill(0, count($xml->medium->element), false);
-                while (count($options) != 4) {
-                    $randomIndex = rand(0, count($xml->medium->element) - 1);
-                    if ($visited[self::indexFromXML($xml->medium->element, $xml->medium->element[$randomIndex])] == false) {
-                        array_push($options, $xml->medium->element[$randomIndex]);
-                        $visited[self::indexFromXML($xml->medium->element, $xml->medium->element[$randomIndex])] = true;
-                    }
-                }
-                break;
-            case "hard":
-                $visited = array_fill(0, count($xml->hard->element), false);
-                while (count($options) != 4) {
-                    $randomIndex = rand(0, count($xml->hard->element) - 1);
-                    if ($visited[self::indexFromXML($xml->hard->element, $xml->hard->element[$randomIndex])] == false) {
-                        array_push($options, $xml->hard->element[$randomIndex]);
-                        $visited[self::indexFromXML($xml->hard->element, $xml->hard->element[$randomIndex])] = true;
-                    }
-                }
-                break;
-        }
-        return $options;
-    }
-
-    public static function getFruitsAndVeggiesArrayAll() {
-        // xml file path
-        $path = "config/fruitsAndVeggies.xml";
-        $xmlfile = file_get_contents($path);
-        $new = simplexml_load_string($xmlfile);
-        $con = json_encode($new);
-        $newArr = json_decode($con, true);
-        $finalArr = array();
-        foreach ($newArr['easy']["element"] as $value) {
-            array_push($finalArr, $value);
-        }
-        foreach ($newArr['medium']["element"] as $value) {
-            if (!in_array($value, $finalArr)) {
-                array_push($finalArr, $value);
-            }
-        }
-        foreach ($newArr['hard']["element"] as $value) {
-            if (!in_array($value, $finalArr)) {
-                array_push($finalArr, $value);
-            }
-        }
-        return array_unique($finalArr, SORT_STRING);
-    }
-
-    public static function getFruitDifficulty($fruit) {
-        $path = "config/fruitsAndVeggies.xml";
-        $xmlfile = file_get_contents($path);
-        $new = simplexml_load_string($xmlfile);
-        $con = json_encode($new);
-        $newArr = json_decode($con, true);
-        $difficulty = "";
-        if (in_array($fruit, $newArr["hard"]["element"]))
-            $difficulty = "hard";
-        if (in_array($fruit, $newArr["medium"]["element"]))
-            $difficulty = "medium";
-        if (in_array($fruit, $newArr["easy"]["element"]))
-            $difficulty = "easy";
-        return $difficulty;
-    }
-
     public static function updateRSS($username, $score, $difficulty, $date) {
         $items = file_get_contents(ITEMS_PATH);
         $items = json_decode($items);
@@ -212,7 +106,6 @@ class FH {
         $item->score = $score;
         $item->difficulty = $difficulty;
         $item->date = $date;
-
         $scoreModel = new Scores();
         if ($score >= $scoreModel->getMinimumScore($difficulty)) {
             if (count($items) >= 10) {

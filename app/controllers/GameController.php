@@ -18,7 +18,6 @@ class GameController extends Controller {
         $this->view->setLayout('default');
     }
 
-
     public function indexAction() {
         if ($difficulty = Session::get("difficulty")) {
             Router::redirect("game/play/" . $difficulty);
@@ -32,6 +31,7 @@ class GameController extends Controller {
     }
 
     public function difficultyAction() {
+        //H::dnd($_SESSION);
         if (Session::exists("difficulty")) {
             Router::redirect("game/play/" . Session::get("difficulty"));
         }
@@ -43,9 +43,13 @@ class GameController extends Controller {
             if (!Session::exists("difficulty")) {
                 Session::set("difficulty", $difficulty);
             } else if (Session::get("difficulty") != $difficulty) {
-                Router::redirect("home/game/" . Session::get("difficulty"));
+                Router::redirect("game/play/" . Session::get("difficulty"));
+            }
+            if (!Session::exists("score")) {
+                Session::set("score", 0);
             }
             $this->view->difficulty = $difficulty;
+            //H::dnd($_SESSION);
             $this->view->render('game/play');
         } else {
             Router::redirect("restricted/pageNotFound");

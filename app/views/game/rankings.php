@@ -14,7 +14,7 @@ use Core\FH;
 <?php $this->start('body'); ?>
 <div class="container content text-center">
     <h1 class="text-center red">Rankings
-        <a href="<?= PROOT ?>rss.xml" target="_blank" ?>
+        <a href="<?= PROOT ?>rss.xml" target="_blank">
             <img src="<?= PROOT ?>img/rss.png" class="rss-image" alt="Company Logo">
         </a>
     </h1>
@@ -25,6 +25,7 @@ use Core\FH;
         <a href="#medium" onclick="getRankings('medium')" class="difficulty-button button-medium">Medium</a>
         <a href="#hard" onclick="getRankings('hard')" class="difficulty-button button-hard">Hard</a>
     </div>
+
     <!-- TODO: remove later -->
     <?= FH::updateRSS("gabi", 500, "easy", date("F j, Y, g:i a")) ?>
 
