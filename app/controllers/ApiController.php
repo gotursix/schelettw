@@ -10,6 +10,48 @@ use Core\H;
 
 class ApiController {
 
+    public function gameAction($difficulty) {
+        header("Content-Type:application/json");
+        $input = file_get_contents(FRUITS_PATH);
+        $fruits = json_decode($input, true);
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if (in_array($difficulty, DIFFICULTIES)) {
+                if (!empty($difficulty)) {
+                    $curl = curl_init();
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => 'http://localhost:8080/schelettw/api/fruits/' . $difficulty . '/4',
+                        CURLOPT_RETURNTRANSFER => true,
+                    ));
+                    $response = curl_exec($curl);
+                    curl_close($curl);
+                    $fruits = json_decode($response);
+                    $random = rand(0, 3);
+                    $correct_fruit = $fruits->data[$random]->name;
+
+                    $curl = curl_init();
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => 'http://localhost:8080/schelettw/api/photo/' . $correct_fruit,
+                        CURLOPT_RETURNTRANSFER => true,
+                    ));
+                    $url = curl_exec($curl);
+                    curl_close($curl);
+                    $url = json_decode($url);
+                    $data = array(
+                        "correct" => $correct_fruit,
+                        "url" => $url->data->url,
+                        "difficulty" => $difficulty,
+                        "fruits" => $fruits->data
+                    );
+                    //Check session set of the json and the difficulty
+                    H::response(200, "Here goes the data for a game session", $data);
+                }
+            } else
+                H::response(400, "Invalid Request", NULL);
+        } else
+            H::response(400, "Expected GET Request", NULL);
+    }
+
+
     public function fruitsAction($difficulty = "all", $count = 0) {
         header("Content-Type:application/json");
         $input = file_get_contents(FRUITS_PATH);
@@ -29,9 +71,8 @@ class ApiController {
                         shuffle($arr);
                         $arr = array_slice($arr, 0, $count);
                         H::response(200, "Wants to see only " . $count . " from " . $difficulty, $arr);
-                    } else {
+                    } else
                         H::response(200, "Wants to get all fruits from diff " . $difficulty, $arr);
-                    }
                 }
             } else {
                 if ($difficulty == "all" || $difficulty == null) {
@@ -44,13 +85,11 @@ class ApiController {
                         $fruits = array_slice($fruits, 0, count($fruits));
                         H::response(200, "Wants to see all fruits", $fruits);
                     }
-                } else {
+                } else
                     H::response(400, "Invalid Request", NULL);
-                }
             }
-        } else {
+        } else
             H::response(400, "Expected GET Request", NULL);
-        }
     }
 
     public function rankingsAction($difficulty = "all", $count = 0) {
@@ -74,19 +113,17 @@ class ApiController {
                         $arr = $scoresModel->findAllDifficulty();
                         H::response(200, "Wants to see all difficulties", $arr);
                     }
-                } else {
+                } else
                     H::response(400, "Invalid Request", NULL);
-                }
             }
-        } else {
+        } else
             H::response(400, "Expected GET Request", NULL);
-        }
     }
 
     public function photoAction($fruit, $quality = "regular") {
+        header("Content-Type:application/json");
         if ($quality == null)
             $quality = "regular";
-        header("Content-Type:application/json");
         $input = file_get_contents(FRUITS_PATH);
         $fruits = json_decode($input, true);
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -97,12 +134,10 @@ class ApiController {
                     "difficulty" => $f["difficulty"]
                 );
                 H::response(200, "Fruit is in JSON " . $quality, $data);
-            } else {
+            } else
                 H::response(404, "Fruit not found!", NULL);
-            }
-        } else {
+        } else
             H::response(400, "Expected GET Request", NULL);
-        }
     }
 
     public function descriptionAction($fruit) {
@@ -115,12 +150,10 @@ class ApiController {
                     "description" => FH::generateDescription($fruit)
                 );
                 H::response(200, "Fruit is in JSON ", $data);
-            } else {
+            } else
                 H::response(404, "Fruit not found!", NULL);
-            }
-        } else {
+        } else
             H::response(400, "Expected GET Request", NULL);
-        }
     }
 
     /*

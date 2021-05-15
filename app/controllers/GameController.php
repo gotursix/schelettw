@@ -45,9 +45,7 @@ class GameController extends Controller {
             } else if (Session::get("difficulty") != $difficulty) {
                 Router::redirect("home/game/" . Session::get("difficulty"));
             }
-            $fruitsVeggies = FH::getFruitsVeggiesLevel($difficulty);
             $this->view->difficulty = $difficulty;
-            $this->view->level = $fruitsVeggies;
             $this->view->render('game/play');
         } else {
             Router::redirect("restricted/pageNotFound");

@@ -63,16 +63,7 @@ class FH {
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://api.unsplash.com/search/photos?query=' . $obj .
                 '&client_id=' . CLIENT_ID . '&orientation=landscape&count=' . PHOTOS_COUNT . "'",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_HTTPHEADER => array(
-                'Cookie: ugid=d56e3f1f00d5a584b5e854b8def8fc0e5390600'
-            ),
+            CURLOPT_RETURNTRANSFER => true
         ));
         $response = curl_exec($curl);
         curl_close($curl);
@@ -102,12 +93,6 @@ class FH {
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=" . $obj,
             CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
         ));
         $response = curl_exec($curl);
         curl_close($curl);
