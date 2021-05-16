@@ -25,7 +25,7 @@ class ApiController {
                         if (!Session::exists("gameSession")) {
                             $curl = curl_init();
                             curl_setopt_array($curl, array(
-                                CURLOPT_URL => 'http://localhost:8080/schelettw/api/fruits/' . $difficulty . '/4',
+                                CURLOPT_URL => 'http://localhost/schelettw/api/fruits/' . $difficulty . '/4',
                                 CURLOPT_RETURNTRANSFER => true,
                             ));
                             $response = curl_exec($curl);
@@ -36,7 +36,7 @@ class ApiController {
 
                             $curl = curl_init();
                             curl_setopt_array($curl, array(
-                                CURLOPT_URL => 'http://localhost:8080/schelettw/api/photo/' . $correct_fruit,
+                                CURLOPT_URL => 'http://localhost/schelettw/api/photo/' . $correct_fruit,
                                 CURLOPT_RETURNTRANSFER => true,
                             ));
                             $url = curl_exec($curl);

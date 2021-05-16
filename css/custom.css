@@ -255,6 +255,11 @@ body {
         width: 80%!important;
     }
 
+    .learn-image{
+        max-width: 70%;
+        width: 80%!important;
+    }
+
     .useCase-image{
         max-width: 90%;
     }
@@ -337,6 +342,10 @@ html{
 }
 
 .game-image{
+    width: 50%;
+}
+
+.learn-image{
     width: 50%;
 }
 

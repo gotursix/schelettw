@@ -119,7 +119,7 @@ class FH {
     }
 
     public static function updateFeed() {
-        $web_url = "http://localhost:8080" . PROOT . "game/rankings";
+        $web_url = "http://localhost" . PROOT . "game/rankings";
         $str = "<?xml version='1.0'?>";
         $str .= "<rss version='2.0'>";
         $str .= "<channel>";
