@@ -1,6 +1,7 @@
 async function generateGameSession(difficulty) {
-    let response = await fetch(`http://localhost/schelettw/api/game/` + difficulty);
+    let response = await fetch(url + `/schelettw/api/game/` + difficulty);
     let gameSession = await response.json();
+    console.log(gameSession);
     let content = "<h1 class=\"text-center red\">What fruit or vegetable is in the image?</h1><br>";
     content += '<img src="' + gameSession.data.url + '" class="game-image" alt="game-image"><br><br>';
     for (let i = 0; i < gameSession.data.fruits.length; i++) {
@@ -15,7 +16,7 @@ async function generateGameSession(difficulty) {
 
 async function checkResponse(name) {
     //TODO: Handle game score update using the api
-    let response = await fetch(`http://localhost/schelettw/api/logic/` + name);
+    let response = await fetch(url + `schelettw/api/logic/` + name);
     let button = await response.json();
     console.log(button.data);
     if (!button.data) {
@@ -23,7 +24,7 @@ async function checkResponse(name) {
         document.getElementById(name).removeAttribute("onclick");
         document.getElementById(name).classList.add("buttonRed");
     } else {
-        let current = await fetch(`http://localhost/schelettw/api/game/session`);
+        let current = await fetch(url + `schelettw/api/game/session`);
         let gameSession = await current.json();
         //TODO: check at game logic
         if (gameSession.data.difficulty === "easy") {
@@ -44,11 +45,11 @@ async function checkResponse(name) {
 
 async function quitGame() {
     //TODO: Call the quit api endpoint
-    fetch('http://localhost/schelettw/api/end', {
+    fetch(url + 'schelettw/api/end', {
         method: 'DELETE',
     })
         .then(res => res.text()) // or res.json()
         .then(res => console.log(res))
-    window.location.replace("http://localhost/schelettw/");
+    window.location.replace(url + "schelettw/");
 
 }

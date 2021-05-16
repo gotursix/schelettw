@@ -1,9 +1,7 @@
 <?php
-
 use Core\FH;
 use Core\H;
 use Core\Session;
-
 ?>
 
 <?php $this->setSiteTitle('Learn'); ?>

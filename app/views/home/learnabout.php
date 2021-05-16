@@ -13,12 +13,10 @@ use Core\Router;
 
 <?php $this->start('body'); ?>
 <div class="container content  center text-center margin-btm">
-    <h1 class="text-center red">Learn about <?= $this->item ?></h1>
-    <br>
     <div id="learnAbout-content"></div>
     <script>
         window.onload = function () {
-            generatePageContentLearnAbout("apple");
+            generatePageContentLearnAbout("<?= $this->item ?>");
         };
     </script>
 </div>

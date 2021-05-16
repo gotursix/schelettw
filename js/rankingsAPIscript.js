@@ -1,21 +1,20 @@
 async function getRankings(difficulty) {
-    let response = await fetch(`http://localhost/schelettw/api/rankings/${difficulty}`);
+    let response = await fetch(url + `schelettw/api/rankings/${difficulty}`);
     let data = await response.json();
     await generateTable(data);
 }
 
 async function getRankingsForAll() {
-    let easy = await fetch(`http://localhost/schelettw/api/rankings/easy`)
-    let medium = await fetch(`http://localhost/schelettw/api/rankings/medium`)
-    let hard = await fetch(`http://localhost/schelettw/api/rankings/hard`)
+    let easy = await fetch(url + `schelettw/api/rankings/easy`)
+    let medium = await fetch(url + `schelettw/api/rankings/medium`)
+    let hard = await fetch(url + `schelettw/api/rankings/hard`)
     let easyData = await easy.json();
     let mediumData = await medium.json();
     let hardData = await hard.json();
-    let finalTable = genetateTableHtml(easyData.data) + genetateTableHtml(mediumData.data) + genetateTableHtml(hardData.data)
-    document.getElementById("bodyToSet").innerHTML = finalTable;
+    document.getElementById("bodyToSet").innerHTML = generateTableHtml(easyData.data) + generateTableHtml(mediumData.data) + generateTableHtml(hardData.data);
 }
 
-function genetateTableHtml(parsed) {
+function generateTableHtml(parsed) {
     let finalTable = '';
     let rank = 1;
     parsed.forEach(element => {
@@ -33,6 +32,6 @@ function genetateTableHtml(parsed) {
 
 async function generateTable(data) {
     let tableBody = document.getElementById("bodyToSet");
-    tableBody.innerHTML = genetateTableHtml(data.data);
+    tableBody.innerHTML = generateTableHtml(data.data);
 }
 
