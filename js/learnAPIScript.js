@@ -1,6 +1,6 @@
 async function generatePageContent(page) {
     let content = '';
-    let page_size = 7;
+    let page_size = 4;
     let response = await fetch(url + `schelettw/api/fruits/all`);
     let allFruits = await response.json();
     let number_of_results = allFruits.data.length;
@@ -9,7 +9,7 @@ async function generatePageContent(page) {
     let max_items = page_size + first_result_index > number_of_results ? number_of_results : page_size + first_result_index;
     let i = first_result_index;
     for (i; i < max_items; i++) {
-        let response = await fetch(url + `schelettw/api/photo/${allFruits.data[i].name}`);
+        let response = await fetch(url + `schelettw/api/photo/${allFruits.data[i].name}/small`);
         let fruitName = await response.json();
         content += "<img src='" + fruitName.data.url + "' alt='" + fruitName.data.name + "' class='" + "learn-image" + "'/>";
         content += '<p>' + allFruits.data[i].name + '</p>';
@@ -17,16 +17,26 @@ async function generatePageContent(page) {
         content += "<a href='" + "/schelettw/home/learnabout/" + fruitName.data.name + "' target='" + "_blank" + "'>" + "learn more about:" + fruitName.data.name + "</a><br>";
     }
 
+    //TODO: design for
     if (page > 0) {
-        content += "<a href='" + "/schelettw/home/learn/" + `${page - 1}` + "'>Previews page</a>";
+        content += "<a href='" + "/schelettw/home/learn/" + `${page - 1}` + "'>Previous</a>";
     }
 
+
+    content += "<a href='" + "/schelettw/home/learn/" + `${page}` + "'>" + `${page+1}` + "</a>";
+
+    /*
     for (let pageIndex = 1; pageIndex <= number_of_pages; pageIndex++) {
         content += "<a href='" + "/schelettw/home/learn/" + `${pageIndex - 1}` + "'>" + pageIndex + " " + "</a>";
-    }
+    }*/
+
 
     if (page < number_of_pages) {
-        content += "<a href='" + "/schelettw/home/learn/" + `${page + 1}` + "'>Next page</a>";
+        content += "<a href='" + "/schelettw/home/learn/" + `${page + 1}` + "'>Next</a>";
+    }
+
+    if(page > number_of_pages){
+        window.location.replace(url + "schelettw/home/learn/" + number_of_pages);
     }
 
     document.getElementById("learn-content").innerHTML = content;

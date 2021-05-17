@@ -5,11 +5,17 @@ namespace App\Controllers;
 
 use App\Models\Fruit;
 use App\Models\Scores;
+use Core\Controller;
 use Core\FH;
 use Core\H;
+use Core\Router;
 use Core\Session;
 
-class ApiController {
+class ApiController extends Controller {
+    public function __construct($controller, $action) {
+        parent::__construct($controller, $action);
+        $this->load_model('Scores');
+    }
 
     public function gameAction($difficulty) {
         header("Content-Type:application/json");
@@ -18,7 +24,6 @@ class ApiController {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($difficulty == "session") {
                 H::response(200, "There is already an active game session", Session::get("gameSession"));
-
             } else
                 if (in_array($difficulty, DIFFICULTIES) && Session::get("difficulty") == $difficulty) {
                     if (!empty($difficulty)) {
@@ -51,7 +56,7 @@ class ApiController {
                             Session::set("gameSession", $data);
                             H::response(200, "Here goes the data for a game session", $data);
                         } else
-                            H::response(404, "There is already an active game session", Session::get("gameSession"));
+                            H::response(200, "There is already an active game session", Session::get("gameSession"));
                     }
                 } else
                     H::response(400, "Invalid Request", NULL);
@@ -64,17 +69,15 @@ class ApiController {
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             if (Session::exists("gameSession")) {
                 //H::dnd($status);
-                if ($status == "true"){
+                if ($status == "true") {
                     Session::set("current_score", Session::get("current_score") + 12);
                     Session::set("score", Session::get("score") + Session::get("current_score"));
-                    //Session::delete("gameSession");
+                    Session::delete("gameSession");
                     H::response(200, "Score ++12", true);
-                }
-                else{
+                } else {
                     Session::set("current_score", Session::get("current_score") - 4);
                     H::response(200, "Score --4", false);
                 }
-
             } else {
                 H::response(404, "No current game in progress", NULL);
             }
@@ -98,9 +101,21 @@ class ApiController {
     public function endAction() {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-            //TODO: Handle score update first!
             if (Session::exists("gameSession")) {
-                //TODO: Don't forget to delete currentScore from session
+                $newScore = $this->ScoresModel->findScore(H::currentUser()->id, Session::get("difficulty"));
+                if ($newScore) {
+                    if (Session::get("score") > $newScore->points) {
+                        $newScore->points = Session::get("score");
+                    }
+                } else {
+                    $newScore = new Scores();
+                    $newScore->points = Session::get("score");
+                    $newScore->difficulty = Session::get("difficulty");
+                    $newScore->user_id = H::currentUser()->id;
+                }
+                if ($newScore->points)
+                    $newScore->save();
+                FH::updateRSS(H::currentUser()->username, $newScore->points, Session::get("difficulty"), date("F j, Y, g:i a"));
                 Session::delete("gameSession");
                 Session::delete("difficulty");
                 Session::delete("score");

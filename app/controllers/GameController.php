@@ -54,7 +54,6 @@ class GameController extends Controller {
                 Session::set("current_score", 0);
             }
             $this->view->difficulty = $difficulty;
-
             $this->view->render('game/play');
         } else {
             Router::redirect("restricted/pageNotFound");

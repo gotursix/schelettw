@@ -5,10 +5,14 @@ namespace App\Models;
 use Core\Model;
 
 class Scores extends Model {
-    public $id, $points, $difficulty, $name;
+    public $id, $points, $difficulty, $user_id;
 
     public function __construct() {
         parent::__construct('scores');
+    }
+
+    public function findScore($user_id, $difficulty) {
+        return $this->findFirst(['conditions' => ["user_id = ? ", "difficulty = ?"], 'bind' => [$user_id,$difficulty]]);
     }
 
     public function findByDifficulty($difficulty) {

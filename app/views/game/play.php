@@ -12,13 +12,16 @@ use Core\H;
 
 
 <?php $this->start('body'); ?>
-<?php
-  //H::dnd($_SESSION);
-?>
+
 <div class="container content  center text-center margin-btm">
+    <?php
+    var_dump(\Core\Session::get("score"));
+    //H::dnd($_SESSION);
+    ?>
     <div id="game">
     </div>
 </div>
+
 <script>
     window.onload = function () {
         generateGameSession("<?=$this->difficulty?>");

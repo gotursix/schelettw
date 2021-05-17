@@ -1,5 +1,5 @@
 async function generateGameSession(difficulty) {
-    let response = await fetch(url + `/schelettw/api/game/` + difficulty);
+    let response = await fetch(url + `schelettw/api/game/` + difficulty);
     let gameSession = await response.json();
     let content = "<h1 class=\"text-center red\">What fruit or vegetable is in the image?</h1><br>";
     content += '<img src="' + gameSession.data.url + '" class="game-image" alt="game-image"><br><br>';
@@ -15,21 +15,16 @@ async function generateGameSession(difficulty) {
 
 async function checkResponse(name) {
     //TODO: Handle game score update using the api
-    //trimiti true la api daca a raspuns corect si cresti cu 10 puncte scorul curent sau -2.5 pentru raspuns gresit
     let response = await fetch(url + `schelettw/api/logic/` + name);
     let button = await response.json();
     console.log(button.data);
-
-    fetch(url + `schelettw/api/update/${button.data}`, {
-        method: 'PUT',
-    })
-        .then(res => res.text()) // or res.json()
-        .then(res => console.log(res))
-
     if (!button.data) {
         document.getElementById(name).classList.remove("buttonPurple");
         document.getElementById(name).removeAttribute("onclick");
         document.getElementById(name).classList.add("buttonRed");
+        let score = fetch(url + `schelettw/api/update/${button.data}`, {
+            method: 'PUT',
+        });
     } else {
         let current = await fetch(url + `schelettw/api/game/session`);
         let gameSession = await current.json();
@@ -43,6 +38,12 @@ async function checkResponse(name) {
         document.getElementById(name).classList.remove("buttonPurple");
         document.getElementById(name).removeAttribute("onclick");
         document.getElementById(name).classList.add("buttonGreen");
+        let score = fetch(url + `schelettw/api/update/${button.data}`, {
+            method: 'PUT',
+        });
+        setTimeout(() => {
+            window.location.replace(url + "schelettw/");
+        }, 1000);
     }
 }
 

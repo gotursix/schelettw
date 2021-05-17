@@ -6,7 +6,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 
 # Skip rewrite engine for the base folders
-RewriteCond $1 !^(config|core|css|js|fonts|robots\.txt|rss.xml)
+RewriteCond $1 !^(config|core|css|js|fonts|img|rss.xml)
 
 # Rewrite to the index
 RewriteRule ^(.+)$ index.php/$1 [L]

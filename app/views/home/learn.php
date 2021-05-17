@@ -1,7 +1,9 @@
 <?php
+
 use Core\FH;
 use Core\H;
 use Core\Session;
+
 ?>
 
 <?php $this->setSiteTitle('Learn'); ?>
@@ -13,7 +15,10 @@ use Core\Session;
 <div class="container content  center text-center margin-btm">
     <h1 class="text-center red">Learn </h1>
     <br>
-    <div id="learn-content"></div>
+    <div id="learn-content">
+        <!-- TODO: add fancy animation -->
+        Loading ..
+    </div>
     <script>
         window.onload = function () {
             generatePageContent(<?=$this->page?>);
