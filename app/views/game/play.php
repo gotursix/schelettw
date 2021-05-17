@@ -10,7 +10,11 @@ use Core\H;
 <script src="<?= PROOT ?>js/gameAPIScript.js" defer></script>
 <?php $this->end(); ?>
 
+
 <?php $this->start('body'); ?>
+<?php
+  //H::dnd($_SESSION);
+?>
 <div class="container content  center text-center margin-btm">
     <div id="game">
     </div>

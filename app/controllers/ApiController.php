@@ -59,6 +59,29 @@ class ApiController {
             H::response(400, "Expected GET Request", NULL);
     }
 
+    public function updateAction($status) {
+        header("Content-Type:application/json");
+        if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+            if (Session::exists("gameSession")) {
+                //H::dnd($status);
+                if ($status == "true"){
+                    Session::set("current_score", Session::get("current_score") + 12);
+                    Session::set("score", Session::get("score") + Session::get("current_score"));
+                    //Session::delete("gameSession");
+                    H::response(200, "Score ++12", true);
+                }
+                else{
+                    Session::set("current_score", Session::get("current_score") - 4);
+                    H::response(200, "Score --4", false);
+                }
+
+            } else {
+                H::response(404, "No current game in progress", NULL);
+            }
+        } else
+            H::response(400, "Expected PUT request", NULL);
+    }
+
     public function logicAction($fruit) {
         header("Content-Type:application/json");
         $input = file_get_contents(FRUITS_PATH);
@@ -81,6 +104,7 @@ class ApiController {
                 Session::delete("gameSession");
                 Session::delete("difficulty");
                 Session::delete("score");
+                Session::delete("current_score");
                 H::response(200, "Game ended", NULL);
             } else {
                 H::response(404, "No current game in progress", NULL);

@@ -6,7 +6,7 @@ async function generatePageContentLearnAbout(item) {
     let description = await response.json();
     if(photo.status === 404){
         console.log("Need to redirect!");
-        return; // redirect..
+        window.location.replace(url + "schelettw/home/learn");
     }
     content += `<h1 class="red">Learn about ${item}</h1>`;
     content += `<h3 class="purple"> Difficulty: ${photo.data.difficulty}</h3>`;

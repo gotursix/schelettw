@@ -48,17 +48,16 @@ class GameController extends Controller {
             if (!Session::exists("score")) {
                 Session::set("score", 0);
             }
+            if (!Session::exists("current_score")) {
+                Session::set("current_score", 0);
+            }else if (Session::get("current_score") != 0){
+                Session::set("current_score", 0);
+            }
             $this->view->difficulty = $difficulty;
-            //H::dnd($_SESSION);
+
             $this->view->render('game/play');
         } else {
             Router::redirect("restricted/pageNotFound");
         }
-    }
-
-    public function endAction() {
-        Session::delete("difficulty");
-        //TODO: update RSS feed
-        Router::redirect("");
     }
 }
