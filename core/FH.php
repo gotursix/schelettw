@@ -23,7 +23,6 @@ class FH {
         return $html;
     }
 
-    //TODO: fix bug when play is current page
     public static function generateMenu() {
         $menu = Router::getMenu('menu_acl');
         $currentPage = H::currentPage();
@@ -140,5 +139,4 @@ class FH {
         $str .= "</rss>";
         file_put_contents("rss.xml", $str);
     }
-
 }

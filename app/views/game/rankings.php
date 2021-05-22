@@ -9,7 +9,6 @@ use Core\FH;
 <link rel="stylesheet" href="<?= PROOT ?>css/table.css">
 <link rel="alternate" type="application/rss+xml" title="New high scores changes!"
       href="http://localhost/schelettw/rss.xml"/>
-
 <script src="<?= PROOT ?>js/rankingsAPIscript.js" defer></script>
 <?php $this->end(); ?>
 

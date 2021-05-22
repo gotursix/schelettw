@@ -1,5 +1,6 @@
 {
-  "Play" : "home/index",
+  "Admin" : "admin",
+  "Games" : "game/games",
   "Learn" : "home/learn/",
   "Instructions" : "home/instructions",
   "Rankings" : "game/rankings",

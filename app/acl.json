@@ -15,5 +15,9 @@
     "Register" : ["logout"],
     "Home" : ["*"],
     "Restricted" : ["*"]
+  },
+  "SuperAdmin" : {
+  "denied" : {},
+  "Admin" : ["*"]
   }
 }

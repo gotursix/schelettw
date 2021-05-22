@@ -26,6 +26,18 @@ class GameController extends Controller {
         }
     }
 
+    public function gamesAction() {
+        $this->view->render('game/games');
+    }
+
+    public function continentAction() {
+        $this->view->render('game/continent');
+    }
+
+    public function storyAction() {
+        $this->view->render('game/story');
+    }
+
     public function rankingsAction() {
         $this->view->render('game/rankings');
     }

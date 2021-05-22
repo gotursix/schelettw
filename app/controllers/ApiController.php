@@ -4,6 +4,7 @@
 namespace App\Controllers;
 
 use App\Models\Fruit;
+use app\models\Questions;
 use App\Models\Scores;
 use Core\Controller;
 use Core\FH;
@@ -231,6 +232,16 @@ class ApiController extends Controller {
         } else
             H::response(400, "Expected GET Request", NULL);
     }
+
+    public function questionsAction() {
+        header("Content-Type:application/json");
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $questions = new Questions();
+            H::response(200, "Questions:", $questions->findAll());
+        } else
+            H::response(400, "Expected GET Request", NULL);
+    }
+
 
     /*
     public function generateJSONAction() {

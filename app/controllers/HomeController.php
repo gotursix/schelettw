@@ -24,10 +24,6 @@ class HomeController extends Controller {
     }
 
     public function learnaboutAction($item) {
-        /*
-        if (!in_array($item, FH::getFruitsAndVeggiesArrayAll())) {
-            Router::redirect("restricted/pageNotFound");
-        }*/
         $this->view->item = $item;
         $this->view->render('home/learnabout');
     }
@@ -36,7 +32,7 @@ class HomeController extends Controller {
         if (!Users::currentUser()) {
             $this->view->render('home/index');
         } else {
-            Router::redirect("game/index");
+            Router::redirect("game/games");
         }
     }
 

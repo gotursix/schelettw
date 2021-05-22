@@ -14,7 +14,6 @@ async function generateGameSession(difficulty) {
 }
 
 async function checkResponse(name) {
-    //TODO: Handle game score update using the api
     let response = await fetch(url + `schelettw/api/logic/` + name);
     let button = await response.json();
     console.log(button.data);
