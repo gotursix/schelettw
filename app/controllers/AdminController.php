@@ -7,6 +7,7 @@ namespace app\controllers;
 use app\models\Questions;
 use Core\Controller;
 use Core\H;
+use Core\Router;
 
 class AdminController extends Controller {
     public function __construct($controller, $action) {
@@ -18,24 +19,23 @@ class AdminController extends Controller {
         $this->view->render('admin/index');
     }
 
+    public function deleteAction($id) {
+        $question = new Questions($id);
+        $question->delete();
+        Router::redirect('admin');
+    }
+
     public function editAction($id) {
         $question = new Questions($id);
         if ($this->request->isPost()) {
             $this->request->csrfCheck();
             $question->assign($this->request->get());
-            H::dnd($question);
             $question->validator();
-            /*
+
             if ($question->validationPassed()) {
-                $user = $this->QuestionsModel->findByUsername($this->request->get('username'));
-                if ($user && password_verify($this->request->get('password'), $user->password)) {
-                    $remember = $loginModel->getRememberMeChecked();
-                    $user->login($remember);
-                    Router::redirect('home');
-                } else {
-                    $loginModel->addErrorMessage("username", "There is an error with your username or password!");
-                }
-            }*/
+                $question->save();
+                Router::redirect('admin');
+            }
         }
         $this->view->question = $question;
         $this->view->displayErrors = $question->getErrorMessages();

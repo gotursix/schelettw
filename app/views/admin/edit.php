@@ -34,7 +34,6 @@ $this->setSiteTitle('Edit Question'); ?>
         </div>
         <div class="bg-danger"><?= FH::displayErrors($this->displayErrors) ?></div>
         <button type="submit" value="Save">Save</button>
-        <p class="message">Not registered? <a href="<?= PROOT ?>register/register">Create an account</a></p>
     </form>
 
 </div>

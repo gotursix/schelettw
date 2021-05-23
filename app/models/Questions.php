@@ -32,7 +32,13 @@ class Questions extends Model {
 
     public function validator() {
         $this->runValidation(new RequiredValidator($this, ['field' => 'question', 'msg' => 'Question is required.']));
+        $this->runValidation(new RequiredValidator($this, ['field' => 'photo', 'msg' => 'Photo is required.']));
         $this->runValidation(new RequiredValidator($this, ['field' => 'answer1', 'msg' => 'Answer 1 is required.']));
+        $this->runValidation(new RequiredValidator($this, ['field' => 'answer2', 'msg' => 'Answer 2 is required.']));
+        $this->runValidation(new RequiredValidator($this, ['field' => 'answer3', 'msg' => 'Answer 3 is required.']));
+        $this->runValidation(new RequiredValidator($this, ['field' => 'answer4', 'msg' => 'Answer 4 is required.']));
+        $this->runValidation(new RequiredValidator($this, ['field' => 'header', 'msg' => 'Header is required.']));
+
     }
 
 
