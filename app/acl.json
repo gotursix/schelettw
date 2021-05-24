@@ -14,7 +14,8 @@
     "Game" : ["*"],
     "Register" : ["logout"],
     "Home" : ["*"],
-    "Restricted" : ["*"]
+    "Restricted" : ["*"],
+    "User" : ["*"]
   },
   "SuperAdmin" : {
   "denied" : {},

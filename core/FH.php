@@ -35,7 +35,8 @@ class FH {
             }
         }
         if (Users::currentUser()) {
-            $finalMenu .= '<li><a href="#" class="nav-links">Welcome,' . Users::currentUser()->fname . '</a></li>';
+            //TODO: replace the /schelettw/ with PROOT
+            $finalMenu .= '<li><a href="/schelettw/user/profile"   class="nav-links">Welcome,' . Users::currentUser()->fname . '</a></li>';
         }
         $finalMenu .= '</ul>';
         return $finalMenu;

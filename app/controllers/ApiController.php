@@ -197,6 +197,17 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
+
+    public function profileRankingsAction($user_id) {
+        header("Content-Type:application/json");
+        $scoresModel = new Scores();
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $arr = $scoresModel->getScoresForProfile($user_id);
+            H::response(200, "Wants to see all difficulties", $arr);
+        } else
+            H::response(400, "Expected GET Request", NULL);
+    }
+
     public function photoAction($fruit, $quality = "regular") {
         header("Content-Type:application/json");
         if ($quality == null)

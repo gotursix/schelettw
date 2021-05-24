@@ -15,6 +15,10 @@ class Scores extends Model {
         return $this->findFirst(['conditions' => ["user_id = ? ", "difficulty = ?"], 'bind' => [$user_id,$difficulty]]);
     }
 
+    public function getScoresForProfile($user_id){
+        return $this->query("SELECT * FROM `scores` WHERE scores.user_id = ?", [$user_id])->results();
+    }
+
     public function findByDifficulty($difficulty) {
         return $this->query("SELECT scores.id, users.username, scores.points, scores.difficulty FROM scores JOIN users on scores.user_id = users.id WHERE scores.difficulty LIKE ? ORDER BY scores.points DESC, users.username", [$difficulty])->results();
     }
@@ -34,4 +38,6 @@ class Scores extends Model {
     public function getMinimumScore($difficulty) {
         return (int)$this->query("SELECT  scores.points FROM scores WHERE scores.difficulty LIKE ?  ORDER BY scores.points DESC LIMIT 8 OFFSET 9", [$difficulty])->results()[0]->points;
     }
+
+
 }

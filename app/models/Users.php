@@ -18,7 +18,7 @@ use App\Models\UserSessions;
 class Users extends Model {
     private $_isLoggedIn, $_sessionName, $_cookieName, $_confirm;
     public static $currentLoggedInUser = null;
-    public $id, $username, $email, $password, $fname, $lname, $acl;
+    public $id, $username, $email, $password, $fname, $lname, $acl, $banned, $photoId;
 
     public function __construct($user = '') {
         $table = 'users';
