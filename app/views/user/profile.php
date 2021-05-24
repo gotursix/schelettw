@@ -30,9 +30,18 @@ switch ($this->user->photoId) {
 ?>
 <?php $this->start('body'); ?>
 <div class="container content  center text-center margin-btm">
-    <h2><?= $this->user->fname ?></h2>
-    <h2><?= $this->user->lname ?></h2>
-    <img class="profilePhoto" src="<?=$profilePhoto?>" alt="profile photo">
+    <h1 class="text-center red">Welcome to your profile page</h1>
+    <div class="info-container">
+        <img class="profilePhoto" src="<?=$profilePhoto?>" alt="profile photo">
+        <div class="info_text">
+            <h2><span class="red">First name: </span><?= $this->user->fname ?></h2>
+            <h2><span class="red">Last name: </span><?= $this->user->lname ?></h2>
+            <h2><span class="red">Username: </span><?= $this->user->username ?></h2>
+        </div>
+
+
+    </div>
+
 
     <table>
         <thead>

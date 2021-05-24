@@ -1,4 +1,33 @@
 .profilePhoto{
     width: 300px;
     height: 300px;
+    align-self: start;
+    margin-bottom: 3%;
+}
+.info-container{
+    display: flex;
+    margin-bottom: 3%;
+}
+.info_text{
+    padding-left: 100px;
+    display: flex;
+    flex-direction: column;
+    height: inherit;
+    justify-content: space-evenly;
+    justify-items: center;
+    margin-bottom: 3%;
+}
+h2 {
+    width: 300px;
+}
+
+@media (max-width: 800px){
+    .info-container{
+        flex-direction: column;
+    }
+    .profilePhoto{
+        align-self: center;
+
+    }
+
 }
