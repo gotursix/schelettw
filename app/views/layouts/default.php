@@ -1,5 +1,7 @@
 <?php
 use Core\FH;
+use Core\Generators;
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -28,7 +30,7 @@ use Core\FH;
         <a href="<?= PROOT ?>">
             <img src="<?= PROOT ?>img/logo.png" class="logo" alt="Company Logo">
         </a>
-        <?= FH::generateMenu()?>
+        <?= Generators::generateMenu() ?>
     </nav>
 </div>
 

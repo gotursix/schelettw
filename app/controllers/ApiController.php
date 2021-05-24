@@ -8,6 +8,7 @@ use app\models\Questions;
 use App\Models\Scores;
 use Core\Controller;
 use Core\FH;
+use Core\Generators;
 use Core\H;
 use Core\Router;
 use Core\Session;
@@ -207,7 +208,7 @@ class ApiController extends Controller {
             if ($f = FH::isFruitInJSON($fruits, $fruit)) {
                 $data = array(
                     "name" => ucfirst($f["name"]),
-                    "url" => htmlspecialchars(FH::generateImageHelper($fruit, $quality)),
+                    "url" => htmlspecialchars(Generators::generateImageHelper($fruit, $quality)),
                     "difficulty" => $f["difficulty"]
                 );
                 H::response(200, "Fruit is in JSON ", $data);
@@ -224,7 +225,7 @@ class ApiController extends Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($f = FH::isFruitInJSON($fruits, $fruit)) {
                 $data = array(
-                    "description" => FH::generateDescription($fruit)
+                    "description" => Generators::generateDescription($fruit)
                 );
                 H::response(200, "Fruit is in JSON ", $data);
             } else

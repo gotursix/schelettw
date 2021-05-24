@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Controllers;
+
 use Core\Controller;
 use Core\Router;
 use Core\H;
@@ -34,9 +36,14 @@ class RegisterController extends Controller {
             if ($loginModel->validationPassed()) {
                 $user = $this->UsersModel->findByUsername($this->request->get('username'));
                 if ($user && password_verify($this->request->get('password'), $user->password)) {
-                    $remember = $loginModel->getRememberMeChecked();
-                    $user->login($remember);
-                    Router::redirect('home');
+                    if ($user->banned == 1) {
+                        $loginModel->addErrorMessage("username", "This account is banned!");
+
+                    } else {
+                        $remember = $loginModel->getRememberMeChecked();
+                        $user->login($remember);
+                        Router::redirect('home');
+                    }
                 } else {
                     $loginModel->addErrorMessage("username", "There is an error with your username or password!");
                 }
