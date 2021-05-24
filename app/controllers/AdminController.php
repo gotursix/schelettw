@@ -42,4 +42,21 @@ class AdminController extends Controller {
         $this->view->render('admin/edit');
     }
 
+    public function addAction() {
+        $question = new Questions();
+        if ($this->request->isPost()) {
+            $this->request->csrfCheck();
+            $question->assign($this->request->get());
+            $question->validator();
+
+            if ($question->validationPassed()) {
+                $question->save();
+                Router::redirect('admin');
+            }
+        }
+        $this->view->question = $question;
+        $this->view->displayErrors = $question->getErrorMessages();
+        $this->view->render('admin/add');
+    }
+
 }

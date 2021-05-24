@@ -6,6 +6,7 @@
 <?php $this->start('body'); ?>
 <div class="container content center text-center">
     <h1>Questions</h1>
+    <a href="<?= PROOT ?>admin/add" class="button">Add question</a>
     <table>
         <thead>
         <tr>

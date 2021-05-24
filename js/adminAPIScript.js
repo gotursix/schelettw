@@ -14,7 +14,7 @@ function generateTableHtml(parsed) {
         rank++;
         finalTable += '<td data-label="' + keys[8] + '">' + parsed.question + '</td>';
         finalTable += '<td data-label="' + keys[3] + '">' + `<a href="${url}schelettw/admin/edit/${parsed.id}" class="button">Edit</a> `
-            + `<a href="${url}schelettw/admin/delete/${parsed.id}" class="button">Delete</a> `;
+            + `<a href="${url}schelettw/admin/delete/${parsed.id}" onClick="return confirm('Are you sure you want to delete?');" class="button">Delete</a> `;
         finalTable += "</tr>"
     });
     return finalTable;

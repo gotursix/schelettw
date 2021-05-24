@@ -8,7 +8,7 @@ use Core\Model;
 use Core\Validators\RequiredValidator;
 
 class Questions extends Model {
-    public $id, $question, $photo, $answer1, $answer2, $answer3, $answer4, $correct, $header;
+    public $id, $continent, $question, $photo, $answer1, $answer2, $answer3, $answer4, $correct, $header;
 
     public function __construct($id = "") {
         parent::__construct('questions');
