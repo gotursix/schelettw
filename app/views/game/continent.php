@@ -12,19 +12,30 @@ use Core\Session;
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 <div class="container">
-    <h1 class="text-center text red">John would like to travel to a continent, please choose one</h1>
+    <h1 class="text-center  red">John would like to travel to a continent, please choose one</h1>
 
     <div class="map">
-        <a href="<?= PROOT ?>game/story/america"
-           class="continent america">America</a>
-        <a href="<?= PROOT ?>game/story/europe"
-           class="continent europe">Europe</a>
-        <a href="<?= PROOT ?>game/story/asia"
-           class="continent asia">Asia</a>
-        <a href="<?= PROOT ?>game/story/africa"
-           class="continent africa">Africa</a>
-        <a href="<?= PROOT ?>game/story/australia"
-           class="continent australia">Australia</a>
+        <a href="<?= PROOT ?>game/story/america" class="america-container continent">
+            <span class="america-text text">America</span>
+            <img src="<?= PROOT ?>/img/continents/America.png" alt="america" class="america-image continent-image">
+        </a>
+        <a href="<?= PROOT ?>game/story/europe" class="continent europe">
+            <span class="text europe-text">Europe</span>
+            <img src="<?= PROOT ?>/img/continents/Europe.png" alt="europe" class="continent-image europe-image">
+        </a>
+        <a href="<?= PROOT ?>game/story/asia" class="continent asia ">
+            <span class="asia-text text">Asia</span>
+            <img src="<?= PROOT ?>/img/continents/Asia.png" alt="" class="continent-image asia-image">
+        </a>
+        <a href="<?= PROOT ?>game/story/africa" class="continent africa ">
+            <span class="africa-text text">Africa</span>
+            <img src="<?= PROOT ?>/img/continents/Africa.png" alt="Africa" class="continent-image africa-image">
+        </a>
+        <a href="<?= PROOT ?>game/story/australia" class="continent australia">
+            <span class="australia-text text">Australia</span>
+            <img src="<?= PROOT ?>/img/continents/Australia.png" alt="Australia"
+                 class="continent-image australia-image">
+        </a>
     </div>
 
 
