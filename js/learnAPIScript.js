@@ -17,20 +17,54 @@ async function generatePageContent(page) {
         content += '<div class="container-card">';
         content += '<h2>' + allFruits.data[i].name + '</h2>';
         content += '<h4>' + allFruits.data[i].difficulty + '</h4>';
-        content += "<a href='" + "/schelettw/home/learnabout/" + fruitName.data.name + "' class='" + "a-cards" + "' target='" + "_blank" + "'>" + "learn more about:" + fruitName.data.name + " </a><br>";
+        content += "<a href='" + "/schelettw/home/learnabout/" + fruitName.data.name + "' class='" + "a-cards" + "' target='" + "_blank" + "'>" + "learn more about: " + fruitName.data.name + " </a><br>";
         content += '</div>';
         content += '</div>';
     }
     content += '</div>'
 
-    //TODO: design for
+    //TODO: delete Arrowroot
+    content += '<div class="pagination">';
+
     if (page > 0) {
         content += "<a href='" + "/schelettw/home/learn/" + `${page - 1}` + "'>Previous</a>";
     }
 
+    if(page > 3){
+        content += "<a href='" + "/schelettw/home/learn/0" + "'>" + ` 0 ` +  "</a>";
+        content += "<a href='#'>" + ` ... ` +  "</a>";
+    }
 
-    content += "<a href='" + "/schelettw/home/learn/" + `${page}` + "'>" + `${page+1}` + "</a>";
 
+    if(page > 1 && page < number_of_pages-1) {
+        content += "<a href='" + "/schelettw/home/learn/" + `${page-2}` + "'>" + ` ${page-2} ` + "</a>";
+        content += "<a href='" + "/schelettw/home/learn/" + `${page-1}` + "'>" + ` ${page-1} ` + "</a>";
+        content += "<a href='" + "/schelettw/home/learn/" + `${page}` + "' + class='active'>" + ` ${page} ` + "</a>";
+        content += "<a href='" + "/schelettw/home/learn/" + `${page+1}` + "'>" + ` ${page+1} ` + "</a>";
+        content += "<a href='" + "/schelettw/home/learn/" + `${page+2}` + "'>" + ` ${page+2} ` + "</a>";
+    }else if(page > 1 && page > number_of_pages-1) {
+        content += "<a href='" + "/schelettw/home/learn/" + `${page-2}` + "'>" + ` ${page-2} ` + "</a>";
+        content += "<a href='" + "/schelettw/home/learn/" + `${page-1}` + "'>" + ` ${page-1} ` + "</a>";
+        content += "<a href='" + "/schelettw/home/learn/" + `${page}` + "' + class='active'>" + ` ${page} ` + "</a>";
+    }else if(page < 1 && page < number_of_pages-1){
+            content += "<a href='" + "/schelettw/home/learn/" + `${page}` + "' + class='active'>" + ` ${page} ` + "</a>";
+            content += "<a href='" + "/schelettw/home/learn/" + `${page+1}` + "'>" + ` ${page+1} ` + "</a>";
+            content += "<a href='" + "/schelettw/home/learn/" + `${page+2}` + "'>" + ` ${page+2} ` + "</a>";
+        }else if(page === 1){
+                content += "<a href='" + "/schelettw/home/learn/" + `${page-1}` + "'>" + ` ${page-1} ` + "</a>";
+                content += "<a href='" + "/schelettw/home/learn/" + `${page}` + "' + class='active'>" + ` ${page} ` + "</a>";
+                content += "<a href='" + "/schelettw/home/learn/" + `${page+1}` + "'>" + ` ${page+1} ` + "</a>";
+                content += "<a href='" + "/schelettw/home/learn/" + `${page+2}` + "'>" + ` ${page+2} ` + "</a>";
+            }else if(page === number_of_pages-1){
+                 content += "<a href='" + "/schelettw/home/learn/" + `${page-2}` + "'>" + ` ${page-2} ` + "</a>";
+                content += "<a href='" + "/schelettw/home/learn/" + `${page-1}` + "'>" + ` ${page-1} ` + "</a>";
+                content += "<a href='" + "/schelettw/home/learn/" + `${page}` + "' + class='active'>" + ` ${page} ` + "</a>";
+                content += "<a href='" + "/schelettw/home/learn/" + `${page+1}` + "'>" + ` ${page+1} ` + "</a>";
+            }
+    if(page < number_of_pages-3) {
+        content += "<a href='#'>" + ` ... ` +  "</a>";
+        content += "<a href='" + "/schelettw/home/learn/" + `${number_of_pages}` + "'>" + ` ${number_of_pages} ` + "</a>";
+    }
     /*
     for (let pageIndex = 1; pageIndex <= number_of_pages; pageIndex++) {
         content += "<a href='" + "/schelettw/home/learn/" + `${pageIndex - 1}` + "'>" + pageIndex + " " + "</a>";
@@ -40,6 +74,8 @@ async function generatePageContent(page) {
     if (page < number_of_pages) {
         content += "<a href='" + "/schelettw/home/learn/" + `${page + 1}` + "'>Next</a>";
     }
+
+    content += '</div>';
 
     if(page > number_of_pages){
         window.location.replace(url + "schelettw/home/learn/" + number_of_pages);

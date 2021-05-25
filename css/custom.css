@@ -573,6 +573,9 @@ p {
 }
 
 .flex-container {
+    border-radius: 5px;
+    padding-top: 2%;
+    padding-bottom: 2%;
     display: flex;
     background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
     flex-wrap: wrap;
@@ -585,5 +588,22 @@ p {
     background-color: #f1f1f1;
     margin: 10px;
     padding: 20px;
-
 }
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #c16ecf;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
