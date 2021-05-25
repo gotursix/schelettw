@@ -18,6 +18,8 @@ CREATE TABLE `questions` (
                              `header` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+ALTER TABLE `questions` CHANGE `id` `id` INT(100) NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`id`);
+
 CREATE TABLE `webdb`.`fruit` (  `id` INT NOT NULL AUTO_INCREMENT ,
                                 `name` VARCHAR(100) NOT NULL ,
                                 `description` TEXT NOT NULL ,

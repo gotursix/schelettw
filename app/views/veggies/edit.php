@@ -17,6 +17,6 @@ $this->setSiteTitle('Edit Fruit/Veggie'); ?>
         <button type="submit" value="Save">Edit</button>
     </form>
     <br><br>
-    <a href="<?= PROOT ?>admin" class="button">Cancel</a>
+    <a href="<?= PROOT ?>admin/veggies" class="button">Cancel</a>
 </div>
 <?php $this->end(); ?>

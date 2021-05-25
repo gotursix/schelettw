@@ -6,6 +6,7 @@ namespace App\Controllers;
 use App\Models\Fruit;
 use app\models\Questions;
 use App\Models\Scores;
+use app\models\Vegetables;
 use Core\Controller;
 use Core\FH;
 use Core\Generators;
@@ -239,6 +240,15 @@ class ApiController extends Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $questions = new Questions();
             H::response(200, "Questions:", $questions->findAll());
+        } else
+            H::response(400, "Expected GET Request", NULL);
+    }
+
+    public function veggiesAction() {
+        header("Content-Type:application/json");
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $veggies = new Vegetables();
+            H::response(200, "Fruit/Veggie:", $veggies->findAll());
         } else
             H::response(400, "Expected GET Request", NULL);
     }

@@ -15,6 +15,6 @@ $this->setSiteTitle('Add Fruit or Veggie'); ?>
         <div class="bg-danger"><?= FH::displayErrors($this->displayErrors) ?></div>
         <button type="submit" value="Save">Add</button>
     </form>
-    <a href="<?= PROOT ?>admin" class="button">Cancel</a>
+    <a href="<?= PROOT ?>admin/veggies" class="button">Cancel</a>
 </div>
 <?php $this->end(); ?>

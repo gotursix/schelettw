@@ -87,18 +87,18 @@ class AdminController extends Controller {
 
             if ($veggie->validationPassed()) {
                 $veggie->save();
-                Router::redirect('admin');
+                Router::redirect('admin/veggies');
             }
         }
         $this->view->veggie = $veggie;
         $this->view->displayErrors = $veggie->getErrorMessages();
-        $this->view->render('veggies/addVeggie');
+        $this->view->render('veggies/add');
     }
 
     public function deleteVeggieAction($id) {
         $veggie = new Vegetables($id);
         $veggie->delete();
-        Router::redirect('admin');
+        Router::redirect('admin/veggies');
     }
 
     public function editVeggieAction($id) {
@@ -110,12 +110,16 @@ class AdminController extends Controller {
 
             if ($veggie->validationPassed()) {
                 $veggie->save();
-                Router::redirect('admin');
+                Router::redirect('admin/veggies');
             }
         }
         $this->view->veggie = $veggie;
         $this->view->displayErrors = $veggie->getErrorMessages();
-        $this->view->render('veggies/editVeggie');
+        $this->view->render('veggies/edit');
+    }
+
+    public function veggiesAction() {
+        $this->view->render('veggies/index');
     }
 
 }
