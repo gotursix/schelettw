@@ -538,3 +538,12 @@ p {
     transform: translateY(+10px);
     overflow: hidden;
 }
+
+.profileLabel{
+    font-size: large;
+
+
+}
+.mrg-top{
+    margin-top: 10px;
+}
