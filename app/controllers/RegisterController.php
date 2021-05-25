@@ -38,7 +38,6 @@ class RegisterController extends Controller {
                 if ($user && password_verify($this->request->get('password'), $user->password)) {
                     if ($user->banned == 1) {
                         $loginModel->addErrorMessage("username", "This account is banned!");
-
                     } else {
                         $remember = $loginModel->getRememberMeChecked();
                         $user->login($remember);

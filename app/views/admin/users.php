@@ -1,4 +1,7 @@
 <?php
+
+use Core\Generators;
+
 $this->setSiteTitle('Ban or unban users'); ?>
 <?php $this->start('head'); ?>
 <link rel="stylesheet" href="<?= PROOT ?>css/table.css">
@@ -15,6 +18,7 @@ $this->setSiteTitle('Ban or unban users'); ?>
         </tr>
         </thead>
         <tbody id="bodyToSet">
+        <?= Generators::generateUsersTable($this->users); ?>
         </tbody>
     </table>
 

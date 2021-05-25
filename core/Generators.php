@@ -59,10 +59,25 @@ class Generators {
             }
         }
         if (Users::currentUser()) {
-            //TODO: replace the /schelettw/ with PROOT
-            $finalMenu .= '<li><a href="/schelettw/user/profile"   class="nav-links">Welcome,' . Users::currentUser()->fname . '</a></li>';
+            $finalMenu .= '<li><a href="' . PROOT . 'user/profile"   class="nav-links">Welcome,' . Users::currentUser()->fname . '</a></li>';
         }
         $finalMenu .= '</ul>';
         return $finalMenu;
+    }
+
+    public static function generateUsersTable($users) {
+        $finalTable = "";
+        foreach ($users as $user)
+            if ($user != Users::currentUser()) {
+                if ($user->banned == 0)
+                    $status = "ban";
+                else $status = "unban";
+                $finalTable .= "<tr>";
+                $finalTable .= '<td data-label="Id.">' . $user->id . '</td>';
+                $finalTable .= '<td data-label="Username">' . $user->username . '</td>';
+                $finalTable .= '<td data-label="Action">' . '<a href="' . PROOT . 'admin/bannedStatus/' . $user->id . '" onClick="return ' . "confirm('Are you sure you want to " . $status . " user ? ');" . '" class="button">' . ucfirst($status) . ' </a>';
+                $finalTable .= "</td><tr>";
+            }
+        return $finalTable;
     }
 }

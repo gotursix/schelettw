@@ -14,7 +14,6 @@ use Core\Router;
 class AdminController extends Controller {
     public function __construct($controller, $action) {
         parent::__construct($controller, $action);
-        //$this->load_model('Scores');
     }
 
     public function indexAction() {
@@ -22,6 +21,9 @@ class AdminController extends Controller {
     }
 
     public function usersAction() {
+        $users = new Users();
+        $users = $users->findAll();
+        $this->view->users = $users;
         $this->view->render('admin/users');
     }
 
@@ -70,12 +72,12 @@ class AdminController extends Controller {
         $user->findById($id);
         if ($user) {
             if ($user->banned == 0)
-                $user->banned = 1;
-            else $user->banned = 0;
-            $user->setConfirm($user->password);
-            $user->save();
+                $banned = 1;
+            else $banned = 0;
+            $fields = ['banned' => $banned];
+            $user->update($id, $fields);
         }
-        Router::redirect('admin');
+        Router::redirect('admin/users');
     }
 
     public function addVeggieAction() {

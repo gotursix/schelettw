@@ -37,8 +37,7 @@ class Users extends Model {
         }
     }
 
-    public
-    function validator() {
+    public function validator() {
         $this->runValidation(new RequiredValidator($this, ['field' => 'fname', 'msg' => 'First Name is required.']));
         $this->runValidation(new RequiredValidator($this, ['field' => 'lname', 'msg' => 'Last Name is required.']));
         $this->runValidation(new RequiredValidator($this, ['field' => 'email', 'msg' => 'Email is required.']));
@@ -51,24 +50,24 @@ class Users extends Model {
         $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->_confirm, 'msg' => "Your passwords do not match."]));
     }
 
-    public
-    function beforeSave() {
+    public function beforeSave() {
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
     }
 
-    public
-    function findByUsername($username) {
+    public function findAll() {
+        return $this->find([]);
+    }
+
+    public function findByUsername($username) {
         return $this->findFirst(['conditions' => "username = ? ", 'bind' => [$username]]);
     }
 
-    public
-    function findById($id) {
+    public function findById($id) {
         $u = $this->findFirst(['conditions' => "id = ? ", 'bind' => [$id]]);
         $this->assign($u);
     }
 
-    public
-    function login($rememberMe = false) {
+    public function login($rememberMe = false) {
         Session::set($this->_sessionName, $this->id);
         if ($rememberMe) {
             $hash = md5(uniqid() . rand(0, 100));
@@ -80,8 +79,7 @@ class Users extends Model {
         }
     }
 
-    public
-    static function loginUserFromCookie() {
+    public static function loginUserFromCookie() {
         $userSession = UserSessions::getFromCookie();
         if ($userSession && $userSession->user_id != '') {
             $user = new self((int)$userSession->user_id);
@@ -93,8 +91,7 @@ class Users extends Model {
         return;
     }
 
-    public
-    function logout() {
+    public function logout() {
         $useSession = UserSessions::getFromCookie();
         if ($useSession) $useSession->delete();
         Session::delete(CURRENT_USER_SESSION_NAME);
@@ -105,14 +102,12 @@ class Users extends Model {
         return true;
     }
 
-    public
-    function acls() {
+    public function acls() {
         if (empty($this->acl)) return [];
         return json_decode($this->acl, true);
     }
 
-    public
-    static function currentUser() {
+    public static function currentUser() {
         if (!isset(self::$currentLoggedInUser) && Session::exists(CURRENT_USER_SESSION_NAME)) {
             $u = new Users((int)Session::get(CURRENT_USER_SESSION_NAME));
             self::$currentLoggedInUser = $u;
@@ -120,13 +115,15 @@ class Users extends Model {
         return self::$currentLoggedInUser;
     }
 
-    public
-    function setConfirm($confirm) {
+    public function setConfirm($confirm) {
         $this->_confirm = $confirm;
     }
 
-    public
-    function getConfirm() {
+    public function getConfirm() {
         return $this->_confirm;
+    }
+
+    public function update($id, $fields) {
+        return parent::update($id, $fields);
     }
 }

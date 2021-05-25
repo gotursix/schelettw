@@ -16,9 +16,7 @@ class Questions extends Model {
         if ($id != "")
             $q = $this->_db->findFirst('questions', ['conditions' => 'id = ?', 'bind' => [$id]], 'App\Models\Questions');
         if ($q) {
-            foreach ($q as $key => $val) {
-                $this->$key = $val;
-            }
+            $this->assign($q);
         }
     }
 
@@ -27,7 +25,7 @@ class Questions extends Model {
     }
 
     public function findById($id) {
-        return $this->findFirst(['conditions' => "username = ? ", 'bind' => [$username]]);
+        return $this->findFirst(['conditions' => "username = ? ", 'bind' => [$id]]);
     }
 
     public function validator() {
