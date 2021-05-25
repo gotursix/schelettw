@@ -15,28 +15,24 @@ use Core\FH;
                 <input type="text" id="username" name="username" value="<?=$this->newUser->username?>" placeholder="Choose a Username"/>
                 <input type="password" id="password" name="password" value="<?=$this->newUser->password?>" placeholder="Password"/>
                 <input type="password" id="confirm" name="confirm" value="<?=$this->newUser->getConfirm()?>" placeholder="Confirm password"/>
-                <label class="message" for="photoId">Choose a profile photo
+                <label class=" profileLabel" for="photoId">Choose a character
                     <select id="correct" name="photoId">
                         <option value="1" >
-                            <img src="<?=PROOT?>img/default1.png" class="profilePhotoOption" alt="Sponge Bob">
                             Sponge Bob
                         </option>
                         <option value="2">
-                            <img src="<?=PROOT?>img/default2.png" class="profilePhotoOption" alt="Jhonny Bravo">
                             Jhonny Bravo
                         </option>
                         <option value="3">
-                            <img src="<?=PROOT?>img/default3.png" class="profilePhotoOption" alt="Candace">
                             Candace
                         </option>
                         <option value="4">
-                            <img src="<?=PROOT?>img/default4.png" class="profilePhotoOption" alt="Powerpuff girls">
                             Powerpuff girls
                         </option>
                     </select>
                 </label>
                 <div class="bg-danger"><?= FH::displayErrors($this->displayErrors) ?></div>
-                <button type="submit">Register</button>
+                <button class="mrg-top" type="submit">Register</button>
                 <p class="message">Already registered? <a href="<?=PROOT?>register/login">Sign In</a></p>
             </form>
         </div>
