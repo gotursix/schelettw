@@ -5,6 +5,8 @@
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 <div class="container content center text-center">
+    <a href="<?= PROOT ?>admin/veggies" class="button">Add fruit description</a><br>
+    <a href="<?= PROOT ?>admin/users" class="button">Ban users</a>
     <h1>Questions</h1>
     <a href="<?= PROOT ?>admin/add" class="button">Add question</a>
     <table>

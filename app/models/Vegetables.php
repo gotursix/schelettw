@@ -7,8 +7,7 @@ namespace app\models;
 use Core\Model;
 use Core\Validators\RequiredValidator;
 
-class Vegetables extends Model
-{
+class Vegetables extends Model {
     public $id, $name, $description;
 
     public function __construct($id = "") {
@@ -36,5 +35,9 @@ class Vegetables extends Model
     public function validator() {
         $this->runValidation(new RequiredValidator($this, ['field' => 'name', 'msg' => 'Fruit/Veggie name is required.']));
         $this->runValidation(new RequiredValidator($this, ['field' => 'description', 'msg' => 'Description is required.']));
+    }
+
+    public function beforeSave() {
+        $this->name = ucfirst($this->name);
     }
 }

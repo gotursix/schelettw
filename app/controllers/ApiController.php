@@ -253,6 +253,15 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
+    public function veggieAction($fruit) {
+        header("Content-Type:application/json");
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $veggie = new Vegetables();
+            H::response(200, "Fruit/Veggie:", $veggie->findByName(lcfirst($fruit)));
+        } else
+            H::response(400, "Expected GET Request", NULL);
+    }
+
 
     /*
     public function generateJSONAction() {
