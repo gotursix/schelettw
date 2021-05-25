@@ -31,7 +31,8 @@ class GameController extends Controller {
     }
 
     public function continentAction() {
-        $this->view->render('game/continent');
+        $this->view->setLayout('map');
+        $this->view->render('map/continent');
     }
 
     public function storyAction() {
@@ -62,7 +63,7 @@ class GameController extends Controller {
             }
             if (!Session::exists("current_score")) {
                 Session::set("current_score", 0);
-            }else if (Session::get("current_score") != 0){
+            } else if (Session::get("current_score") != 0) {
                 Session::set("current_score", 0);
             }
             $this->view->difficulty = $difficulty;
