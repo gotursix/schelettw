@@ -6,6 +6,7 @@ namespace app\controllers;
 
 use app\models\Questions;
 use App\Models\Users;
+use app\models\Vegetables;
 use Core\Controller;
 use Core\H;
 use Core\Router;
@@ -75,6 +76,46 @@ class AdminController extends Controller {
             $user->save();
         }
         Router::redirect('admin');
+    }
+
+    public function addVeggieAction() {
+        $veggie = new Vegetables();
+        if ($this->request->isPost()) {
+            $this->request->csrfCheck();
+            $veggie->assign($this->request->get());
+            $veggie->validator();
+
+            if ($veggie->validationPassed()) {
+                $veggie->save();
+                Router::redirect('admin');
+            }
+        }
+        $this->view->veggie = $veggie;
+        $this->view->displayErrors = $veggie->getErrorMessages();
+        $this->view->render('veggies/addVeggie');
+    }
+
+    public function deleteVeggieAction($id) {
+        $veggie = new Vegetables($id);
+        $veggie->delete();
+        Router::redirect('admin');
+    }
+
+    public function editVeggieAction($id) {
+        $veggie = new Vegetables($id);
+        if ($this->request->isPost()) {
+            $this->request->csrfCheck();
+            $veggie->assign($this->request->get());
+            $veggie->validator();
+
+            if ($veggie->validationPassed()) {
+                $veggie->save();
+                Router::redirect('admin');
+            }
+        }
+        $this->view->veggie = $veggie;
+        $this->view->displayErrors = $veggie->getErrorMessages();
+        $this->view->render('veggies/editVeggie');
     }
 
 }

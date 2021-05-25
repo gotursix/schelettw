@@ -3,7 +3,7 @@
 
 ?>
 
-<?php $this->setSiteTitle('Learn about ' . $this->item); ?>
+<?php $this->setSiteTitle('User profile'); ?>
 <?php $this->start('head'); ?>
 <script src="<?= PROOT ?>js/profilePageAPIScript.js" defer></script>
 <link rel="stylesheet" href="<?=PROOT?>css/profilePage.css">
