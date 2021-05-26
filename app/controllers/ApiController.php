@@ -30,36 +30,60 @@ class ApiController extends Controller {
             } else
                 if (in_array($difficulty, DIFFICULTIES) && Session::get("difficulty") == $difficulty) {
                     if (!empty($difficulty)) {
-                        if (!Session::exists("gameSession")) {
-                            $curl = curl_init();
-                            curl_setopt_array($curl, array(
-                                CURLOPT_URL => API_DOMAIN . 'schelettw/api/fruits/' . $difficulty . '/4',
-                                CURLOPT_RETURNTRANSFER => true,
-                            ));
-                            $response = curl_exec($curl);
-                            curl_close($curl);
-                            $fruits = json_decode($response);
-                            $random = rand(0, 3);
-                            $correct_fruit = $fruits->data[$random]->name;
-
-                            $curl = curl_init();
-                            curl_setopt_array($curl, array(
-                                CURLOPT_URL => API_DOMAIN . 'schelettw/api/photo/' . $correct_fruit,
-                                CURLOPT_RETURNTRANSFER => true,
-                            ));
-                            $url = curl_exec($curl);
-                            curl_close($curl);
-                            $url = json_decode($url);
-                            $data = array(
-                                "correct" => $correct_fruit,
-                                "url" => $url->data->url,
-                                "difficulty" => $difficulty,
-                                "fruits" => $fruits->data
-                            );
-                            Session::set("gameSession", $data);
-                            H::response(200, "Here goes the data for a game session", $data);
-                        } else
-                            H::response(200, "There is already an active game session", Session::get("gameSession"));
+                        if (Session::exists("lives") && Session::get("lives") > 0) {
+                            if (!Session::exists("gameSession")) {
+                                $curl = curl_init();
+                                curl_setopt_array($curl, array(
+                                    CURLOPT_URL => API_DOMAIN . 'schelettw/api/fruits/' . $difficulty . '/4',
+                                    CURLOPT_RETURNTRANSFER => true,
+                                ));
+                                $response = curl_exec($curl);
+                                curl_close($curl);
+                                $fruits = json_decode($response);
+                                $random = rand(0, 3);
+                                $correct_fruit = $fruits->data[$random]->name;
+                                $curl = curl_init();
+                                curl_setopt_array($curl, array(
+                                    CURLOPT_URL => API_DOMAIN . 'schelettw/api/photo/' . $correct_fruit,
+                                    CURLOPT_RETURNTRANSFER => true,
+                                ));
+                                $url = curl_exec($curl);
+                                curl_close($curl);
+                                $url = json_decode($url);
+                                $data = array(
+                                    "correct" => $correct_fruit,
+                                    "url" => $url->data->url,
+                                    "difficulty" => $difficulty,
+                                    "fruits" => $fruits->data,
+                                    "lives" => Session::get("lives"),
+                                    "score" => Session::get("score")
+                                );
+                                Session::set("gameSession", $data);
+                                H::response(200, "Here goes the data for a game session", $data);
+                            } else
+                                H::response(200, "There is already an active game session", Session::get("gameSession"));
+                        } else {
+                            $score = Session::get("score");
+                            $newScore = $this->ScoresModel->findScore(H::currentUser()->id, Session::get("difficulty"));
+                            if ($newScore) {
+                                if (Session::get("score") > $newScore->points) {
+                                    $newScore->points = Session::get("score");
+                                }
+                            } else {
+                                $newScore = new Scores();
+                                $newScore->points = Session::get("score");
+                                $newScore->difficulty = Session::get("difficulty");
+                                $newScore->user_id = H::currentUser()->id;
+                            }
+                            if ($newScore->points)
+                                $newScore->save();
+                            FH::updateRSS(H::currentUser()->username, $newScore->points, Session::get("difficulty"), date("F j, Y, g:i a"));
+                            Session::delete("gameSession");
+                            Session::delete("difficulty");
+                            Session::delete("score");
+                            Session::delete("current_score");
+                            H::response(200, "Game over", $score);
+                        }
                     }
                 } else
                     H::response(400, "Invalid Request", NULL);
@@ -118,13 +142,33 @@ class ApiController extends Controller {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
             if (Session::exists("gameSession")) {
-                //H::dnd($status);
                 if ($status == "true") {
                     Session::set("current_score", Session::get("current_score") + 12);
                     Session::set("score", Session::get("score") + Session::get("current_score"));
                     Session::delete("gameSession");
                     H::response(200, "Score ++12", true);
                 } else {
+                    Session::set("lives", Session::get("lives") - 1);
+                    Session::set("current_score", Session::get("current_score") - 4);
+                    H::response(200, "Score --4", false);
+                }
+            } else {
+                H::response(404, "No current game in progress", NULL);
+            }
+        } else
+            H::response(400, "Expected PUT request", NULL);
+    }
+
+    public function nextAction($status) {
+        header("Content-Type:application/json");
+        if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+            if (Session::exists("gameSession")) {
+                if ($status == "true") {
+                    Session::set("score", Session::get("score"));
+                    Session::delete("gameSession");
+                    H::response(200, "Score ++12", true);
+                } else {
+                    Session::set("lives", Session::get("lives") - 1);
                     Session::set("current_score", Session::get("current_score") - 4);
                     H::response(200, "Score --4", false);
                 }
@@ -182,24 +226,24 @@ class ApiController extends Controller {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
             if (Session::exists("continent")) {
-               /* $newScore = $this->ScoresModel->findScore(H::currentUser()->id, Session::get("difficulty"));
-                if ($newScore) {
-                    if (Session::get("score") > $newScore->points) {
-                        $newScore->points = Session::get("score");
-                    }
-                } else {
-                    $newScore = new Scores();
-                    $newScore->points = Session::get("score");
-                    $newScore->difficulty = Session::get("difficulty");
-                    $newScore->user_id = H::currentUser()->id;
-                }
-                if ($newScore->points)
-                    $newScore->save();
-                FH::updateRSS(H::currentUser()->username, $newScore->points, Session::get("difficulty"), date("F j, Y, g:i a"));
-                Session::delete("gameSession");
-                Session::delete("difficulty");
-                Session::delete("score");
-                Session::delete("current_score");*/
+                /* $newScore = $this->ScoresModel->findScore(H::currentUser()->id, Session::get("difficulty"));
+                 if ($newScore) {
+                     if (Session::get("score") > $newScore->points) {
+                         $newScore->points = Session::get("score");
+                     }
+                 } else {
+                     $newScore = new Scores();
+                     $newScore->points = Session::get("score");
+                     $newScore->difficulty = Session::get("difficulty");
+                     $newScore->user_id = H::currentUser()->id;
+                 }
+                 if ($newScore->points)
+                     $newScore->save();
+                 FH::updateRSS(H::currentUser()->username, $newScore->points, Session::get("difficulty"), date("F j, Y, g:i a"));
+                 Session::delete("gameSession");
+                 Session::delete("difficulty");
+                 Session::delete("score");
+                 Session::delete("current_score");*/
                 Session::delete("continent");
                 Session::delete("storyScore");
                 Session::delete("current_storyScore");

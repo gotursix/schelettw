@@ -14,10 +14,8 @@ use Core\H;
 <?php $this->start('body'); ?>
 
 <div class="container content  center text-center margin-btm">
-    <?php
-    var_dump(\Core\Session::get("score"));
-    //H::dnd($_SESSION);
-    ?>
+    <div id="game-stats">
+    </div>
     <div id="game">
     </div>
 </div>

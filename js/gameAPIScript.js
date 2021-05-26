@@ -1,6 +1,10 @@
 async function generateGameSession(difficulty) {
     let response = await fetch(url + `schelettw/api/game/` + difficulty);
     let gameSession = await response.json();
+    console.log(gameSession);
+    if (gameSession.status_message === "Game over") {
+        window.location.replace(url + `schelettw/game/gameover/${gameSession.data}`);
+    }
     let content = "<h1 class=\"text-center red\">What fruit or vegetable is in the image?</h1><br>";
     content += '<img src="' + gameSession.data.url + '" class="game-image" alt="game-image"><br><br>';
     for (let i = 0; i < gameSession.data.fruits.length; i++) {
@@ -9,41 +13,60 @@ async function generateGameSession(difficulty) {
             content += '<br>';
         }
     }
+
+    //Todo add design
     content += '<button class="buttonQuit" onclick="quitGame()">Quit</button>';
     document.getElementById("game").innerHTML = content;
+    let scoring = "<h2 class=\"text-center red\">Stats</h2><br>"
+    scoring += "<p>Score: " + gameSession.data.score + "</p>";
+    scoring += "<p>Lives: " + gameSession.data.lives + "</p>";
+    document.getElementById("game-stats").innerHTML = scoring;
 }
 
 async function checkResponse(name) {
     let response = await fetch(url + `schelettw/api/logic/` + name);
     let button = await response.json();
+    let current = await fetch(url + `schelettw/api/game/session`);
+    let gameSession = await current.json();
     console.log(button.data);
     if (!button.data) {
-        document.getElementById(name).classList.remove("buttonPurple");
-        document.getElementById(name).removeAttribute("onclick");
-        document.getElementById(name).classList.add("buttonRed");
-        let score = fetch(url + `schelettw/api/update/${button.data}`, {
+        await changeRed(name);
+        let score = fetch(url + `schelettw/api/update/${button.data}/`, {
             method: 'PUT',
         });
-    } else {
-        let current = await fetch(url + `schelettw/api/game/session`);
-        let gameSession = await current.json();
-        for (const fruit of gameSession.data.fruits) {
-            if (fruit.name !== gameSession.data.correct) {
-                document.getElementById(fruit.name).classList.remove("buttonPurple");
-                document.getElementById(fruit.name).removeAttribute("onclick");
-                document.getElementById(fruit.name).classList.add("buttonRed");
-            }
+        if (gameSession.data.difficulty !== "hard") {
+            let score = fetch(url + `schelettw/api/next/true`, {
+                method: 'PUT',
+            });
+            await changeGreen(gameSession.data.correct);
+            setTimeout(() => {
+                window.location.replace(url + "schelettw/game/play/" + gameSession.data.difficulty);
+            }, 2000);
         }
-        document.getElementById(name).classList.remove("buttonPurple");
-        document.getElementById(name).removeAttribute("onclick");
-        document.getElementById(name).classList.add("buttonGreen");
+    } else {
+        for (const fruit of gameSession.data.fruits)
+            if (fruit.name !== gameSession.data.correct)
+                await changeRed(fruit.name)
+        await changeGreen(name)
         let score = fetch(url + `schelettw/api/update/${button.data}`, {
             method: 'PUT',
         });
         setTimeout(() => {
-            window.location.replace(url + "schelettw/");
+            window.location.replace(url + "schelettw/game/play/" + gameSession.data.difficulty);
         }, 1000);
     }
+}
+
+async function changeGreen(name) {
+    document.getElementById(name).classList.remove("buttonPurple");
+    document.getElementById(name).removeAttribute("onclick");
+    document.getElementById(name).classList.add("buttonGreen");
+}
+
+async function changeRed(name) {
+    document.getElementById(name).classList.remove("buttonPurple");
+    document.getElementById(name).removeAttribute("onclick");
+    document.getElementById(name).classList.add("buttonRed");
 }
 
 async function quitGame() {

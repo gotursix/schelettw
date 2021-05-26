@@ -51,13 +51,20 @@ class GameController extends Controller {
         $this->view->render('game/difficulty');
     }
 
+    public function gameoverAction($score) {
+        $this->view->score = $score;
+        $this->view->render('game/gameover');
+    }
+
     public function playAction($difficulty) {
         if (in_array($difficulty, DIFFICULTIES)) {
             if (!Session::exists("difficulty")) {
                 Session::set("difficulty", $difficulty);
+                Session::set("lives", 5);
             } else if (Session::get("difficulty") != $difficulty) {
                 Router::redirect("game/play/" . Session::get("difficulty"));
             }
+
             if (!Session::exists("score")) {
                 Session::set("score", 0);
             }

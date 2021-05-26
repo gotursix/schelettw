@@ -26,11 +26,15 @@ class Router {
 
         //Params
         $queryParams = $url;
+        $cleanParams = [];
+        foreach ($queryParams as $param){
+            $cleanParams[] = FH::sanitize($param);
+        }
         $controller = 'App\Controllers\\' . $controller;
         if (class_exists($controller)) {
             $dispatch = new $controller($controller_name, $action);
             if (method_exists($controller, $action)) {
-                call_user_func_array([$dispatch, $action], $queryParams);
+                call_user_func_array([$dispatch, $action], $cleanParams);
             } else {
                 Router::redirect("restricted/pageNotFound");
             }

@@ -19,7 +19,7 @@ $this->setSiteTitle('Add Question'); ?>
                placeholder="Answer 3"/>
         <input type="text" id="answer4" name="answer4"
                placeholder="Answer 4"/>
-        <input type="text" id="header" name="header" value="<?= $this->question->header ?>"
+        <input type="text" id="header" name="header"
                placeholder="Header"/>
         <br><br>
 
@@ -35,16 +35,16 @@ $this->setSiteTitle('Add Question'); ?>
             </label>
             <label class="message" for="continent">Continent
                 <select id="continent" name="continent">
-                    <option value="Europe" <?php if ($this->question->continent == "Europe") echo "selected" ?>>Europe
+                    <option value="Europe">Europe
                     </option>
-                    <option value="America" <?php if ($this->question->continent == "America") echo "selected" ?>>
+                    <option value="America">
                         America
                     </option>
-                    <option value="Asia" <?php if ($this->question->continent == "Asia") echo "selected" ?>>Asia
+                    <option value="Asia">Asia
                     </option>
-                    <option value="Africa" <?php if ($this->question->continent == "Africa") echo "selected" ?>>Africa
+                    <option value="Africa">Africa
                     </option>
-                    <option value="Australia" <?php if ($this->question->continent == "Australia") echo "selected" ?>>
+                    <option value="Australia">
                         Australia
                     </option>
                 </select>
