@@ -10,6 +10,7 @@ use Core\Session;
 <?php $this->start('head'); ?>
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
+
 <div class="container content  center text-center margin-btm">
     <h1 class="text-center red">Please a game to play</h1>
     <br>
@@ -20,5 +21,6 @@ use Core\Session;
            class="difficulty-button difficulty-button-fromDifficulty button-medium">Other name idk</a>
     </div>
 </div>
+
 
 <?php $this->end(); ?>

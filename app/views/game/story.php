@@ -8,6 +8,7 @@ use Core\Session;
 
 <?php $this->setSiteTitle('Home'); ?>
 <?php $this->start('head'); ?>
+<script src="<?= PROOT ?>js/storyAPIscript.js" defer></script>
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 <div class="container content  center text-center margin-btm">
@@ -15,6 +16,7 @@ use Core\Session;
     <br>
 
     <p> generated question goes scrr</p>
+    <button class="buttonQuit" onclick="quitGame()">Quit</button>
 
 </div>
 

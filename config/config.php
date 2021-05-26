@@ -35,4 +35,7 @@
     //RSS FEED VARIABLES
     define("FRUITS_PATH", ROOT . DS . "app" . DS . "fruits.json");
 
+    //STORY GAME
+    define("CONTINENTS", ["america","europe", "asia", "australia", "africa"]);
+
 

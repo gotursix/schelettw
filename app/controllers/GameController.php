@@ -31,13 +31,13 @@ class GameController extends Controller {
     }
 
     public function continentAction() {
+        if (Session::exists("continent")) {
+            Router::redirect("game/story/" . Session::get("continent"));
+        }
         $this->view->setLayout('map');
         $this->view->render('map/continent');
     }
 
-    public function storyAction() {
-        $this->view->render('game/story');
-    }
 
     public function rankingsAction() {
         $this->view->render('game/rankings');
@@ -68,6 +68,29 @@ class GameController extends Controller {
             }
             $this->view->difficulty = $difficulty;
             $this->view->render('game/play');
+        } else {
+            Router::redirect("restricted/pageNotFound");
+        }
+    }
+
+    public function storyAction($continent) {
+
+        if (in_array($continent, CONTINENTS)) {
+            if (!Session::exists("continent")) {
+                Session::set("continent", $continent);
+            } else if (Session::get("continent") != $continent) {
+                Router::redirect("game/story/" . Session::get("continent"));
+            }
+            if (!Session::exists("storyScore")) {
+                Session::set("storyScore", 0);
+            }
+            if (!Session::exists("current_storyScore")) {
+                Session::set("current_storyScore", 0);
+            } else if (Session::get("current_storyScore") != 0) {
+                Session::set("current_storyScore", 0);
+            }
+            $this->view->continent = $continent;
+            $this->view->render('game/story');
         } else {
             Router::redirect("restricted/pageNotFound");
         }
