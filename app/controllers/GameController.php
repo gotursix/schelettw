@@ -31,9 +31,6 @@ class GameController extends Controller {
     }
 
     public function continentAction() {
-        if (Session::exists("continent")) {
-            Router::redirect("game/story/" . Session::get("continent"));
-        }
         $this->view->setLayout('map');
         $this->view->render('map/continent');
     }
@@ -81,11 +78,10 @@ class GameController extends Controller {
     }
 
     public function storyAction($continent) {
-
         if (in_array($continent, CONTINENTS)) {
             if (!Session::exists("continent")) {
                 Session::set("continent", $continent);
-            } else if (Session::get("continent") != $continent) {
+            }else if (Session::get("continent") != $continent) {
                 Router::redirect("game/story/" . Session::get("continent"));
             }
             if (!Session::exists("storyScore")) {

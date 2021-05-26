@@ -12,7 +12,7 @@ use Core\Session;
 <?php $this->start('body'); ?>
 
 <div class="container content  center text-center margin-btm">
-    <h1 class="text-center red">Please a game to play</h1>
+    <h1 class="text-center red">Please select a game to play</h1>
     <br>
     <div class="container-buttons-diff" id="diff-buttons">
         <a id="easy" href="<?= PROOT ?>game/difficulty"

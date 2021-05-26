@@ -247,7 +247,7 @@ class ApiController extends Controller {
                 Session::delete("continent");
                 Session::delete("storyScore");
                 Session::delete("current_storyScore");
-                H::response(200, "Game ended", NULL);
+                H::response(200, "Game ended", Session::get("continent"));
             } else {
                 H::response(404, "No current game in progress", NULL);
             }
