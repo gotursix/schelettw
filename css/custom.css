@@ -281,6 +281,7 @@ body {
         margin: 5px auto 0!important;
     }
 
+
 }
 
 #documentationLink{
@@ -576,6 +577,8 @@ p {
     border-radius: 5px;
     padding-top: 2%;
     padding-bottom: 2%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     display: flex;
     background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
     flex-wrap: wrap;
@@ -607,3 +610,8 @@ p {
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
+@media (max-width: 600px){
+    .card{
+        width: 90%;
+    }
+}
