@@ -27,7 +27,12 @@ class GameController extends Controller {
     }
 
     public function gamesAction() {
+        //H::dnd($_SESSION);
         $this->view->render('game/games');
+    }
+
+    public function comingAction() {
+        $this->view->render('game/coming');
     }
 
     public function continentAction() {
@@ -35,13 +40,11 @@ class GameController extends Controller {
         $this->view->render('map/continent');
     }
 
-
     public function rankingsAction() {
         $this->view->render('game/rankings');
     }
 
     public function difficultyAction() {
-        //H::dnd($_SESSION);
         if (Session::exists("difficulty")) {
             Router::redirect("game/play/" . Session::get("difficulty"));
         }

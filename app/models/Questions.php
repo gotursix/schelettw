@@ -24,6 +24,10 @@ class Questions extends Model {
         return $this->find([]);
     }
 
+    public function findAllForContinent($continent) {
+        return $this->find(['conditions' => ["continent = ? "], 'bind' => [ucfirst($continent)]]);
+    }
+
     public function findById($id) {
         return $this->findFirst(['conditions' => "username = ? ", 'bind' => [$id]]);
     }

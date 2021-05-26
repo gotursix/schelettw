@@ -82,6 +82,7 @@ class ApiController extends Controller {
                             Session::delete("difficulty");
                             Session::delete("score");
                             Session::delete("current_score");
+                            Session::delete("lives");
                             H::response(200, "Game over", $score);
                         }
                     }
@@ -214,6 +215,7 @@ class ApiController extends Controller {
                 Session::delete("difficulty");
                 Session::delete("score");
                 Session::delete("current_score");
+                Session::delete("lives");
                 H::response(200, "Game ended", NULL);
             } else {
                 H::response(404, "No current game in progress", NULL);
@@ -222,10 +224,76 @@ class ApiController extends Controller {
             H::response(400, "Expected DELETE Request", NULL);
     }
 
+    public function getStoryAction($continent) {
+        header("Content-Type:application/json");
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $questions = new Questions();
+            $questions = $questions->findAllForContinent($continent);
+            //H::dnd(count($questions));
+            if (count($questions) == 0) {
+                H::response(202, "Coming soon!", NULL);
+            } else {
+                if (!Session::exists("questionIndex") && Session::exists("continent"))
+                    Session::set("questionIndex", 0);
+
+                $score = Session::exists("storyScore") ? Session::get("storyScore") : null;
+                if (Session::get("questionIndex") <= count($questions) - 1) {
+                    //Get photo
+                    $curl = curl_init();
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => API_DOMAIN . 'schelettw/api/photo/' . $questions[Session::get("questionIndex")]->photo,
+                        CURLOPT_RETURNTRANSFER => true,
+                    ));
+                    $url = curl_exec($curl);
+                    curl_close($curl);
+                    $url = json_decode($url);
+                    $questions[Session::get("questionIndex")]->photo = $url->data->url;
+                    //H::dnd($questions[Session::get("questionIndex")]);
+                    H::response(200, "Current question", $questions[Session::get("questionIndex")]);
+                } else H::response(200, "Game over", $score);
+            }
+        } else
+            H::response(400, "Expected DELETE Request", NULL);
+    }
+
+    public function storyLogicAction($answer) {
+        header("Content-Type:application/json");
+        $questions = new Questions();
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            if (Session::exists("continent")) {
+                $questions = $questions->findAllForContinent(Session::get("continent"));
+                H::response(200, "Response", array_search($answer, (array)$questions[Session::get("questionIndex")], true) == ("answer" . $questions[Session::get("questionIndex")]->correct));
+            } else H::response(404, "Story not found", NULL);
+        } else H::response(400, "Expected GET Request", NULL);
+    }
+
+    public function storyUpdateAction($status) {
+        header("Content-Type:application/json");
+        if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+            if (Session::exists("continent")) {
+                if ($status == "true") {
+                    //TODO: handle score add db
+                    Session::set("current_storyScore", Session::get("current_storyScore") + 12);
+                    Session::set("storyScore", Session::get("storyScore") + Session::get("current_storyScore"));
+                    Session::set("questionIndex", Session::get("questionIndex") + 1);
+                    H::response(200, "Score ++12", true);
+                } else {
+                    Session::set("current_storyScore", Session::get("current_storyScore") - 4);
+                    H::response(200, "Score --4", false);
+                }
+            } else {
+                H::response(404, "No current game in progress", NULL);
+            }
+        } else
+            H::response(400, "Expected PUT request", NULL);
+    }
+
     public function endStoryAction() {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
             if (Session::exists("continent")) {
+                //TODO: handle score add db
+
                 /* $newScore = $this->ScoresModel->findScore(H::currentUser()->id, Session::get("difficulty"));
                  if ($newScore) {
                      if (Session::get("score") > $newScore->points) {
@@ -246,6 +314,7 @@ class ApiController extends Controller {
                  Session::delete("current_score");*/
                 Session::delete("continent");
                 Session::delete("storyScore");
+                Session::delete("questionIndex");
                 Session::delete("current_storyScore");
                 H::response(200, "Game ended", Session::get("continent"));
             } else {
@@ -255,7 +324,8 @@ class ApiController extends Controller {
             H::response(400, "Expected DELETE Request", NULL);
     }
 
-    public function fruitsAction($difficulty = "all", $count = 0) {
+    public
+    function fruitsAction($difficulty = "all", $count = 0) {
         header("Content-Type:application/json");
         $input = file_get_contents(FRUITS_PATH);
         $fruits = json_decode($input, true);
@@ -295,7 +365,8 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
-    public function rankingsAction($difficulty = "all", $count = 0) {
+    public
+    function rankingsAction($difficulty = "all", $count = 0) {
         header("Content-Type:application/json");
         $scoresModel = new Scores();
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -323,7 +394,8 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
-    public function photoAction($fruit, $quality = "regular") {
+    public
+    function photoAction($fruit, $quality = "regular") {
         header("Content-Type:application/json");
         if ($quality == null)
             $quality = "regular";
@@ -343,7 +415,8 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
-    public function descriptionAction($fruit) {
+    public
+    function descriptionAction($fruit) {
         header("Content-Type:application/json");
         $input = file_get_contents(FRUITS_PATH);
         $fruits = json_decode($input, true);
@@ -359,7 +432,8 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
-    public function questionsAction() {
+    public
+    function questionsAction() {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $questions = new Questions();
@@ -368,7 +442,8 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
-    public function veggiesAction() {
+    public
+    function veggiesAction() {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $veggies = new Vegetables();
@@ -377,7 +452,8 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
-    public function veggieAction($fruit) {
+    public
+    function veggieAction($fruit) {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $veggie = new Vegetables();

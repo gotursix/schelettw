@@ -18,7 +18,7 @@ use Core\Session;
         <a id="easy" href="<?= PROOT ?>game/difficulty"
            class="difficulty-button difficulty-button-fromDifficulty button-easy">Games trivia</a>
         <a id="medium" href="<?= PROOT ?>game/continent"
-           class="difficulty-button difficulty-button-fromDifficulty button-medium">Other name idk</a>
+           class="difficulty-button difficulty-button-fromDifficulty button-medium">Story mode</a>
     </div>
 </div>
 
