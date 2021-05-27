@@ -1,11 +1,17 @@
+.button {
+    background-color: #7fcff7;
+    color: #000000;
+    padding: 1em 1.5em;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 10%;
+}
+
 html {
     text-align: center;
 }
 
 body {
-    width: 100%;
-    margin: 20px auto;
-    padding: 0 100px;
     overflow-x: hidden;
 }
 
@@ -15,7 +21,7 @@ body {
     color: rgba(229, 229, 229, 0.7);
 }
 
-div, img, footer {
+.div-map, .img-map {
     position: relative;
     box-sizing: border-box;
 }
@@ -66,9 +72,11 @@ a {
     text-decoration: none;
     color: #dff3fd;
 }
+
 a:visited {
     color: #dff3fd;
 }
+
 li.active a, a:hover, a:active {
     color: #e5e5e5;
 }
@@ -94,12 +102,14 @@ li.active a, a:hover, a:active {
     box-sizing: border-box;
     margin: 0 auto;
 }
+
 .distribution-map > img {
     width: 100%;
     position: relative;
     margin: 0;
     padding: 0;
 }
+
 .distribution-map .map-point {
     cursor: pointer;
     outline: none;
@@ -119,6 +129,7 @@ li.active a, a:hover, a:active {
     background: rgba(26, 26, 26, 0.85);
     border: 5px solid #7fcff7;
 }
+
 .distribution-map .map-point .content {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0;
@@ -129,6 +140,7 @@ li.active a, a:hover, a:active {
     transform: translateX(-50%);
     overflow: overlay;
 }
+
 .distribution-map .map-point:active, .distribution-map .map-point:focus {
     margin: 0;
     padding: 0;
@@ -140,6 +152,7 @@ li.active a, a:hover, a:active {
     z-index: 1;
     transition: opacity 0.25s ease-in-out, width 0.25s ease-in-out, height 0.25s ease-in-out;
 }
+
 .distribution-map .map-point:active .content, .distribution-map .map-point:focus .content {
     filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
     opacity: 1;
@@ -150,6 +163,7 @@ li.active a, a:hover, a:active {
     transition: opacity 0.25s ease-in-out 0.25s, height 0.25s ease-in-out, overflow 0.25s ease-in-out;
     overflow: hidden;
 }
+
 .distribution-map .map-point:active .content a:hover, .distribution-map .map-point:active .content a:active, .distribution-map .map-point:focus .content a:hover, .distribution-map .map-point:focus .content a:active {
     color: #afe1fa;
 }

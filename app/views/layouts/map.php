@@ -13,11 +13,9 @@ use Core\Generators;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS-->
     <link rel="stylesheet" href="<?= PROOT ?>css/custom.css">
-
     <link rel="stylesheet" href="<?= PROOT ?>css/nav-bar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?= PROOT ?>fonts/Roboto.css">
-
     <link rel="stylesheet" href="<?= PROOT ?>css/map.css">
 
     <!-- JS -->
