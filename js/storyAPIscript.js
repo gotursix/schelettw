@@ -7,6 +7,7 @@ async function generateGameSession(continent) {
         window.location.replace(url + `schelettw/game/gameover/${gameSession.data}`);
     }
 
+
     if (gameSession.status_message === "Coming soon!") {
         await quitGame();
         window.location.replace(url + `schelettw/game/coming`);

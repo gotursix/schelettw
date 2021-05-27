@@ -17,7 +17,7 @@ use Core\Session;
         <div class="content div-map">
             <div class="centered-y div-map">
                 <h2>Europe</h2>
-                <a href="<?= PROOT ?>game/story/europe" class="button">Start story</a>
+                <a href="<?=PROOT?>game/story/europe" class="button">Start story</a>
             </div>
         </div>
     </button>
@@ -25,7 +25,7 @@ use Core\Session;
         <div class="content div-map">
             <div class="centered-y div-map">
                 <h2>Australia</h2>
-                <a href="<?= PROOT ?>game/story/australia" class="button">Start story</a>
+                <a href="<?=PROOT?>game/story/australia" class="button">Start story</a>
             </div>
         </div>
     </button>
@@ -33,7 +33,7 @@ use Core\Session;
         <div class="content div-map">
             <div class="centered-y">
                 <h2>America</h2>
-                <a href="<?= PROOT ?>game/story/america" class="button">Start story</a>
+                <a href="<?=PROOT?>game/story/america" class="button">Start story</a>
             </div>
         </div>
     </button>
@@ -41,7 +41,7 @@ use Core\Session;
         <div class="content div-map">
             <div class="centered-y div-map">
                 <h2>Africa</h2>
-                <a href="<?= PROOT ?>game/story/africa" class="button">Start story</a>
+                <a href="<?=PROOT?>game/story/africa" class="button">Start story</a>
             </div>
         </div>
     </button>
@@ -49,7 +49,7 @@ use Core\Session;
         <div class="content div-map">
             <div class="centered-y div-map">
                 <h2>Asia</h2>
-                <a href="<?= PROOT ?>game/story/asia" class="button">Start story</a>
+                <a href="<?=PROOT?>game/story/asia" class="button">Start story</a>
             </div>
         </div>
     </button>

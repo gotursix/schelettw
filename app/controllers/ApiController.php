@@ -294,29 +294,29 @@ class ApiController extends Controller {
             if (Session::exists("continent")) {
                 //TODO: handle score add db
 
-                /* $newScore = $this->ScoresModel->findScore(H::currentUser()->id, Session::get("difficulty"));
-                 if ($newScore) {
-                     if (Session::get("score") > $newScore->points) {
-                         $newScore->points = Session::get("score");
+                 $newScore = $this->ScoresModel->findScore(H::currentUser()->id, Session::get("continent"));
+                 if ($newScore!=null) {
+                     if (Session::get("storyScore") > $newScore->points) {
+                         $newScore->points = Session::get("storyScore");
                      }
                  } else {
                      $newScore = new Scores();
-                     $newScore->points = Session::get("score");
-                     $newScore->difficulty = Session::get("difficulty");
+                     $newScore->points = Session::get("storyScore");
+                     $newScore->difficulty = Session::get("continent");
                      $newScore->user_id = H::currentUser()->id;
                  }
-                 if ($newScore->points)
+                 if ($newScore->points!=0)
                      $newScore->save();
-                 FH::updateRSS(H::currentUser()->username, $newScore->points, Session::get("difficulty"), date("F j, Y, g:i a"));
-                 Session::delete("gameSession");
-                 Session::delete("difficulty");
-                 Session::delete("score");
-                 Session::delete("current_score");*/
+                //H::dnd($newScore);
+
+                //FH::updateRSS(H::currentUser()->username, $newScore->points, Session::get("continent"), date("F j, Y, g:i a"));
+
                 Session::delete("continent");
                 Session::delete("storyScore");
                 Session::delete("questionIndex");
                 Session::delete("current_storyScore");
-                H::response(200, "Game ended", Session::get("continent"));
+                //H::dnd($_SESSION);
+                H::response(200, "Game ended", NULL);
             } else {
                 H::response(404, "No current game in progress", NULL);
             }
