@@ -6,7 +6,7 @@ $this->setSiteTitle('Edit Fruit/Veggie'); ?>
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 <div class="container content center text-center">
-    <h1>Edit Fruit/Veggie</h1>
+    <h1 class="purple">Edit Fruit/Veggie</h1>
     <form class="fruit-form" action="" method="POST">
         <?= FH::csrfInput() ?>
         <div class="form__group">

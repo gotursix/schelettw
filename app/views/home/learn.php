@@ -16,8 +16,12 @@ use Core\Session;
     <h1 class="text-center red">Learn </h1>
     <br>
     <div id="learn-content">
-        <!-- TODO: add fancy animation -->
-        Loading ..
+        <h1>Loading</h1>
+        <div class="fancy-spinner">
+            <div class="ring"></div>
+            <div class="ring"></div>
+            <div class="dot"></div>
+        </div>
     </div>
     <script>
         window.onload = function () {

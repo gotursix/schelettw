@@ -55,7 +55,8 @@
                 </ul>
             </li>
             <li><a href="#References">7 References</a></li>
-            <li><a href="#Contribution">8 Team members contribution</a></li>
+            <li><a href="#OpenSource">8 Open source designs</a></li>
+            <li><a href="#Contribution">9 Team members contribution</a></li>
         </ul>
     </div>
 
@@ -314,8 +315,14 @@
         <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target=”_blank”>JavaScript MDN Web documentation</a></li>
         <li><a href="https://www.php.net/manual/en/book.json.php" target=”_blank”>JSON in PHP</a></li>
     </ol><br>
+    <h3 class="margin-1 margin-top-ToC" id="OpenSource">8. Open source design inspiration</h3>
+    <li><a href="https://codepen.io/bassetts/pen/RqrPWG" target=”_blank”>Learning page loading animation</a></li>
+    <li><a href="https://gist.github.com/vivom/d51102dc961e01be2fda003b5481fd00" target=”_blank”>Pure css open source map (continent story page)</a></li>
+    <ol>
 
-    <h3 class="margin-1 margin-top-ToC" id="Contribution">8. Team members contribution:</h3>
+    </ol><br>
+
+    <h3 class="margin-1 margin-top-ToC" id="Contribution">9. Team members contribution:</h3>
     <ul>
         <li>Grigorean Valentin
             <ul class="no-bullets">

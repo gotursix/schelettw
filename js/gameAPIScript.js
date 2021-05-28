@@ -17,9 +17,14 @@ async function generateGameSession(difficulty) {
     //Todo add design
     content += '<button class="buttonQuit" onclick="quitGame()">Quit</button>';
     document.getElementById("game").innerHTML = content;
-    let scoring = "<h2 class=\"text-center red\">Stats</h2><br>"
-    scoring += "<p>Score: " + gameSession.data.score + "</p>";
-    scoring += "<p>Lives: " + gameSession.data.lives + "</p>";
+    let scoring = '<div class="stats">'
+    scoring += "<p>Score: <span class='purple'>" + gameSession.data.score + "</span></p>";
+    scoring += "<p>Lives: ";
+    for (let l = 1; l<=gameSession.data.lives; ++l){
+        scoring += "&#10084;&#65039; ";
+    }
+    scoring += "</p>";
+    scoring += "</div>";
     document.getElementById("game-stats").innerHTML = scoring;
 }
 
