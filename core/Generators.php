@@ -75,7 +75,7 @@ class Generators {
                 $finalTable .= "<tr>";
                 $finalTable .= '<td data-label="Id.">' . $user->id . '</td>';
                 $finalTable .= '<td data-label="Username">' . $user->username . '</td>';
-                $finalTable .= '<td data-label="Action">' . '<a href="' . PROOT . 'admin/bannedStatus/' . $user->id . '" onClick="return ' . "confirm('Are you sure you want to " . $status . " user ? ');" . '" class="button">' . ucfirst($status) . ' </a>';
+                $finalTable .= '<td data-label="Action">' . '<a href="' . PROOT . 'admin/bannedStatus/' . $user->id . '" onClick="return ' . "confirm('Are you sure you want to " . $status . " user ? ');" . '" class="crud-button primary delete">' . ucfirst($status) . ' </a>';
                 $finalTable .= "</td><tr>";
             }
         return $finalTable;

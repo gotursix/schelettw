@@ -1,22 +1,24 @@
 <?php use Core\FH;
 
 $this->setSiteTitle('Edit Fruit/Veggie'); ?>
+<?php $this->start('head'); ?>
+<link rel="stylesheet" href="<?= PROOT ?>css/admin.css">
+<?php $this->end(); ?>
 <?php $this->start('body'); ?>
 <div class="container content center text-center">
     <h1>Edit Fruit/Veggie</h1>
-    <form class="login-form" action="" method="POST">
+    <form class="fruit-form" action="" method="POST">
         <?= FH::csrfInput() ?>
+        <div class="form__group">
         <input type="text" id="name" name="name" value="<?= $this->veggie->name ?>"
-               placeholder="Name"/>
-        <input type="text" id="description" name="description" value="<?= $this->veggie->description ?>"
-               placeholder="Description"/>
-        <br><br>
+               placeholder="Name" class="form__input"/>
+        <textarea type="text" id="description" name="description" value="<?= $this->veggie->description ?>"
+                  placeholder="Description" class="form__input resize"></textarea>
 
-        <br><br>
         <div class="bg-danger"><?= FH::displayErrors($this->displayErrors) ?></div>
-        <button type="submit" value="Save">Edit</button>
+        <button type="submit" value="Save" class="crud-button primary save margin-1">Save</button>
+        </div>
     </form>
-    <br><br>
-    <a href="<?= PROOT ?>admin/veggies" class="button">Cancel</a>
+    <a href="<?= PROOT ?>admin/veggies" class="crud-button primary cancel">Cancel</a>
 </div>
 <?php $this->end(); ?>

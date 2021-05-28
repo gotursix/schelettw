@@ -5,8 +5,8 @@
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 <div class="container content center text-center">
-    <h1>Fruits&Veggies</h1>
-    <a href="<?= PROOT ?>admin/addVeggie" class="button">Add fruit/veggie</a>
+    <h1 class="red">Fruits&Veggies</h1>
+    <a href="<?= PROOT ?>admin/addVeggie" class="crud-button primary new margin-1">Add fruit/veggie</a>
     <table>
         <thead>
         <tr>
@@ -17,7 +17,10 @@
         </thead>
         <tbody id="bodyToSetForVeggies">
         </tbody>
+
     </table>
+    <a href="<?= PROOT ?>admin" class="crud-button primary cancel">Cancel</a>
+
 
 
 </div>

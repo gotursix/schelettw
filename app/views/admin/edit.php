@@ -1,27 +1,29 @@
 <?php use Core\FH;
 
 $this->setSiteTitle('Edit Question'); ?>
+<?php $this->start('head'); ?>
+<link rel="stylesheet" href="<?= PROOT ?>css/admin.css">
+<?php $this->end(); ?>
 <?php $this->start('body'); ?>
 <div class="container content center text-center">
-    <h1>Edit question</h1>
-    <form class="login-form" action="" method="POST">
+    <h1 class="purple">Edit question</h1>
+    <form class="question-form" action="" method="POST">
         <?= FH::csrfInput() ?>
-        <input type="text" id="question" name="question" value="<?= $this->question->question ?>"
-               placeholder="Question"/>
+        <div class="form__group">
+        <textarea type="text" id="question" name="question" value="<?= $this->question->question ?>"
+                  placeholder="Question" class="form__input resize resize-question"></textarea>
         <input type="text" id="photo" name="photo" value="<?= $this->question->answer1 ?>"
-               placeholder="Photo"/>
+               placeholder="Photo" class="form__input"/>
         <input type="text" id="answer1" name="answer1" value="<?= $this->question->answer1 ?>"
-               placeholder="Answer 1"/>
+               placeholder="Answer 1" class="form__input"/>
         <input type="text" id="answer2" name="answer2" value="<?= $this->question->answer2 ?>"
-               placeholder="Answer 2"/>
-        <br><br>
+               placeholder="Answer 2" class="form__input"/>
         <input type="text" id="answer3" name="answer3" value="<?= $this->question->answer3 ?>"
-               placeholder="Answer 3"/>
+               placeholder="Answer 3" class="form__input"/>
         <input type="text" id="answer4" name="answer4" value="<?= $this->question->answer4 ?>"
-               placeholder="Answer 4"/>
-        <input type="text" id="header" name="header" value="<?= $this->question->header ?>"
-               placeholder="Header"/>
-        <br><br>
+               placeholder="Answer 4" class="form__input"/>
+        <textarea type="text" id="header" name="header" value="<?= $this->question->header ?>"
+                  placeholder="Header" class="form__input resize"></textarea>
 
         <!-- TODO: Refactor -->
         <div class="rem">
@@ -50,11 +52,12 @@ $this->setSiteTitle('Edit Question'); ?>
                 </select>
             </label>
         </div>
-        <br><br>
         <div class="bg-danger"><?= FH::displayErrors($this->displayErrors) ?></div>
-        <button type="submit" value="Save">Save</button>
+
+        <button type="submit" value="Save" class="crud-button primary save">Save</button>
+
+        </div>
+        <a href="<?= PROOT ?>admin" class="crud-button primary cancel">Cancel</a>
     </form>
-    <br><br>
-    <a href="<?= PROOT ?>admin" class="button">Cancel</a>
 </div>
 <?php $this->end(); ?>
