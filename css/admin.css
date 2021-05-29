@@ -1,3 +1,12 @@
+.ellipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-width{
+    width: 15rem;
+}
+
 .question-form{
     height: 100vh;
     display: flex;

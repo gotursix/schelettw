@@ -6,10 +6,10 @@
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 <div class="container content center text-center">
-    <a href="<?= PROOT ?>admin/veggies" class="buttonPurple">Add fruit description</a><br>
-    <a href="<?= PROOT ?>admin/users" class="buttonRed">Ban users</a>
+    <a href="<?= PROOT ?>admin/veggies" class="crud-button primary edit btn-width margin-1">Add fruit description</a>
+    <a href="<?= PROOT ?>admin/users" class="crud-button primary delete btn-width">Ban users</a>
+    <a href="<?= PROOT ?>admin/add" class="crud-button primary new margin-1 btn-width">Add question</a>
     <h1 class="purple question-title">Questions</h1>
-    <a href="<?= PROOT ?>admin/add" class="crud-button primary new margin-1">Add question</a>
     <table>
         <thead>
         <tr>

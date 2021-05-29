@@ -10,9 +10,9 @@ function generateTableHtml(parsed) {
     parsed.forEach(parsed => {
         let keys = Object.keys(parsed);
         finalTable += "<tr>"
-        finalTable += '<td data-label="Nr.">' + rank + '</td>';
+        finalTable += '<td data-label="Id.">' + rank + '</td>';
         rank++;
-        finalTable += '<td data-label="' + keys[8] + '">' + parsed.question + '</td>';
+        finalTable += '<td data-label="' + keys[2] + '" class="ellipsis">' + parsed.question + '</td>';
         finalTable += '<td data-label="Actions">' + `<a href="${url}schelettw/admin/edit/${parsed.id}" class="crud-button primary edit">Edit</a> `
             + `<a href="${url}schelettw/admin/delete/${parsed.id}" onClick="return confirm('Are you sure you want to delete?');" class="crud-button primary delete">Delete</a> `;
         finalTable += "</tr>"
