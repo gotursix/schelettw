@@ -60,7 +60,7 @@ class GameController extends Controller {
         if (in_array($difficulty, DIFFICULTIES)) {
             if (!Session::exists("difficulty")) {
                 Session::set("difficulty", $difficulty);
-                Session::set("lives", 5);
+                Session::set("lives", LIVES);
             } else if (Session::get("difficulty") != $difficulty) {
                 Router::redirect("game/play/" . Session::get("difficulty"));
             }
@@ -84,7 +84,7 @@ class GameController extends Controller {
         if (in_array($continent, CONTINENTS)) {
             if (!Session::exists("continent")) {
                 Session::set("continent", $continent);
-            }else if (Session::get("continent") != $continent) {
+            } else if (Session::get("continent") != $continent) {
                 Router::redirect("game/story/" . Session::get("continent"));
             }
             if (!Session::exists("storyScore")) {

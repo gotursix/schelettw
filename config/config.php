@@ -28,6 +28,7 @@
 
     //GAME CONFIG VARIABLES
     define("DIFFICULTIES", ["easy", "medium", "hard"]);
+    define("LIVES", 3);
 
     //RSS FEED VARIABLES
     define("ITEMS_PATH", ROOT . DS . "app" . DS . "items.json");

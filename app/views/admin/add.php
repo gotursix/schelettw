@@ -26,7 +26,6 @@ $this->setSiteTitle('Add Question'); ?>
                   placeholder="Story" class="form__input resize" ></textarea>
 
 
-        <!-- TODO: Refactor -->
         <div class="rem">
             <label class="message form__label" for="correct">Correct answer
                 <select id="correct" name="correct">

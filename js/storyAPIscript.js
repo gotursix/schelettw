@@ -7,22 +7,26 @@ async function generateGameSession(continent) {
         window.location.replace(url + `schelettw/game/gameover/${gameSession.data}`);
     }
 
-
     if (gameSession.status_message === "Coming soon!") {
         await quitGame();
         window.location.replace(url + `schelettw/game/coming`);
     }
 
-    //Todo: add pic from avatar
-    let content = `<h1 class=\"text-center red\">${gameSession.data.header}</h1><br>`;
-    content += `<p>${gameSession.data.question} </p>`;
-    content += '<img src="' + gameSession.data.photo + '" class="game-image" alt="game-image"><br><br>';
-    content += '<button id ="' + gameSession.data.answer1 + `" class="buttonPurple" onclick="checkResponse('${gameSession.data.answer1}','${continent}')">` + gameSession.data.answer1 + '</button>';
-    content += '<button id ="' + gameSession.data.answer2 + `" class="buttonPurple" onclick="checkResponse('${gameSession.data.answer2}','${continent}')">` + gameSession.data.answer2 + '</button><br>';
-    content += '<button id ="' + gameSession.data.answer3 + `" class="buttonPurple" onclick="checkResponse('${gameSession.data.answer3}','${continent}')">` + gameSession.data.answer3 + '</button>';
-    content += '<button id ="' + gameSession.data.answer4 + `" class="buttonPurple" onclick="checkResponse('${gameSession.data.answer4}','${continent}')">` + gameSession.data.answer4 + '</button><br>';
-    content += '<button class="buttonQuit" onclick="quitGame()">Quit</button>';
-    document.getElementById("game-story").innerHTML = content;
+    if (gameSession.status_message !== "Coming soon!" && gameSession.status_message !== "Game over") {
+        let content = `<h1 class=\"text-center red\">${gameSession.data.header}</h1><br>`;
+        content += `<p>${gameSession.data.question} </p>`;
+        content += '<img src="' + gameSession.data.photo + '" class="game-image" alt="game-image"><br><br>';
+        content += '<button id ="' + gameSession.data.answer1 + `" class="buttonPurple" onclick="checkResponse('${gameSession.data.answer1}','${continent}')">` + gameSession.data.answer1 + '</button>';
+        content += '<button id ="' + gameSession.data.answer2 + `" class="buttonPurple" onclick="checkResponse('${gameSession.data.answer2}','${continent}')">` + gameSession.data.answer2 + '</button><br>';
+        content += '<button id ="' + gameSession.data.answer3 + `" class="buttonPurple" onclick="checkResponse('${gameSession.data.answer3}','${continent}')">` + gameSession.data.answer3 + '</button>';
+        content += '<button id ="' + gameSession.data.answer4 + `" class="buttonPurple" onclick="checkResponse('${gameSession.data.answer4}','${continent}')">` + gameSession.data.answer4 + '</button><br>';
+        content += '<button class="buttonQuit" onclick="quitGame()">Quit</button>';
+        document.getElementById("game-story").innerHTML = content;
+        let scoring = '<div class="stats">'
+        scoring += "<p>Score: <span class='purple'>" + gameSession.data.score + "</span></p>";
+        scoring += "</div>";
+        document.getElementById("game-stats").innerHTML = scoring;
+    }
 }
 
 async function checkResponse(name, continent) {

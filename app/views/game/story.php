@@ -12,7 +12,8 @@ use Core\Session;
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 <div class="container content  center text-center margin-btm">
-    <?php var_dump($_SESSION["storyScore"]); ?>
+    <div id="game-stats">
+    </div>
     <div id="game-story">
     </div>
 </div>

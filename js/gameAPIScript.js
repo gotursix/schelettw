@@ -4,28 +4,29 @@ async function generateGameSession(difficulty) {
     console.log(gameSession);
     if (gameSession.status_message === "Game over") {
         window.location.replace(url + `schelettw/game/gameover/${gameSession.data}`);
-    }
-    let content = "<h1 class=\"text-center red\">What fruit or vegetable is in the image?</h1><br>";
-    content += '<img src="' + gameSession.data.url + '" class="game-image" alt="game-image"><br><br>';
-    for (let i = 0; i < gameSession.data.fruits.length; i++) {
-        content += '<button id ="' + gameSession.data.fruits[i].name + `" class="buttonPurple" onclick="checkResponse('${gameSession.data.fruits[i].name}')">` + gameSession.data.fruits[i].name + '</button>';
-        if (i % 2) {
-            content += '<br>';
+    } else {
+        let content = "<h1 class=\"text-center red\">What fruit or vegetable is in the image?</h1><br>";
+        content += '<img src="' + gameSession.data.url + '" class="game-image" alt="game-image"><br><br>';
+        for (let i = 0; i < gameSession.data.fruits.length; i++) {
+            content += '<button id ="' + gameSession.data.fruits[i].name + `" class="buttonPurple" onclick="checkResponse('${gameSession.data.fruits[i].name}')">` + gameSession.data.fruits[i].name + '</button>';
+            if (i % 2) {
+                content += '<br>';
+            }
         }
+        content += '<button class="buttonQuit" onclick="quitGame()">Quit</button>';
+        document.getElementById("game").innerHTML = content;
+        let scoring = '<div class="stats">'
+        scoring += "<p>Score: <span class='purple'>" + gameSession.data.score + "</span></p>";
+        scoring += "<p>Lives: ";
+        for (let l = 1; l <= gameSession.data.lives; ++l) {
+            scoring += "&#10084;&#65039; ";
+        }
+        scoring += "</p>";
+        scoring += "</div>";
+        document.getElementById("game-stats").innerHTML = scoring;
     }
 
-    //Todo add design
-    content += '<button class="buttonQuit" onclick="quitGame()">Quit</button>';
-    document.getElementById("game").innerHTML = content;
-    let scoring = '<div class="stats">'
-    scoring += "<p>Score: <span class='purple'>" + gameSession.data.score + "</span></p>";
-    scoring += "<p>Lives: ";
-    for (let l = 1; l<=gameSession.data.lives; ++l){
-        scoring += "&#10084;&#65039; ";
-    }
-    scoring += "</p>";
-    scoring += "</div>";
-    document.getElementById("game-stats").innerHTML = scoring;
+
 }
 
 async function checkResponse(name) {
