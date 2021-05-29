@@ -20,6 +20,9 @@
 h2 {
     width: 300px;
 }
+.choose-photo-form{
+    margin: 3rem;
+}
 
 @media (max-width: 800px){
     .info-container{

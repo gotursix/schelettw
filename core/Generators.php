@@ -35,6 +35,27 @@ class Generators {
         else return $parsed->results[$random]->urls->small;
     }
 
+    public static function getProfilePicture($photoId){
+        switch ($photoId) {
+            case 1:
+                $profilePhoto = PROOT . "img/default1.png";
+                break;
+            case 2:
+                $profilePhoto = PROOT . "img/default2.png";
+                break;
+            case 3:
+                $profilePhoto = PROOT . "img/default3.png";
+                break;
+            case 4:
+                $profilePhoto = PROOT . "img/default4.png";
+                break;
+            default:
+                $profilePhoto = PROOT . "img/default0.png";
+                break;
+        }
+        return $profilePhoto;
+    }
+
     public static function generateDescription($obj) {
         $curl = curl_init();
         curl_setopt_array($curl, array(

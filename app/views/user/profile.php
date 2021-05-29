@@ -3,30 +3,18 @@
 
 ?>
 
-<?php $this->setSiteTitle('User profile'); ?>
+<?php use Core\Generators;
+
+$this->setSiteTitle('User profile'); ?>
 <?php $this->start('head'); ?>
 <script src="<?= PROOT ?>js/profilePageAPIScript.js" defer></script>
 <link rel="stylesheet" href="<?=PROOT?>css/profilePage.css">
 <link rel="stylesheet" href="<?= PROOT ?>css/table.css">
 <?php $this->end(); ?>
 <?php
-$profilePhoto = "";
-switch ($this->user->photoId) {
-    case 0:
-        $profilePhoto = PROOT . "img/default0.png";
-    case 1:
-        $profilePhoto = PROOT . "img/default1.png";
-        break;
-    case 2:
-        $profilePhoto = PROOT . "img/default2.png";
-        break;
-        $profilePhoto = PROOT . "img/default3.png";
-    case 3:
-        break;
-        $profilePhoto = PROOT . "img/default4.png";
-    case 4:
-        break;
-}
+$profilePhoto = Generators::getProfilePicture($this->user->photoId);
+
+
 ?>
 <?php $this->start('body'); ?>
 <div class="container content  center text-center margin-btm">
@@ -38,9 +26,26 @@ switch ($this->user->photoId) {
             <h2><span class="red">Last name: </span><?= $this->user->lname ?></h2>
             <h2><span class="red">Username: </span><?= $this->user->username ?></h2>
         </div>
-
-
     </div>
+    <form action="" method="POST" class="choose-photo-form">
+        <label class=" profileLabel" for="photoId">Change your character
+            <select id="correct" name="photoId">
+                <option value="1">
+                    Sponge Bob
+                </option>
+                <option value="2">
+                    Jhonny Bravo
+                </option>
+                <option value="3">
+                    Candace
+                </option>
+                <option value="4">
+                    Powerful girls
+                </option>
+            </select>
+        </label>
+        <button type="submit" class="crud-button primary save" >Save</button>
+    </form>
 
 
     <table>

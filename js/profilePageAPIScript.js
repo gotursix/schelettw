@@ -1,12 +1,12 @@
 function generateTableHtml(parsed, user) {
     let finalTable = '';
-    let rank = 1;
+    let rank = 0;
     parsed.forEach(element => {
         let keys = Object.keys(element);
+        rank++;
         if (element.username === user ){
             finalTable += "<tr>"
             finalTable += '<td data-label="Rank">#' + rank + '</td>';
-            rank++;
             finalTable += '<td data-label="' + keys[2] + '">' + element.username + '</td>';
             finalTable += '<td data-label="' + keys[3] + '">' + element.points + '</td>';
             finalTable += '<td data-label="' + keys[4] + '">' + element.difficulty + '</td>';
