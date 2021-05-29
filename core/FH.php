@@ -72,7 +72,9 @@ class FH {
         foreach ($items as $item) {
             $str .= "<item>";
             $str .= "<title>" . "User " . $item->name . " is now in top 10 " . "</title>";
-            $str .= "<description>" . ucfirst($item->name) . " is now in top 10 on difficulty " . $item->difficulty . " with score: " . $item->score . "</description>";
+            if (in_array($item->difficulty, CONTINENTS)) {
+                $str .= "<description>" . ucfirst($item->name) . " is now in top 10 on continent " . $item->difficulty . " with score: " . $item->score . "</description>";
+            } else $str .= "<description>" . ucfirst($item->name) . " is now in top 10 on difficulty " . $item->difficulty . " with score: " . $item->score . "</description>";
             $str .= "<link>$web_url</link>";
             $str .= "<pubDate>$item->date</pubDate>";
             $str .= "</item>";

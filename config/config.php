@@ -24,7 +24,7 @@
     //API CONFIG VARIABLES
     define("PHOTOS_COUNT", 10);
     define("CLIENT_ID", 'kiDWWEBWwAW_ZsTTrdWPGUgE9bKT8FES0k8YsYNCa9o');
-    define("API_DOMAIN", "http://localhost/");
+    define("API_DOMAIN", "http://localhost:8080/");
 
     //GAME CONFIG VARIABLES
     define("DIFFICULTIES", ["easy", "medium", "hard"]);
