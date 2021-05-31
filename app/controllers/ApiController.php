@@ -14,12 +14,22 @@ use Core\H;
 use Core\Router;
 use Core\Session;
 
+/**
+ * Class ApiController
+ * @package App\Controllers
+ * Contains all the api endpoints used for the websire
+ */
 class ApiController extends Controller {
     public function __construct($controller, $action) {
         parent::__construct($controller, $action);
         $this->load_model('Scores');
     }
 
+
+    /**
+     * @param $difficulty - the game difficulty for which we want a new question
+     * @return void returns a json containing a trivia game question
+     */
     public function gameAction($difficulty) {
         header("Content-Type:application/json");
         $input = file_get_contents(FRUITS_PATH);
@@ -93,6 +103,10 @@ class ApiController extends Controller {
     }
 
 
+    /**
+     * @param $difficulty - the difficulty for which we want a new trivia game
+     * @return void - returns a new trivia question
+     */
     public function storyAction($difficulty) {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -139,6 +153,10 @@ class ApiController extends Controller {
     }
 
 
+    /**
+     * @param $status - true or false depending on the button
+     * @api updates the session score for the hard difficulty
+     */
     public function updateAction($status) {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
@@ -160,6 +178,10 @@ class ApiController extends Controller {
             H::response(400, "Expected PUT request", NULL);
     }
 
+    /**
+     * @param $status - true or false depending on the button
+     * @api updates the session score for the hard difficulty
+     */
     public function nextAction($status) {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
@@ -180,6 +202,10 @@ class ApiController extends Controller {
             H::response(400, "Expected PUT request", NULL);
     }
 
+    /**
+     * @param $fruit - fruit/veggie button we've pressed on
+     * @return void returns true or false depending on the answer
+     */
     public function logicAction($fruit) {
         header("Content-Type:application/json");
         $input = file_get_contents(FRUITS_PATH);
@@ -193,6 +219,9 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
+    /**
+     * @api ends the trivia game, updating score and deleting the session variables
+     */
     public function endAction() {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
@@ -224,6 +253,10 @@ class ApiController extends Controller {
             H::response(400, "Expected DELETE Request", NULL);
     }
 
+    /**
+     * @param $continent - the continent for which we want a new story
+     * @return void returns a new question from the db that hasn't been answered in the current game
+     */
     public function getStoryAction($continent) {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -256,6 +289,10 @@ class ApiController extends Controller {
             H::response(400, "Expected DELETE Request", NULL);
     }
 
+    /**
+     * @param $answer - the question answer we've pressed on
+     * @return void returns true or false depending on weather the answer is correct or not
+     */
     public function storyLogicAction($answer) {
         header("Content-Type:application/json");
         $questions = new Questions();
@@ -267,6 +304,10 @@ class ApiController extends Controller {
         } else H::response(400, "Expected GET Request", NULL);
     }
 
+    /**
+     * @param $status - button status that represents the status of the button we've pressed on
+     * @api updates the score on the session
+     */
     public function storyUpdateAction($status) {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
@@ -287,6 +328,10 @@ class ApiController extends Controller {
             H::response(400, "Expected PUT request", NULL);
     }
 
+    /**
+     * @api ends the story game and saves the score(inserts a new record or update the current one), deleting the
+     * game session and the session variables
+     */
     public function endStoryAction() {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
@@ -317,6 +362,11 @@ class ApiController extends Controller {
             H::response(400, "Expected DELETE Request", NULL);
     }
 
+    /**
+     * @param string $difficulty fruit difficulty
+     * @param int $count the number of fruits
+     * @return void returns the number of fruits for the specified difficulty
+     */
     public function fruitsAction($difficulty = "all", $count = 0) {
         header("Content-Type:application/json");
         $input = file_get_contents(FRUITS_PATH);
@@ -357,6 +407,11 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
+    /**
+     * @param string $difficulty the difficulty for which we want to get the rankings
+     * @param int $count the number of records to be returned
+     * @return void returns the amount of records for the specified difficulty
+     */
     public function rankingsAction($difficulty = "all", $count = 0) {
         header("Content-Type:application/json");
         $scoresModel = new Scores();
@@ -385,6 +440,11 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
+    /**
+     * @param $fruit - fruit to get the photo for
+     * @param string $quality - regular (high quality), anything else lower quality(used for thumbnails)
+     * @returns void returns the photo link taken off unsplash API
+     */
     public function photoAction($fruit, $quality = "regular") {
         header("Content-Type:application/json");
         if ($quality == null)
@@ -405,6 +465,10 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
+    /**
+     * @param $fruit - the fruit or the vegetable for which we want to get the description
+     * @return void returns the description for a given fruit/vegetable as json response
+     */
     public function descriptionAction($fruit) {
         header("Content-Type:application/json");
         $input = file_get_contents(FRUITS_PATH);
@@ -421,6 +485,9 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
+    /**
+     * @return void returns all the questions as json response(used for the admin page)
+     */
     public function questionsAction() {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -430,6 +497,9 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
+    /**
+     * @return void returns all the fruits and vegetables as a json response(used for the learn page)
+     */
     public function veggiesAction() {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -439,6 +509,10 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
+    /**
+     * @param $fruit
+     * @return void returns as response the fruit description found in the database as a json
+     */
     public function veggieAction($fruit) {
         header("Content-Type:application/json");
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {

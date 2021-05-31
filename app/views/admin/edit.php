@@ -26,7 +26,6 @@ $this->setSiteTitle('Edit Question'); ?>
             <textarea type="text" id="header" name="header"
                       placeholder="Header" class="form__input resize"><?= $this->question->header ?></textarea>
 
-            <!-- TODO: Refactor -->
             <div class="rem">
                 <label class="message" for="correct">Correct answer
                     <select id="correct" name="correct">
