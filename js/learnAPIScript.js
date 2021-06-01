@@ -23,7 +23,6 @@ async function generatePageContent(page) {
     }
     content += '</div>'
 
-    //TODO: delete Arrowroot
     content += '<div class="pagination">';
 
     if (page > 0) {

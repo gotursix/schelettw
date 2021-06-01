@@ -90,7 +90,6 @@ $m = array(
 $h = array(
     "Asparagus",
     "Apricots",
-    "Arrowroot",
     "Basil",
     "Cacao",
     "coriander",

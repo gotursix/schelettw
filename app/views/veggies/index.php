@@ -7,6 +7,7 @@
 <div class="container content center text-center">
     <h1 class="red">Fruits&Veggies</h1>
     <a href="<?= PROOT ?>admin/addVeggie" class="crud-button primary new margin-1">Add fruit/veggie</a>
+    <a href="<?= PROOT ?>admin" class="crud-button primary cancel">Cancel</a>
     <table>
         <thead>
         <tr>
@@ -19,7 +20,7 @@
         </tbody>
 
     </table>
-    <a href="<?= PROOT ?>admin" class="crud-button primary cancel">Cancel</a>
+
 
 
 

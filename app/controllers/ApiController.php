@@ -615,7 +615,6 @@ class ApiController extends Controller {
         $hard = array(
             "Asparagus",
             "Apricots",
-            "Arrowroot",
             "Basil",
             "Cacao",
             "coriander",
