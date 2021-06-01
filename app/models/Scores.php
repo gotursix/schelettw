@@ -39,5 +39,9 @@ class Scores extends Model {
         return (int)$this->query("SELECT  scores.points FROM scores WHERE scores.difficulty LIKE ?  ORDER BY scores.points DESC LIMIT 8 OFFSET 9", [$difficulty])->results()[0]->points;
     }
 
+    public function findAll() {
+        return $this->query("SELECT scores.id, scores.user_id, scores.points, scores.difficulty FROM scores ", [])->results();
+    }
+
 
 }

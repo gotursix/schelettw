@@ -124,4 +124,36 @@ class AdminController extends Controller {
         $this->view->render('veggies/index');
     }
 
+    public function exportUsersAction() {
+        $this->view->render('export/users');
+    }
+
+    public function exportScoresAction() {
+        $this->view->render('export/scores');
+    }
+
+    public function exportQuestionsAction() {
+        $this->view->render('export/questions');
+    }
+
+    public function exportFruitsAction() {
+        $this->view->render('export/fruits-veggies');
+    }
+
+    public function importUsersAction() {
+        $this->view->render('import/users');
+    }
+
+    public function importScoresAction() {
+        $this->view->render('import/scores');
+    }
+
+    public function importQuestionsAction() {
+        $this->view->render('import/questions');
+    }
+
+    public function importFruitsAction() {
+        $this->view->render('import/fruits-veggies');
+    }
+
 }

@@ -73,3 +73,36 @@
         width: 15rem;
     }
 }
+
+.warning {
+    background-color: #ff9800;
+}
+
+.warning:hover {
+    background: #e68a00;
+}
+
+#import, #export {
+    display: none;
+}
+
+.gray {
+    background-color: darkgrey;
+    margin: 5px 2px 2px;
+}
+
+.black {
+    background-color: #3f3f3f;
+    color: white;
+}
+
+.alert-success {
+    padding: 20px;
+    background-color: green;
+    color: white;
+}
+.alert-danger {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+}
