@@ -78,9 +78,6 @@
     background-color: #ff9800;
 }
 
-.warning:hover {
-    background: #e68a00;
-}
 
 #import, #export {
     display: none;
