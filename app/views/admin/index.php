@@ -10,7 +10,7 @@ if (!empty($_GET['status'])) {
     switch ($_GET['status']) {
         case 'succ':
             $statusType = 'alert-success';
-            $statusMsg = 'Members data has been imported successfully.';
+            $statusMsg = 'Data has been imported successfully.';
             break;
         case 'err':
             $statusType = 'alert-danger';

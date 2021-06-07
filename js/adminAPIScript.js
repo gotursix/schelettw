@@ -43,7 +43,7 @@ function generateTableHtmlForFruits(parsed) {
     return finalTable;
 }
 
-function showExport(){
+function showExport() {
     let x = document.getElementById("export");
     if (x.style.display === "block") {
         x.style.display = "none";
@@ -52,7 +52,7 @@ function showExport(){
     }
 }
 
-function showImport(){
+function showImport() {
     let x = document.getElementById("import");
     if (x.style.display === "block") {
         x.style.display = "none";
@@ -61,30 +61,21 @@ function showImport(){
     }
 }
 
-function formToggle(ID){
+function formToggle(ID) {
     let element = document.getElementById(ID);
-    if(element.style.display === "none"){
+    if (element.style.display === "none") {
         element.style.display = "block";
-    }else{
+    } else {
         element.style.display = "none";
     }
 }
 
-function chooseFile(proot, location){
-    console.log(proot);
-    console.log(location);
+function chooseFile(proot, location) {
     let content = '';
     content += '<div id="importFrm" style="display: none;">' +
         '<form action="' + proot + 'admin/' + location + '" method="post" encType="multipart/form-data">' +
-            '<input type="file" class="crud-button primary btn-width black margin-1" name="file"/> ' +
-            '<input type="submit" class="crud-button primary btn-width black" name="importSubmit" value="IMPORT NOW">' +
+        '<input type="file" class="crud-button primary btn-width black margin-1" name="file"/> ' +
+        '<input type="submit" class="crud-button primary btn-width black" name="importSubmit" value="IMPORT NOW">' +
         '</form></div>';
     document.getElementById("choosedFile").innerHTML = content;
 }
-    // <div id="importFrm" style="display: none;">
-    //     <form action="<?= PROOT ?>admin/importFruits" method="post" encType="multipart/form-data">
-    //         <input type="file" className="crud-button primary btn-width black margin-1" name="file"/>
-    //         <input type="submit" className="crud-button primary btn-width black" name="importSubmit" value="IMPORT NOW">
-    //     </form>
-    // </div>
-

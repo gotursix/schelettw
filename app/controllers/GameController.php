@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 
 use App\Models\Scores;
+use App\Models\Users;
 use Core\Controller;
 use Core\FH;
 use Core\H;
@@ -99,6 +100,7 @@ class GameController extends Controller {
                 Session::set("current_storyScore", 0);
             }
             $this->view->continent = $continent;
+            $this->view->user = Users::currentUser();
             $this->view->render('game/story');
         } else {
             Router::redirect("restricted/pageNotFound");

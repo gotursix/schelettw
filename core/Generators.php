@@ -35,7 +35,7 @@ class Generators {
         else return $parsed->results[$random]->urls->small;
     }
 
-    public static function getProfilePicture($photoId){
+    public static function getProfilePicture($photoId) {
         switch ($photoId) {
             case 1:
                 $profilePhoto = PROOT . "img/default1.png";
@@ -51,6 +51,27 @@ class Generators {
                 break;
             default:
                 $profilePhoto = PROOT . "img/default0.png";
+                break;
+        }
+        return $profilePhoto;
+    }
+
+    public static function getPhotoName($photoId) {
+        switch ($photoId) {
+            case 1:
+                $profilePhoto = "Sponge Bob";
+                break;
+            case 2:
+                $profilePhoto = "Jhonny Bravo";
+                break;
+            case 3:
+                $profilePhoto = "Candace";
+                break;
+            case 4:
+                $profilePhoto = "Powerful girls";
+                break;
+            default:
+                $profilePhoto = "The user";
                 break;
         }
         return $profilePhoto;

@@ -1,4 +1,4 @@
-async function generateGameSession(continent) {
+async function generateGameSession(continent, name) {
     let response = await fetch(url + `schelettw/api/getStory/` + continent);
     let gameSession = await response.json();
 
@@ -13,7 +13,7 @@ async function generateGameSession(continent) {
     }
 
     if (gameSession.status_message !== "Coming soon!" && gameSession.status_message !== "Game over") {
-        let content = `<h1 class=\"text-center red\">${gameSession.data.header}</h1><br>`;
+        let content = `<h1 class=\"text-center red\">${name + " " + gameSession.data.header}</h1><br>`;
         content += `<p>${gameSession.data.question} </p>`;
         content += '<img src="' + gameSession.data.photo + '" class="game-image" alt="game-image"><br><br>';
         content += '<button id ="' + gameSession.data.answer1 + `" class="buttonPurple" onclick="checkResponse('${gameSession.data.answer1}','${continent}')">` + gameSession.data.answer1 + '</button>';

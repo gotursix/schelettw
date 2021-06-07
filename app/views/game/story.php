@@ -1,6 +1,7 @@
 <?php
 
 use Core\FH;
+use Core\Generators;
 use Core\H;
 use Core\Session;
 
@@ -12,6 +13,11 @@ use Core\Session;
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 <div class="container content  center text-center margin-btm">
+    <?php
+    $profilePhoto = Generators::getProfilePicture($this->user->photoId);
+    $name = Generators::getPhotoName($this->user->photoId);
+    ?>
+    <img class="profilePhoto" src="<?=$profilePhoto?>" alt="profile photo">
     <div id="game-stats">
     </div>
     <div id="game-story">
@@ -19,7 +25,7 @@ use Core\Session;
 </div>
 <script>
     window.onload = function () {
-        generateGameSession("<?=$this->continent?>");
+        generateGameSession("<?=$this->continent?>", "<?=$name?>");
     };
 </script>
 <?php $this->end(); ?>
