@@ -4,7 +4,7 @@
     "Home" : ["*"],
     "Register" : ["login", "register", "index"],
     "Restricted" : ["*"],
-    "Game" : ["rankings"],
+    "Game" : ["rankings","games"],
     "Api" : ["*"]
   },
   "LoggedIn" : {

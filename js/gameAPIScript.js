@@ -1,7 +1,7 @@
 async function generateGameSession(difficulty) {
     let response = await fetch(url + `schelettw/api/game/` + difficulty);
     let gameSession = await response.json();
-    console.log(gameSession);
+    //console.log(gameSession);
     if (gameSession.status_message === "Game over") {
         window.location.replace(url + `schelettw/game/gameover/${gameSession.data}`);
     } else {

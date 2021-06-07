@@ -28,7 +28,10 @@ class GameController extends Controller {
 
     public function gamesAction() {
         //H::dnd($_SESSION);
-        $this->view->render('game/games');
+        if (H::currentUser()) {
+            $this->view->render('game/games');
+        } else $this->view->render('home/index');
+
     }
 
     public function comingAction() {
