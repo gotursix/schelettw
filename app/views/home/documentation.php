@@ -5,6 +5,8 @@
     <br>
     <br>
     <!--TODO: check html -->
+    <!--TODO: make demo vid -->
+
     <div id="toc_container">
         <p class="toc_title">Contents</p>
         <ul class="toc_list">
@@ -392,6 +394,7 @@
         </li>
         <br>
     </ul>
+    <!--TODO: update team contribution and decide what each nigga did -->
 
 </div>
 <?php $this->end(); ?>
