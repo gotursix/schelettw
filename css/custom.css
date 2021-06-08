@@ -712,3 +712,17 @@ p {
         transform: rotate(360deg) scale(0.5);
     }
 }
+
+.story-header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.smaller-img{
+    width: 30%;
+}
+
+.smaller-header{
+    width: 45%;
+}

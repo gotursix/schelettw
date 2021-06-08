@@ -13,8 +13,10 @@ async function generateGameSession(continent, name) {
     }
 
     if (gameSession.status_message !== "Coming soon!" && gameSession.status_message !== "Game over") {
-        let content = `<h1 class=\"text-center red\">${name + " " + gameSession.data.header}</h1><br>`;
-        content += `<p>${gameSession.data.question} </p>`;
+        let content = `<h2 class=\"text-center red\">${name + " " + gameSession.data.header}</h2><br>`;
+        document.getElementById("headerr").innerHTML = content;
+
+        content = `<p>${gameSession.data.question} </p>`;
         content += '<img src="' + gameSession.data.photo + '" class="game-image" alt="game-image"><br><br>';
         content += '<button id ="' + gameSession.data.answer1 + `" class="buttonPurple" onclick="checkResponse('${gameSession.data.answer1}','${continent}')">` + gameSession.data.answer1 + '</button>';
         content += '<button id ="' + gameSession.data.answer2 + `" class="buttonPurple" onclick="checkResponse('${gameSession.data.answer2}','${continent}')">` + gameSession.data.answer2 + '</button><br>';
