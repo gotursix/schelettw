@@ -102,57 +102,6 @@ class ApiController extends Controller {
             H::response(400, "Expected GET Request", NULL);
     }
 
-
-    /**
-     * @param $difficulty - the difficulty for which we want a new trivia game
-     * @return void - returns a new trivia question
-     */
-    public function storyAction($difficulty) {
-        header("Content-Type:application/json");
-        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            if ($difficulty == "session") {
-                H::response(200, "There is already an active game session", Session::get("gameSession"));
-            } else
-                if (in_array($difficulty, DIFFICULTIES) && Session::get("difficulty") == $difficulty) {
-                    if (!empty($difficulty)) {
-                        if (!Session::exists("gameSession")) {
-                            $curl = curl_init();
-                            curl_setopt_array($curl, array(
-                                CURLOPT_URL => API_DOMAIN . 'schelettw/api/fruits/' . $difficulty . '/4',
-                                CURLOPT_RETURNTRANSFER => true,
-                            ));
-                            $response = curl_exec($curl);
-                            curl_close($curl);
-                            $fruits = json_decode($response);
-                            $random = rand(0, 3);
-                            $correct_fruit = $fruits->data[$random]->name;
-
-                            $curl = curl_init();
-                            curl_setopt_array($curl, array(
-                                CURLOPT_URL => API_DOMAIN . 'schelettw/api/photo/' . $correct_fruit,
-                                CURLOPT_RETURNTRANSFER => true,
-                            ));
-                            $url = curl_exec($curl);
-                            curl_close($curl);
-                            $url = json_decode($url);
-                            $data = array(
-                                "correct" => $correct_fruit,
-                                "url" => $url->data->url,
-                                "difficulty" => $difficulty,
-                                "fruits" => $fruits->data
-                            );
-                            Session::set("gameSession", $data);
-                            H::response(200, "Here goes the data for a game session", $data);
-                        } else
-                            H::response(200, "There is already an active game session", Session::get("gameSession"));
-                    }
-                } else
-                    H::response(400, "Invalid Request", NULL);
-        } else
-            H::response(400, "Expected GET Request", NULL);
-    }
-
-
     /**
      * @param $status - true or false depending on the button
      * @api updates the session score for the hard difficulty

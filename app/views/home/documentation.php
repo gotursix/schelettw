@@ -4,7 +4,7 @@
     <h1 class="text-center red">Documentation</h1>
     <br>
     <br>
-
+    <!--TODO: check html -->
     <div id="toc_container">
         <p class="toc_title">Contents</p>
         <ul class="toc_list">
@@ -102,10 +102,12 @@
     <h2 class="margin-1 margin-top-ToC" id="OverallDescription">3. Overall description</h2>
     <h3 id="ProductPerspective" class="margin-top-ToC">3.1 Product perspective</h3>
     <p>
-        UPDATE TO THE CURRENT APPLICAION educational game etc...
+        <!--TODO: UPDATE TO THE CURRENT APPLICAION educational game etc... -->
     </p>
 
     <h3 id="ProductFunctions" class="margin-top-ToC">3.2 Product functions</h3>
+    <!--TODO: list features -->
+
     <ul class="margin-1">
         <li>register</li>
         <li>login/logout</li>
@@ -198,6 +200,8 @@
 
 
     <h2 class="margin-1 margin-top-ToC" id="SystemFeatures">5. System features</h2>
+    <!--TODO: ADD FEATUres description -->
+
 
     <h3 id="RegistrationLogin" class="margin-top-ToC">5.1 Registration/Login/Logout</h3>
     <p>
