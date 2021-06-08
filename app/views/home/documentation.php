@@ -30,7 +30,7 @@
             </li>
             <li><a href="#SystemFeatures">5 System features</a>
                 <ul class="toc_list">
-                    <li><a href="#RegistrationLogin">5.1 Registration/Login forms</a></li>
+                    <li><a href="#RegistrationLogin">5.1 Registration/Login/logout</a></li>
                     <li><a href="#Rankings">5.2 Rankings page</a>
                         <ul class="toc_list">
                             <li><a href="#RankingsRSS">5.2.1 Rankings RSS flux.</a></li>
@@ -102,8 +102,7 @@
     <h2 class="margin-1 margin-top-ToC" id="OverallDescription">3. Overall description</h2>
     <h3 id="ProductPerspective" class="margin-top-ToC">3.1 Product perspective</h3>
     <p>
-        Our application is a game that depends on the external Unsplash API for receiving photos
-        <img src="<?= PROOT ?>img/UseCaseDiagram1.png" alt="UseCase" class="useCase-image">
+        UPDATE TO THE CURRENT APPLICAION educational game etc...
     </p>
 
     <h3 id="ProductFunctions" class="margin-top-ToC">3.2 Product functions</h3>
@@ -123,7 +122,8 @@
             <li>
                 can access every page of the web app except login and register
             </li>
-        </ul><br>
+        </ul>
+        <br>
         <li class="no-bullets">Logged out users</li>
         <ul>
             <li>can access register, login, instructions, and rankings</li>
@@ -158,7 +158,15 @@
     </p>
 
     <h2 class="margin-1 margin-top-ToC" id="ExternalInterfaceRequirements">4. External interface requirements</h2>
+    <iframe src="<?= PROOT ?>img/siteMap.png" height="800px" width="100%" title="Site map"></iframe>
     <h3 id="UserInterfaces" class="margin-top-ToC">4.1 User interfaces</h3>
+    <h4>Use case diagrams</h4>
+    <h5>Normal user</h5>
+    <img src="<?= PROOT ?>img/user-useCase.png" alt="use case user diagram">
+    <h5>Admin</h5>
+    <img src="<?= PROOT ?>img/admin-useCase.png" alt="use case admin diagram">
+    <h4 class="margin-top-ToC">Api diagram</h4>
+    <img src="<?= PROOT ?>img/api.png" alt="internal api diagram">
     <p>
         The main way of interacting with our website is by the navigation part which depends on the state of the user
         (logged in or not).
@@ -174,8 +182,12 @@
         users, user sessions and scores.
         For receiving the photos we use the Unsplash API available at https://api.unsplash.com/, the API returns the
         responses in JSON format.
+        <br>
+        For the photos we are using the external open source Unsplash API
+        <br>
+        For the descriptions of the fruits we are using the external open source Wikipedia API
     </p>
-
+    <img src="<?= PROOT ?>img/database-diagram.png" alt="internal api diagram">
 
     <h3 id="CommunicationsInterfaces" class="margin-top-ToC">4.3 Communications interfaces</h3>
     <ul class="margin-1">
@@ -187,13 +199,23 @@
 
     <h2 class="margin-1 margin-top-ToC" id="SystemFeatures">5. System features</h2>
 
-    <h3 id="RegistrationLogin" class="margin-top-ToC">5.1 Registration/Login forms</h3>
+    <h3 id="RegistrationLogin" class="margin-top-ToC">5.1 Registration/Login/Logout</h3>
     <p>
         In order to make the HTTP communication stateful we use cookies and sessions to make the users able to create an
         account and maintain their session stable.
     </p>
-
-
+    <h4>Register page</h4>
+    <p>
+        This page contains a form that enables users to make an account to our website. We are also making sure to
+        validate
+        the user input (matching passwords, email, username that doesn't already exists in the database).
+    </p>
+    <h4> Login page</h4>
+    <p>This page contains a form that allows the user to log in, also providing the user to check or uncheck the
+        remember me feature. The user can log in with either admin, or normal user roles (ACL).
+    </p>
+    <h4>Logout</h4>
+    <p>It is just a button in our menu that triggers the log out action.(Deletes the existing session)</p>
     <h3 id="Rankings" class="margin-top-ToC">5.2 Rankings page</h3>
     <p>
         This page lists top players by their scores and by difficulty level. If no difficulty level is selected then the
@@ -305,22 +327,32 @@
     <h3 class="margin-1 margin-top-ToC" id="References">7. References</h3>
     <ol>
         <li><a href="https://unsplash.com/documentation" target=”_blank”>Unsplash API documentation</a></li>
-        <li><a href="https://profs.info.uaic.ro/~andrei.panu/" target=”_blank”>Dr. Andrei Panu Web Technologies course and laboratory</a></li>
-        <li><a href="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-film.html" target=”_blank”>UAIC computer science Web Technologies course page</a></li>
+        <li><a href="https://profs.info.uaic.ro/~andrei.panu/" target=”_blank”>Dr. Andrei Panu Web Technologies course
+                and laboratory</a></li>
+        <li><a href="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-film.html" target=”_blank”>UAIC computer
+                science Web Technologies course page</a></li>
         <li><a href=" https://laravel.com/docs/8.x/csrf" target=”_blank”>CSRF protection</a></li>
-        <li><a href="https://stackoverflow.com/questions/19584189/when-used-correctly-is-htmlspecialchars-sufficient-for-protection-against-all-x" target=”_blank”>Data sanitizing</a></li>
-        <li><a href="https://stackoverflow.com/questions/8263371/how-can-prepared-statements-protect-from-sql-injection-attacks" target=”_blank”>SQL injections and prepared statements</a></li>
+        <li>
+            <a href="https://stackoverflow.com/questions/19584189/when-used-correctly-is-htmlspecialchars-sufficient-for-protection-against-all-x"
+               target=”_blank”>Data sanitizing</a></li>
+        <li>
+            <a href="https://stackoverflow.com/questions/8263371/how-can-prepared-statements-protect-from-sql-injection-attacks"
+               target=”_blank”>SQL injections and prepared statements</a></li>
         <li><a href="https://www.php.net/docs.php" target=”_blank”>PHP documentation</a></li>
         <li><a href="https://www.w3schools.com/js/DEFAULT.asp" target=”_blank”>W3Schools javascript</a></li>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target=”_blank”>JavaScript MDN Web documentation</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target=”_blank”>JavaScript MDN Web
+                documentation</a></li>
         <li><a href="https://www.php.net/manual/en/book.json.php" target=”_blank”>JSON in PHP</a></li>
-    </ol><br>
+    </ol>
+    <br>
     <h3 class="margin-1 margin-top-ToC" id="OpenSource">8. Open source design inspiration</h3>
     <li><a href="https://codepen.io/bassetts/pen/RqrPWG" target=”_blank”>Learning page loading animation</a></li>
-    <li><a href="https://gist.github.com/vivom/d51102dc961e01be2fda003b5481fd00" target=”_blank”>Pure css open source map (continent story page)</a></li>
+    <li><a href="https://gist.github.com/vivom/d51102dc961e01be2fda003b5481fd00" target=”_blank”>Pure css open source
+            map (continent story page)</a></li>
     <ol>
 
-    </ol><br>
+    </ol>
+    <br>
 
     <h3 class="margin-1 margin-top-ToC" id="Contribution">9. Team members contribution:</h3>
     <ul>
@@ -333,7 +365,8 @@
                 <li>Bad Token page: 100%</li>
                 <li>Login/Register: 40%</li>
             </ul>
-        </li><br>
+        </li>
+        <br>
         <li>Șerban Mihai
             <ul class="no-bullets">
                 <li>Documentation page: 33.3%</li>
@@ -342,7 +375,8 @@
                 <li>Nav bar: 30%</li>
                 <li>Page Not Found: 100%</li>
             </ul>
-        </li><br>
+        </li>
+        <br>
         <li>Teodorovici Gavril-Anton
             <ul class="no-bullets">
                 <li>Documentation page: 33.3%</li>
@@ -351,7 +385,8 @@
                 <li>Game/Instruction CSS: 70%</li>
                 <li>Access restricted: 100%</li>
             </ul>
-        </li><br>
+        </li>
+        <br>
     </ul>
 
 </div>
