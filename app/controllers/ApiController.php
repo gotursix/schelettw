@@ -273,7 +273,7 @@ class ApiController extends Controller {
                     //Get photo
                     $curl = curl_init();
                     curl_setopt_array($curl, array(
-                        CURLOPT_URL => API_DOMAIN . 'schelettw/api/photo/' . $questions[Session::get("questionIndex")]->photo,
+                        CURLOPT_URL => API_DOMAIN . 'schelettw/api/anyphoto/' . $questions[Session::get("questionIndex")]->photo,
                         CURLOPT_RETURNTRANSFER => true,
                     ));
                     $url = curl_exec($curl);
@@ -349,11 +349,11 @@ class ApiController extends Controller {
                 }
                 if ($newScore->points != 0)
                     $newScore->save();
-                FH::updateRSS(H::currentUser()->username, $newScore->points, Session::get("continent"), date("F j, Y, g:i a"));
                 Session::delete("continent");
                 Session::delete("storyScore");
                 Session::delete("questionIndex");
                 Session::delete("current_storyScore");
+                FH::updateRSS(H::currentUser()->username, $newScore->points, Session::get("continent"), date("F j, Y, g:i a"));
                 H::response(200, "Game ended", NULL);
             } else {
                 H::response(404, "No current game in progress", NULL);
@@ -461,6 +461,25 @@ class ApiController extends Controller {
                 H::response(200, "Fruit is in JSON ", $data);
             } else
                 H::response(404, "Fruit not found!", NULL);
+        } else
+            H::response(400, "Expected GET Request", NULL);
+    }
+
+
+    /**
+     * @param $fruit - fruit to get the photo for
+     * @param string $quality - regular (high quality), anything else lower quality(used for thumbnails)
+     * @returns void returns the photo link taken off unsplash API
+     */
+    public function anyphotoAction($fruit, $quality = "regular") {
+        header("Content-Type:application/json");
+        if ($quality == null)
+            $quality = "regular";
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $data = array(
+                "name" => ucfirst($fruit),
+                "url" => htmlspecialchars(Generators::generateImageHelper($fruit, $quality)));
+            H::response(200, "Picture ", $data);
         } else
             H::response(400, "Expected GET Request", NULL);
     }

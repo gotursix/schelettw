@@ -68,7 +68,7 @@ class Generators {
                 $profilePhoto = "Candace";
                 break;
             case 4:
-                $profilePhoto = "Powerful girls";
+                $profilePhoto = "PowerPuff girls";
                 break;
             default:
                 $profilePhoto = "The user";

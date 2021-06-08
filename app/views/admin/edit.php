@@ -13,7 +13,7 @@ $this->setSiteTitle('Edit Question'); ?>
         <textarea type="text" id="question" name="question"
                   placeholder="Question"
                   class="form__input resize resize-question"><?= $this->question->question ?></textarea>
-            <input type="text" id="photo" name="photo" value="<?= $this->question->answer1 ?>"
+            <input type="text" id="photo" name="photo" value="<?= $this->question->photo ?>"
                    placeholder="Photo" class="form__input"/>
             <input type="text" id="answer1" name="answer1" value="<?= $this->question->answer1 ?>"
                    placeholder="Answer 1" class="form__input"/>

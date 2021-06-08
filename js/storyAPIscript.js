@@ -13,7 +13,7 @@ async function generateGameSession(continent, name) {
     }
 
     if (gameSession.status_message !== "Coming soon!" && gameSession.status_message !== "Game over") {
-        let content = `<h2 class=\"text-center red\">${name + " " + gameSession.data.header}</h2><br>`;
+        let content = `<h2 class=\"text-center red\">${gameSession.data.header.replace("Person", name)}</h2><br>`;
         document.getElementById("headerr").innerHTML = content;
 
         content = `<p>${gameSession.data.question} </p>`;
