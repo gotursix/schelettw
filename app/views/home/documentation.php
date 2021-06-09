@@ -202,6 +202,7 @@
     <img src="<?= PROOT ?>img/admin-useCase.png" alt="use case admin diagram">
     <h4 class="margin-top-ToC">Api diagram</h4>
     <img src="<?= PROOT ?>img/api.png" alt="internal api diagram">
+
     <p>
         The main way of interacting with our website is by the navigation part which depends on the state of the user
         (logged in or not).
@@ -210,6 +211,113 @@
         logged out users. Register and login page are available only to log out users and the Log Out action can be done
         only by a logged user.
     </p>
+
+    <h4> API endpoint description</h4>
+    <div>
+        <h5>API</h5>
+        <p>
+            This is the main controller of the API where all of the endpoints of our REST api is placed.
+        </p>
+        <br>
+
+        <h5>External calls to APIs</h5>
+        <p>
+            We have the description endpoint that returns the first paragraph of any fruit that we search in wikipedia.
+        </p>
+        <p>
+            We have the photo endpoint that calls the Unsplash API for the photos that we use in our entire website.
+        </p>
+        <br>
+        <p>
+            We have the photo anyPhoto that calls the Unsplash API  (the link from the API and the name of the fruit).
+        </p>
+        <br>
+
+        <h5>Rankings</h5>
+        <p>
+            This endpoint return a list of users with their rank in our database for a specific difficulty.
+        </p>
+        <br>
+
+        <h5>Fruits</h5>
+        <p>
+            This endpoint gets as parameters the difficulty and a count (number of fruits that you want to get)
+            and returns a list of fruits .
+        </p>
+        <br>
+
+        <h5>veggie</h5>
+        <p>
+            Gets one fruit and returns the description from the database.
+        </p>
+        <br>
+
+        <h5>veggies</h5>
+        <p>
+            gets all of the fruits that have a description from the database.
+        </p>
+        <br>
+
+
+        <h5>getStory</h5>
+        <p>
+            Returns a question for a continent that is passed as a parameter.
+        </p>
+        <br>
+
+
+        <h5>storyLogic</h5>
+        <p>
+           Returns true or false. True if the answer to a question was correct false otherwise.
+        </p>
+        <br>
+
+        <h5>storyUpdate</h5>
+        <p>
+            Updates the game score in the session and it gets a status as parameter (the status represents
+            wheather the response for the question was correct or not) it returns a boolean.
+        </p>
+        <br>
+
+        <h5>endStory</h5>
+        <p>
+            Updates the score when the game is over and redirects the user to the gameOver page
+        </p>
+        <br>
+
+        <h5>game</h5>
+        <p>
+            Returns answers for a difficulty (as a parameter) and a photo for the trivia game.
+        </p>
+        <br>
+
+        <h5>update</h5>
+        <p>
+            updates the score on the session for the difficulty hard because it needs to stay on the same question untill you get it right.
+        </p>
+        <br>
+
+        <h5>next</h5>
+        <p>
+            updates the score on the session for the trivia game.
+        </p>
+        <br>
+
+        <h5>logic</h5>
+        <p>
+            returns true or false for the current question in the session for the trivia game.
+        </p>
+        <br>
+
+        <h5>end</h5>
+        <p>
+            Ends the current trivia game, updates the high score if it's necessary or create a new record.
+        </p>
+        <br>
+
+
+
+    </div>
 
     <h3 id="SoftwareInterfaces" class="margin-top-ToC">4.2 Software interfaces</h3>
     <p>
@@ -513,15 +621,16 @@
     <br>
 
     <h3 class="margin-1 margin-top-ToC" id="Contribution">9. Team members contribution:</h3>
+    <h4>Front end:</h4>
     <ul>
         <li>Grigorean Valentin
             <ul class="no-bullets">
                 <li>Documentation page: 33.3%</li>
-                <li>Project Arhitecture: 100%</li>
                 <li>Ranking Page: 100%</li>
-                <li>Nav bar: 70%</li>
+                <li>Nav bar: 100%</li>
                 <li>Bad Token page: 100%</li>
                 <li>Login/Register: 40%</li>
+                <li>story game: 30%</li>
             </ul>
         </li>
         <li>Șerban Mihai
@@ -529,8 +638,12 @@
                 <li>Documentation page: 33.3%</li>
                 <li>Instruction Page(javascript 100%, css 30%)</li>
                 <li>Game Page(javascript, css 30%)</li>
-                <li>Nav bar: 30%</li>
                 <li>Page Not Found: 100%</li>
+                <li>learn page: 30%</li>
+                <li>admin: 100%</li>
+                <li>profile page: 100%</li>
+                <li>continent map: 100%</li>
+                <li>story game: 70%</li>
             </ul>
         </li>
         <li>Teodorovici Gavril-Anton
@@ -540,6 +653,49 @@
                 <li>Footer: 100%</li>
                 <li>Game/Instruction CSS: 70%</li>
                 <li>Access restricted: 100%</li>
+                <li>learn page: 70%</li>
+            </ul>
+        </li>
+    </ul>
+    <br>
+    <h4>Back end:</h4>
+    <ul>
+        <li>Grigorean Valentin
+            <ul class="no-bullets">
+                <li>Project Arhitecture: 70%</li>
+                <li>Ranking Page: 80%</li>
+                <li>Admin: 50%</li>
+                <li>Validator: 60%</li>
+                <li>Login/Register: 40%</li>
+                <li>Story game api: 80%</li>
+                <li>Trivia game api: 70%</li>
+                <li>Rankings game api: 50%</li>
+                <li>Security: 80%</li>
+            </ul>
+        </li>
+        <li>Șerban Mihai
+            <ul class="no-bullets">
+                <li>Project Arhitecture: 20%</li>
+                <li>Ranking Page: 20%</li>
+                <li>Validator: 40%</li>
+                <li>ACL: 100%</li>
+                <li>Learn: 50%</li>
+                <li>Story game api: 20%</li>
+                <li>Trivia game api 30%</li>
+                <li>Rankings GAME API: 25%</li>
+                <li>SECURITY: 20%</li>
+                <li>Profile page: 100%</li>
+                <li>Instruction page</li>
+            </ul>
+        </li>
+        <li>Teodorovici Gavril-Anton
+            <ul class="no-bullets">
+                <li>Project Arhitecture: 10%</li>
+                <li>Rss: 100%</li>
+                <li>Amin: 50%</li>
+                <li>Learn: 50%</li>
+                <li>Learn about: 100%</li>
+                <li>Rankings game api: 25%</li>
             </ul>
         </li>
     </ul>
