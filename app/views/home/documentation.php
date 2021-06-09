@@ -33,13 +33,11 @@
             <li><a href="#SystemFeatures">5 System features</a>
                 <ul class="toc_list">
                     <li><a href="#RegistrationLogin">5.1 Registration/Login/logout</a></li>
-                    <li><a href="#Rankings">5.2 Rankings page</a>
-                        <ul class="toc_list">
-                            <li><a href="#RankingsRSS">5.2.1 Rankings RSS flux.</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#Instruction">5.3 Instruction page</a></li>
-                    <li><a href="#Game">5.4 Game page</a></li>
+                    <li><a href="#Admin">5.2 Admin</a></li>
+                    <li><a href="#Game">5.3 Game</a></li>
+                    <li><a href="#Home">5.4 Home</a></li>
+                    <li><a href="#Restricted">5.5 Restricted</a></li>
+                    <li><a href="#User">5.6 User</a></li>
                 </ul>
             </li>
             <li><a href="#Security">6 Security features</a>
@@ -104,19 +102,38 @@
     <h2 class="margin-1 margin-top-ToC" id="OverallDescription">3. Overall description</h2>
     <h3 id="ProductPerspective" class="margin-top-ToC">3.1 Product perspective</h3>
     <p>
-        <!--TODO: UPDATE TO THE CURRENT APPLICAION educational game etc... -->
+        For the purpose of educating the little kids about the fruits and vegetables our web
+        application was created with 2 thing in our minds:
+        <br>
+        1. Learning:
+        <br>
+        This is achieved by 2 features from our website: the learning page, and the story mode
+        game. The learning page is the place where the kids can go and read interesting informations
+        about the fruits and vegetables that they know or don't know while the story game is the place
+        where they can learn more about the different continents and the fruits that we find in them
+        by an interactive story (created by the users with the admin accounts)
+        <br>
+        2. Testing knowledge:
+        <br>
+        This is achieved by the trivia and the story games.
+        <br>
+        The trivia game consists in randomly generated photos of fruits that they have to guess
+        (the fruits are generated from a JSON file and are selected by the difficulty).
+        <br>
+        The Story game is literally a story. An interactive way to test the kids capability to
+        read and understand a little portion of text from where they can find the answer to the
+        question that will be given to them.
     </p>
 
     <h3 id="ProductFunctions" class="margin-top-ToC">3.2 Product functions</h3>
-    <!--TODO: list features -->
-
     <ul class="margin-1">
         <li>register</li>
         <li>login/logout</li>
-        <li>multi-language support</li>
         <li>rankings as a page and as an RSS flux</li>
-        <li>instructions page (live example of the game)</li>
-        <li>play the game</li>
+        <li>instructions page (live example of the trivia game)</li>
+        <li>story game</li>
+        <li>trivia game</li>
+        <li>admin </li>
     </ul>
 
     <h3 class="margin-1 margin-top-ToC" id="UserClassesAndChar">3.3 User classes and characteristics</h3>
@@ -202,8 +219,6 @@
 
 
     <h2 class="margin-1 margin-top-ToC" id="SystemFeatures">5. System features</h2>
-    <!--TODO: ADD FEATUres description -->
-
 
     <h3 id="RegistrationLogin" class="margin-top-ToC">5.1 Registration/Login/Logout</h3>
     <p>
@@ -218,32 +233,69 @@
     </p>
     <h4> Login page</h4>
     <p>This page contains a form that allows the user to log in, also providing the user to check or uncheck the
-        remember me feature. The user can log in with either admin, or normal user roles (ACL).
+        remember me feature. After the user logs in the interface is displayed accordingly to his user rank
+        (admin/normal user), this is achieved with ACL.
     </p>
     <h4>Logout</h4>
     <p>It is just a button in our menu that triggers the log out action.(Deletes the existing session)</p>
-    <h3 id="Rankings" class="margin-top-ToC">5.2 Rankings page</h3>
+
+    <h3 id="Admin" class="margin-top-ToC">5.2 Admin page</h3>
     <p>
-        This page lists top players by their scores and by difficulty level. If no difficulty level is selected then the
-        page will contain the best scores from all levels.
+        This page is a graphical interface where the admin can add new stories and custom details about the fruits and
+        vegetables. In order to add a story he need to make a new question.
     </p>
 
-
-    <h3 id="RankingsRSS" class="margin-top-ToC">5.2.1 Rankings RSS flux.</h3>
+    <h4 id="admin-question" class="margin-top-ToC">Add/Edit/Delete questions.</h4>
     <p>
-        There would be an option for the users to export the rankings page as an RSS flux (XML) in order to keep them up
-        to date.
+        The admin will have the option to add a new question by filling a form that contains the fields:
+        Question, Photo, then the answers (4 in total), The story and finally the correct answer and the continent for
+        which the question is applied.
+        <br>
+        After the admin adds a question(at least one) a list of questions will be displayed to him. The admin will see
+        them in table in which he will have the option to
+        delete or to edit each question.
     </p>
 
-
-    <h3 id="Instruction" class="margin-top-ToC">5.3 Instruction page</h3>
+    <h4 id="admin-fruit" class="margin-top-ToC">Add/Edit/Delete fruit description.</h4>
     <p>
-        Here you can find a description of the game with an example of how the game works (javascript) and the
-        differences from one level to another.
+        When the admin press the add fruit description button he will be redirected to the fruits and Veggies page, from
+        where he can choose add a fruit
+        using a form, delete and edit the existing fruits that are displayed in a table.
+        <br>
+        After the admin adds a fruit description (at least one) a list of fruits will be displayed to him. The admin
+        will see them in table in which he will have the option to
+        delete or to edit each fruit.
     </p>
 
+    <h4 id="admin-ban" class="margin-top-ToC">Ban/Unban users.</h4>
+    <p>
+        The admin will have the list with all of the users (in our database) and will have the option to
+        ban or unban users.
 
-    <h3 id="Game" class="margin-top-ToC">5.4 Game page</h3>
+    </p>
+
+    <h4 id="admin-import" class="margin-top-ToC">Import/Export data.</h4>
+    <p>
+        The admin can import and export csv files in/out of our database for all of our tables.
+    </p>
+
+    <h3 id="Game" class="margin-top-ToC">5.3 Game page</h3>
+    <p>
+        On this page the user can choose one of the available games: Story mode, Trivia.
+    </p>
+    <h4 class="margin-top-ToC">Story mode</h4>
+    <p>
+        In this page the user will choose one continent from an interactive world map.
+        When the user chooses a continent for which there are no stories he will see the Coming soon page
+        <br>
+        Otherwise the game stars:
+    <p>
+        The user character will travel to that continent and the story will begin.
+        Each part of a story ends with a question that the user has to answer in order to get to the next
+        question and finish the story.
+    </p>
+    </p>
+    <h4 class="margin-top-ToC"> Trivia game</h4>
     <p>
         The game logic was implemented using PHP, javascript and Unsplash API.
         First, the player has to select the difficulty of the game. If he does not then he would be warned to choose a
@@ -253,6 +305,89 @@
         correct answer, for the medium and hard difficulty you won’t have the correct answer until you lose all of your
         lives.
     </p>
+
+    <h4 class="margin-top-ToC"> Rankings</h4>
+    <p>
+        This page lists top players by their scores and by difficulty level. If no difficulty level is selected then the
+        page will contain the best scores from all levels.
+    </p>
+
+
+    <h5 class="margin-top-ToC"> Rankings RSS flux.</h5>
+    <p>
+       On the ranking page there is a RSS feed button and when pressed the RSS flux is updated and you get redirected to the xml file.
+    </p>
+
+
+    <h3 id="Home" class="margin-top-ToC">5.4 Home</h3>
+    <p>
+       By default the home page is the game pages which can be accessed only by an existing user, but becase we want
+        our website to be educational we provide the learning options to all of the website visitors.
+    </p>
+    <h4 class="margin-top-ToC">Learn page</h4>
+    <p>
+        This page contains all of the fruits and vegetables paginated in a card style manner.
+        <br> For each fruit/veggie card there is a learn more option that links to the learn about page
+        <br> The photos are taken from the Unsplash API
+    </p>
+    <h4 class="margin-top-ToC">Learn about</h4>
+    <p>
+        This page contains the information for a selected fruit/veggie.
+        <br>
+        The information that is displayed is the following:
+        <ul>
+            <li>Item name</li>
+            <li>Item difficulty (easy/medium/hard)</li>
+            <li>Photo (generated dynamically from the Unsplash API)<</li>
+            <li>General info (generated dynamically from the Wikipedia API)</li>
+            <li>Custom description (only for the fruits that have a description added by the admin in the database)</li>
+        </ul>
+
+    </p>
+
+
+    <h4 id="Instruction" class="margin-top-ToC">Instruction page</h4>
+    <p>
+        Here you can find a description of the game with an example of how the game works (javascript) and the
+        differences from one level to another.
+    </p>
+
+    <h3 id="Restricted" class="margin-top-ToC">5.5 Restricted</h3>
+    <p>
+       All the restricted pages are custom pages for the unwanted behaviors from our users or from our
+       APIs
+    </p>
+    <h4 class="margin-top-ToC">Sneaky boy</h4>
+    <p> This page is a feature not a bug. When cross side request forgery happens or, when the user session gets corrupted
+        this page is displayed to the user.
+    </p>
+    <h4 class="margin-top-ToC">Page not found</h4>
+    <p> Custom page for the 404 Page not found http response (for the game or story API or the external APIs).
+    </p>
+    <h4 class="margin-top-ToC">Access Restricted</h4>
+    <p> Any time a user is not logged in and tries to access resources from our website this page should
+        be displayed to our user.
+    </p>
+
+    <h3 id="User" class="margin-top-ToC">5.6 User</h3>
+    <p>
+        This page display the profile page of a user (most of the information that our website stores about them)
+        <br> From here the user can change his profile photo (AKA the character that he chose in the registration process)
+        <br> The user can see his high scores for the trivia game.
+    </p>
+    <h4 class="margin-top-ToC">Sneaky boy</h4>
+    <p> This page is a feature not a bug. When cross side request forgery happens or, when the user session gets corrupted
+        this page is displayed to the user.
+    </p>
+    <h4 class="margin-top-ToC">Page not found</h4>
+    <p> Custom page for the 404 Page not found http response (for the game or story API or the external APIs).
+    </p>
+    <h4 class="margin-top-ToC">Access Restricted</h4>
+    <p> Any time a user is not logged in and tries to access resources from our website this page should
+        be displayed to our user.
+    </p>
+
+
 
     <h2 class="margin-1 margin-top-ToC" id="Security">6. Security features</h2>
     <h3 id="htacces" class="margin-top-ToC">6.1 .htaccess file</h3>
