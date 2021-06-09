@@ -188,12 +188,12 @@ class ApiController extends Controller {
                 }
                 if ($newScore->points)
                     $newScore->save();
-                FH::updateRSS(H::currentUser()->username, $newScore->points, Session::get("difficulty"), date("F j, Y, g:i a"));
                 Session::delete("gameSession");
                 Session::delete("difficulty");
                 Session::delete("score");
                 Session::delete("current_score");
                 Session::delete("lives");
+                FH::updateRSS(H::currentUser()->username, $newScore->points, Session::get("difficulty"), date("F j, Y, g:i a"));
                 H::response(200, "Game ended", NULL);
             } else {
                 H::response(404, "No current game in progress", NULL);

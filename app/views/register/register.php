@@ -9,7 +9,8 @@ use Core\FH;
     <div class="login-page">
         <div class="form">
             <h2 class="text-center-r">Register now!</h2>
-            <form class="register-form" action="" method="POST">
+            <form class="register-form" action="#" method="POST">
+                <script>document.querySelector("form").setAttribute("action", "")</script>
                 <?= FH::csrfInput() ?>
                 <input type="text" id="fname" name="fname" value="<?= $this->newUser->fname ?>"
                        placeholder="First name"/>
@@ -23,22 +24,21 @@ use Core\FH;
                        placeholder="Password"/>
                 <input type="password" id="confirm" name="confirm" value="<?= $this->newUser->getConfirm() ?>"
                        placeholder="Confirm password"/>
-                <label class=" profileLabel" for="photoId">Choose a character
-                    <select id="correct" name="photoId">
-                        <option value="1">
-                            Sponge Bob
-                        </option>
-                        <option value="2">
-                            Jhonny Bravo
-                        </option>
-                        <option value="3">
-                            Candace
-                        </option>
-                        <option value="4">
-                            Powerful girls
-                        </option>
-                    </select>
-                </label>
+
+                <label for="correct">Choose a character</label><select id="correct" name="photoId">
+                    <option value="1">
+                        Sponge Bob
+                    </option>
+                    <option value="2">
+                        Jhonny Bravo
+                    </option>
+                    <option value="3">
+                        Candace
+                    </option>
+                    <option value="4">
+                        Powerful girls
+                    </option>
+                </select>
                 <div class="bg-danger"><?= FH::displayErrors($this->displayErrors) ?></div>
                 <button class="mrg-top" type="submit">Register</button>
                 <p class="message">Already registered? <a href="<?= PROOT ?>register/login">Sign In</a></p>

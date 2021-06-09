@@ -7,7 +7,9 @@ use Core\FH;
     <div class="login-page">
         <div class="form">
             <h2 class="text-center-r">Log in</h2>
-            <form class="login-form" action="" method="POST">
+            <form class="login-form" action="#" method="POST">
+                <script>document.querySelector("form").setAttribute("action", "")</script>
+
                 <?= FH::csrfInput() ?>
                 <input type="text" id="username" name="username" value="<?= $this->login->username ?>"
                        placeholder="Username"/>

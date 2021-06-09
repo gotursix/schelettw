@@ -9,6 +9,7 @@ $this->setSiteTitle('Ban or unban users'); ?>
 <?php $this->start('body'); ?>
 <div class="container content center text-center">
     <h1 class="purple margin-1">Users</h1>
+    <a href="<?= PROOT ?>admin" class="crud-button primary cancel margin-1">Cancel</a>
     <table>
         <thead>
         <tr>
@@ -20,9 +21,8 @@ $this->setSiteTitle('Ban or unban users'); ?>
         <tbody id="bodyToSet">
         <?= Generators::generateUsersTable($this->users); ?>
         </tbody>
-        <a href="<?= PROOT ?>admin" class="crud-button primary cancel margin-1">Cancel</a>
-
     </table>
+
 
 </div>
 

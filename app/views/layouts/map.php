@@ -36,8 +36,9 @@ use Core\Generators;
 </div>
 
 
-<div class="container content center text-center"">
-<?= $this->content('body'); ?>
+<div class="container content center text-center">
+    <?= $this->content('body'); ?>
+</div>
 
 
 <footer class="footer text-center">
