@@ -5,6 +5,8 @@
     <br>
     <br>
     <div id="toc_container">
+        <a id="easy" href="https://www.youtube.com/watch?v=zFET4xQ8n-c"
+           class="difficulty-button difficulty-button-fromDifficulty button-easy" target="_blank">Demo video</a>
         <p class="toc_title">Contents</p>
         <ul class="toc_list">
             <li><a href="#Abstract">1 Abstract</a></li>
