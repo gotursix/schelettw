@@ -104,7 +104,7 @@ class ApiController extends Controller {
 
     /**
      * @param $status - true or false depending on the button
-     * @api updates the session score for the hard difficulty
+     * @api updates the session score
      */
     public function updateAction($status) {
         header("Content-Type:application/json");
