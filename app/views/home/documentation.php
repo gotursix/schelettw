@@ -651,7 +651,7 @@
                 <li>Footer: 100%</li>
                 <li>Game/Instruction CSS: 70%</li>
                 <li>Access restricted: 100%</li>
-                <li>learn page: 70%</li>
+                <li>Learn page: 70%</li>
             </ul>
         </li>
     </ul>
@@ -690,7 +690,7 @@
             <ul class="no-bullets">
                 <li>Project Arhitecture: 10%</li>
                 <li>Rss: 100%</li>
-                <li>Amin: 50%</li>
+                <li>Admin: 50%</li>
                 <li>Learn: 50%</li>
                 <li>Learn about: 100%</li>
                 <li>Rankings game api: 25%</li>
