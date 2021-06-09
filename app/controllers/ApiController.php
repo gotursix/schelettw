@@ -211,7 +211,6 @@ class ApiController extends Controller {
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $questions = new Questions();
             $questions = $questions->findAllForContinent($continent);
-            //H::dnd(count($questions));
             if (count($questions) == 0) {
                 H::response(202, "Coming soon!", NULL);
             } else {
@@ -230,7 +229,6 @@ class ApiController extends Controller {
                     $url = json_decode($url);
                     $questions[Session::get("questionIndex")]->photo = $url->data->url;
                     $questions[Session::get("questionIndex")]->score = $score;
-                    //H::dnd($questions[Session::get("questionIndex")]);
                     H::response(200, "Current question", $questions[Session::get("questionIndex")]);
                 } else H::response(200, "Game over", $score);
             }

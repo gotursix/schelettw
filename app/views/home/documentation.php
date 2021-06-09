@@ -4,7 +4,6 @@
     <h1 class="text-center red">Documentation</h1>
     <br>
     <br>
-    <!--TODO: check html -->
     <!--TODO: make demo vid -->
 
     <div id="toc_container">
@@ -84,18 +83,34 @@
     </p>
 
     <ul class="margin-1">
-        <li> Easy level:</li>
-        You have 3 lives at your disposal, you lose one when you choose a wrong answer. If you did not get the right
-        answer the first time the game will show you the correct answer.
-        The fruits and vegetables will be the most common ones that we see and eat each day.
+        <li> Easy level:
 
-        <li>Medium level:</li>
-        You also have 3 lives but this time the game will not give you the correct answer until you lost all of your
-        lives. Also, fruits and vegetables become less common.
+            <p>
+                You have 3 lives at your disposal, you lose one when you choose a wrong answer. If you did not get the
+                right
+                answer the first time the game will show you the correct answer.
+                The fruits and vegetables will be the most common ones that we see and eat each day.</p>
+        </li>
 
-        <li>Hard level:</li>
-        The scoring and the lives system are the same as the ones from the medium level, the difference is in having to
-        guess more exotic fruits and vegetables.
+
+        <li>Medium level:
+            <p>
+                You also have 3 lives but this time the game will not give you the correct answer until you lost all of
+                your
+                lives. Also, fruits and vegetables become less common.
+            </p>
+        </li>
+
+
+        <li>Hard level:
+            <p>
+                The scoring and the lives system are the same as the ones from the medium level, the difference is in
+                having to
+                guess more exotic fruits and vegetables.
+            </p>
+        </li>
+
+
     </ul>
 
 
@@ -133,24 +148,23 @@
         <li>instructions page (live example of the trivia game)</li>
         <li>story game</li>
         <li>trivia game</li>
-        <li>admin </li>
+        <li>admin</li>
     </ul>
 
     <h3 class="margin-1 margin-top-ToC" id="UserClassesAndChar">3.3 User classes and characteristics</h3>
-    <ul class="margin-1">
-        <li class="no-bullets">Logged in users</li>
+    <div class="margin-1">
+        <p>Logged in users</p>
         <ul>
             <li>
                 can access every page of the web app except login and register
             </li>
         </ul>
-        <br>
-        <li class="no-bullets">Logged out users</li>
+        <p>Logged out users</p>
         <ul>
             <li>can access register, login, instructions, and rankings</li>
             <li>can’t access log out and the game</li>
         </ul>
-    </ul>
+    </div>
 
 
     <h3 id="OperatingEnviroment" class="margin-top-ToC">3.4 Operating environment</h3>
@@ -179,7 +193,7 @@
     </p>
 
     <h2 class="margin-1 margin-top-ToC" id="ExternalInterfaceRequirements">4. External interface requirements</h2>
-    <iframe src="<?= PROOT ?>img/siteMap.png" height="800px" width="100%" title="Site map"></iframe>
+    <iframe src="<?= PROOT ?>img/siteMap.png" title="Site map" style="width:100%; height: 800px;"></iframe>
     <h3 id="UserInterfaces" class="margin-top-ToC">4.1 User interfaces</h3>
     <h4>Use case diagrams</h4>
     <h5>Normal user</h5>
@@ -289,11 +303,11 @@
         When the user chooses a continent for which there are no stories he will see the Coming soon page
         <br>
         Otherwise the game stars:
+    </p>
     <p>
         The user character will travel to that continent and the story will begin.
         Each part of a story ends with a question that the user has to answer in order to get to the next
         question and finish the story.
-    </p>
     </p>
     <h4 class="margin-top-ToC"> Trivia game</h4>
     <p>
@@ -315,13 +329,14 @@
 
     <h5 class="margin-top-ToC"> Rankings RSS flux.</h5>
     <p>
-       On the ranking page there is a RSS feed button and when pressed the RSS flux is updated and you get redirected to the xml file.
+        On the ranking page there is a RSS feed button and when pressed the RSS flux is updated and you get redirected
+        to the xml file.
     </p>
 
 
     <h3 id="Home" class="margin-top-ToC">5.4 Home</h3>
     <p>
-       By default the home page is the game pages which can be accessed only by an existing user, but becase we want
+        By default the home page is the game pages which can be accessed only by an existing user, but becase we want
         our website to be educational we provide the learning options to all of the website visitors.
     </p>
     <h4 class="margin-top-ToC">Learn page</h4>
@@ -331,19 +346,19 @@
         <br> The photos are taken from the Unsplash API
     </p>
     <h4 class="margin-top-ToC">Learn about</h4>
+
     <p>
         This page contains the information for a selected fruit/veggie.
         <br>
         The information that is displayed is the following:
-        <ul>
-            <li>Item name</li>
-            <li>Item difficulty (easy/medium/hard)</li>
-            <li>Photo (generated dynamically from the Unsplash API)<</li>
-            <li>General info (generated dynamically from the Wikipedia API)</li>
-            <li>Custom description (only for the fruits that have a description added by the admin in the database)</li>
-        </ul>
-
     </p>
+    <ul>
+        <li>Item name</li>
+        <li>Item difficulty (easy/medium/hard)</li>
+        <li>Photo (generated dynamically from the Unsplash API)</li>
+        <li>General info (generated dynamically from the Wikipedia API)</li>
+        <li>Custom description (only for the fruits that have a description added by the admin in the database)</li>
+    </ul>
 
 
     <h4 id="Instruction" class="margin-top-ToC">Instruction page</h4>
@@ -354,11 +369,12 @@
 
     <h3 id="Restricted" class="margin-top-ToC">5.5 Restricted</h3>
     <p>
-       All the restricted pages are custom pages for the unwanted behaviors from our users or from our
-       APIs
+        All the restricted pages are custom pages for the unwanted behaviors from our users or from our
+        APIs
     </p>
     <h4 class="margin-top-ToC">Sneaky boy</h4>
-    <p> This page is a feature not a bug. When cross side request forgery happens or, when the user session gets corrupted
+    <p> This page is a feature not a bug. When cross side request forgery happens or, when the user session gets
+        corrupted
         this page is displayed to the user.
     </p>
     <h4 class="margin-top-ToC">Page not found</h4>
@@ -372,11 +388,13 @@
     <h3 id="User" class="margin-top-ToC">5.6 User</h3>
     <p>
         This page display the profile page of a user (most of the information that our website stores about them)
-        <br> From here the user can change his profile photo (AKA the character that he chose in the registration process)
+        <br> From here the user can change his profile photo (AKA the character that he chose in the registration
+        process)
         <br> The user can see his high scores for the trivia game.
     </p>
     <h4 class="margin-top-ToC">Sneaky boy</h4>
-    <p> This page is a feature not a bug. When cross side request forgery happens or, when the user session gets corrupted
+    <p> This page is a feature not a bug. When cross side request forgery happens or, when the user session gets
+        corrupted
         this page is displayed to the user.
     </p>
     <h4 class="margin-top-ToC">Page not found</h4>
@@ -386,7 +404,6 @@
     <p> Any time a user is not logged in and tries to access resources from our website this page should
         be displayed to our user.
     </p>
-
 
 
     <h2 class="margin-1 margin-top-ToC" id="Security">6. Security features</h2>
@@ -487,11 +504,11 @@
     </ol>
     <br>
     <h3 class="margin-1 margin-top-ToC" id="OpenSource">8. Open source design inspiration</h3>
-    <li><a href="https://codepen.io/bassetts/pen/RqrPWG" target=”_blank”>Learning page loading animation</a></li>
-    <li><a href="https://gist.github.com/vivom/d51102dc961e01be2fda003b5481fd00" target=”_blank”>Pure css open source
-            map (continent story page)</a></li>
     <ol>
-
+        <li><a href="https://codepen.io/bassetts/pen/RqrPWG" target=”_blank”>Learning page loading animation</a></li>
+        <li><a href="https://gist.github.com/vivom/d51102dc961e01be2fda003b5481fd00" target=”_blank”>Pure css open
+                source
+                map (continent story page)</a></li>
     </ol>
     <br>
 
@@ -507,7 +524,6 @@
                 <li>Login/Register: 40%</li>
             </ul>
         </li>
-        <br>
         <li>Șerban Mihai
             <ul class="no-bullets">
                 <li>Documentation page: 33.3%</li>
@@ -517,7 +533,6 @@
                 <li>Page Not Found: 100%</li>
             </ul>
         </li>
-        <br>
         <li>Teodorovici Gavril-Anton
             <ul class="no-bullets">
                 <li>Documentation page: 33.3%</li>
@@ -527,7 +542,6 @@
                 <li>Access restricted: 100%</li>
             </ul>
         </li>
-        <br>
     </ul>
     <!--TODO: update team contribution and decide what each nigga did -->
 
